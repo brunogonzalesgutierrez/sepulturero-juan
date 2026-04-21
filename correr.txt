@@ -1,0 +1,208 @@
+C:\Windows\System32
+
+
+terminal CMD entrar como administrador:
+
+
+git clone https://github.com/wilyKamijou/cementerio.git
+
+cd cementerio
+
+composer install
+
+copy .env.example .env
+
+code .
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=cementerio
+DB_USERNAME=root
+DB_PASSWORD=
+
+
+N
+
+php artisan key:generate
+
+php artisan migrate
+
+
+
+
+
+
+
+npm install
+
+terminal 1:
+npm run dev
+
+
+terminal 2:
+php artisan serve
+
+
+
+
+
+
+http://127.0.0.1:8000/register
+
+
+contraseña: brunoN1+
+
+
+
+==========================
+
+http://localhost/phpmyadmin
+===========
+
+
+
+
+
+php artisan config:clear
+php artisan cache:clear
+
+
+
+php artisan db:seed --class=RolPermisoSeeder
+
+admin@sepulturero.com / admin123
+
+
+=============
+
+php artisan tinker
+
+
+
+admin@sepulturero.com
+admin
+Admin1234!
+
+terminal 1:
+npm run dev
+
+
+terminal 2:
+php artisan serve
+
+
+arregla todo:
+
+php artisan cache:clear
+php artisan config:clear
+php artisan optimize:clear
+
+
+php artisan route:clear && php artisan cache:clear
+php artisan serve
+
+
+
+php artisan optimize:clear
+php artisan route:clear
+php artisan config:clear
+php artisan cache:clear
+
+php artisan route:list | findstr tipo
+
+
+php artisan route:clear && php artisan cache:clear
+php artisan serve
+
+
+php artisan make:controller ReporteController
+php artisan make:controller PerfilController
+
+
+ni resources/views/reportes/pdf/espacios.blade.php
+ni resources/views/reportes/pdf/contratos.blade.php
+
+
+
+
+
+
+php artisan route:clear
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+php artisan serve
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\CementerioController;
+use App\Http\Controllers\EspacioController;
+use App\Http\Controllers\TipoInhumacionController;
+use App\Http\Controllers\MantenimientoController;
+use App\Http\Controllers\InhumacionController;
+use App\Http\Controllers\ContratoController;
+use App\Http\Controllers\VentaController;
+use App\Http\Controllers\PagoController;
+use App\Http\Controllers\BitacoraController;
+use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\PerfilController;
+
+Auth::routes(['register' => false]);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', fn() => redirect()->route('dashboard'));
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('clientes',          ClienteController::class);
+    Route::resource('empleados',         EmpleadoController::class);
+    Route::resource('usuarios',          UsuarioController::class);
+    Route::resource('cementerios',       CementerioController::class);
+    Route::resource('espacios',          EspacioController::class);
+    Route::resource('tipo_inhumaciones', TipoInhumacionController::class);
+    Route::resource('mantenimientos',    MantenimientoController::class);
+    Route::resource('inhumaciones',      InhumacionController::class);
+    Route::resource('contratos',         ContratoController::class);
+    Route::resource('ventas',            VentaController::class);
+    Route::resource('pagos',             PagoController::class);
+
+    // Ruta especial para marcar cuotas vencidas
+    Route::post('/pagos/marcar-vencidas', [PagoController::class, 'marcarVencidas'])
+        ->name('pagos.marcarVencidas');
+
+    // Bitácora (solo lectura)
+    Route::get('/bitacora', [BitacoraController::class, 'index'])->name('bitacora.index');
+
+    // Placeholders temporales
+    $placeholders = ['roles', 'reportes'];
+    foreach ($placeholders as $modulo) {
+        Route::get("/{$modulo}", fn() => abort(404))->name("{$modulo}.index");
+    }
+
+    Route::get('/perfil', fn() => abort(404))->name('perfil.index');
+});
