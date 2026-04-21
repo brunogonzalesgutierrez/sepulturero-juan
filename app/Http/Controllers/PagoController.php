@@ -8,9 +8,11 @@ use App\Models\Empleado;
 use App\Models\PlanPago;
 use App\Models\Contrato;
 use App\Http\Requests\PagoRequest;
+use App\Mail\ReciboPagoMail;
 use App\Services\BitacoraService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class PagoController extends Controller
 {
@@ -70,10 +72,10 @@ class PagoController extends Controller
             ->with(['planPago.pagoCredito.venta.cliente'])
             ->orderBy('fecha_vencimiento')
             ->get();
-
+        $pago = new Pago();
         $empleados = Empleado::where('estado', 'activo')->orderBy('nombre')->get();
 
-        return view('pagos.create', compact('cuotasPendientes', 'empleados'));
+        return view('pagos.create', compact('cuotasPendientes', 'empleados', 'pago'));
     }
 
     public function store(PagoRequest $request)
@@ -144,7 +146,12 @@ class PagoController extends Controller
         $this->authorize('pagos.editar');
         $empleados = Empleado::where('estado', 'activo')->orderBy('nombre')->get();
         $pago->load(['cuota.planPago.pagoCredito.venta.cliente']);
-        return view('pagos.edit', compact('pago', 'empleados'));
+        $cuotasPendientes = Cuota::whereIn('estado', ['pendiente', 'vencida'])
+            ->with(['planPago.pagoCredito.venta.cliente'])
+            ->orderBy('fecha_vencimiento')
+            ->get();
+
+        return view('pagos.edit', compact('pago', 'empleados', 'cuotasPendientes'));
     }
 
     public function update(PagoRequest $request, Pago $pago)
@@ -152,29 +159,54 @@ class PagoController extends Controller
         $this->authorize('pagos.editar');
 
         DB::transaction(function () use ($request, $pago) {
+            // Guardar la cuota ANTERIOR antes de actualizar
+            $cuotaAnteriorId = $pago->cuota_id;
             $montoAnterior = $pago->monto_pagado;
+
+            // Actualizar el pago
             $pago->update($request->validated());
 
-            // Recalcular estado de cuota
-            $cuota       = $pago->cuota;
-            $totalPagado = $cuota->pagos()->sum('monto_pagado');
-            $nuevoEstado = $totalPagado >= $cuota->monto ? 'pagada' : 'pendiente';
-            $cuota->update(['estado' => $nuevoEstado]);
+            // === 1. RECALCULAR ESTADO DE LA CUOTA ANTERIOR ===
+            if ($cuotaAnteriorId != $pago->cuota_id) {
+                // El pago cambió de cuota
+                $cuotaAnterior = Cuota::find($cuotaAnteriorId);
+                if ($cuotaAnterior) {
+                    $totalPagadoAnterior = $cuotaAnterior->pagos()->sum('monto_pagado');
+                    $nuevoEstadoAnterior = $totalPagadoAnterior >= $cuotaAnterior->monto ? 'pagada' : 'pendiente';
+                    $cuotaAnterior->update(['estado' => $nuevoEstadoAnterior]);
+                }
+            }
 
-            // Recalcular saldo del contrato
-            $contrato = $cuota->planPago->pagoCredito->venta->contrato;
-            $diferencia = $request->monto_pagado - $montoAnterior;
-            $nuevoSaldo = max(0, $contrato->saldo_pendiente - $diferencia);
+            // === 2. RECALCULAR ESTADO DE LA CUOTA NUEVA ===
+            $cuotaNueva = $pago->cuota;
+            $totalPagadoNueva = $cuotaNueva->pagos()->sum('monto_pagado');
+            $nuevoEstadoNueva = $totalPagadoNueva >= $cuotaNueva->monto ? 'pagada' : 'pendiente';
+            $cuotaNueva->update(['estado' => $nuevoEstadoNueva]);
+
+            // === 3. RECALCULAR SALDO DEL CONTRATO ===
+            // Obtener el contrato a través de la cuota NUEVA
+            $contrato = $cuotaNueva->planPago->pagoCredito->venta->contrato;
+
+            // Calcular el total pagado en TODAS las cuotas del contrato
+            $totalPagadoContrato = $contrato->calcularTotalPagado(); // Necesitas este método
+
+            $nuevoSaldo = max(0, $contrato->monto_base - $totalPagadoContrato);
             $contrato->update(['saldo_pendiente' => $nuevoSaldo]);
 
+            // === 4. REGISTRAR EN BITÁCORA ===
             BitacoraService::registrar(
                 'pagos',
                 $pago->id,
-                "Pago #{$pago->id} actualizado. Monto anterior: {$montoAnterior}, nuevo: {$request->monto_pagado}"
+                "Pago #{$pago->id} actualizado. " .
+                    "Cuota anterior: {$cuotaAnteriorId}, " .
+                    "Cuota nueva: {$pago->cuota_id}, " .
+                    "Monto anterior: {$montoAnterior}, " .
+                    "Monto nuevo: {$request->monto_pagado}"
             );
         });
 
-        return redirect()->route('pagos.index')->with('success', 'Pago actualizado.');
+        return redirect()->route('pagos.index')
+            ->with('success', 'Pago actualizado correctamente.');
     }
 
     public function destroy(Pago $pago)

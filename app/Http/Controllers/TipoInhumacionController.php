@@ -30,8 +30,12 @@ class TipoInhumacionController extends Controller
         $this->authorize('cementerios.crear');
 
         $data = $request->validate([
-            'nombre' => 'required|string|max:255|unique:tipo_inhumacions,nombre',
-            'descripcion' => 'nullable|string',
+            'nombre' => 'required|string|max:255|unique:tipo_inhumaciones,nombre',
+            'precio' => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
+            'precio_base' => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
+            'capacidad_max' => 'required|integer|min:1',
+            'estado' => 'required|in:activo,inactivo,mantenimiento',
+            'area_base' => 'required|numeric|min:0.01|regex:/^\d+(\.\d{1,2})?$/'
         ]);
 
         TipoInhumacion::create($data);
@@ -41,33 +45,40 @@ class TipoInhumacionController extends Controller
             ->with('success', 'Tipo registrado correctamente.');
     }
 
-    public function edit(TipoInhumacion $tipoInhumacion)
+    public function edit($id)
     {
+        $tipoInhumacion = TipoInhumacion::findorfail($id);
+
         $this->authorize('cementerios.editar');
 
         return view('tipo_inhumaciones.edit', compact('tipoInhumacion'));
     }
 
-    public function update(Request $request, TipoInhumacion $tipoInhumacion)
+    public function update(Request $request, $id)
     {
         $this->authorize('cementerios.editar');
+        $tipoInhumacion = TipoInhumacion::findorfail($id);
 
         $data = $request->validate([
-            'nombre' => 'required|string|max:255|unique:tipo_inhumacions,nombre,' . $tipoInhumacion->id,
-            'descripcion' => 'nullable|string',
+            'nombre' => 'required|string|max:255|unique:tipo_inhumaciones,nombre,' . $tipoInhumacion->id,
+            'precio' => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
+            'precio_base' => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
+            'capacidad_max' => 'required|integer|min:1',
+            'estado' => 'required|in:activo,inactivo,mantenimiento',
+            'area_base' => 'required|numeric|min:0.01|regex:/^\d+(\.\d{1,2})?$/'
         ]);
 
         $tipoInhumacion->update($data);
 
         return redirect()
             ->route('tipo_inhumaciones.index')
-            ->with('success', 'Tipo actualizado.');
+            ->with('success', 'Tipo actualizado correctamente.');
     }
 
-    public function destroy(TipoInhumacion $tipoInhumacion)
+    public function destroy($id)
     {
         $this->authorize('cementerios.eliminar');
-
+        $tipoInhumacion = TipoInhumacion::findorfail($id);
         if ($tipoInhumacion->espacios()->count() > 0) {
             return back()->with('error', 'No se puede eliminar: tiene espacios asociados.');
         }

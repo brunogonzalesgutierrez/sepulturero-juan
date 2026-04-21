@@ -27,4 +27,14 @@ class Contrato extends Model
     {
         return $this->hasMany(Inhumacion::class);
     }
+    // app/Models/Contrato.php
+    public function calcularTotalPagado()
+    {
+        $total = 0;
+        // Sumar todos los pagos de todas las cuotas de todas las ventas
+        foreach ($this->venta->pagoCredito->planPago->cuotas as $cuota) {
+            $total += $cuota->pagos()->sum('monto_pagado');
+        }
+        return $total;
+    }
 }

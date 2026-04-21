@@ -1,0 +1,38 @@
+1. Requisitos previos
+Debe tener instalado: PHP 8.2, Composer, MySQL y Laravel.
+
+2. Instalar dependencias
+bashcomposer install
+
+3. Configurar el .env
+bashcp .env.example .env
+php artisan key:generate
+Luego edita el .env con los datos de su base de datos local:
+DB_DATABASE=sepulturero_juan
+DB_USERNAME=root
+DB_PASSWORD=su_password
+
+4. Crear la base de datos en MySQL
+sqlCREATE DATABASE sepulturero_juan CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+5. Ejecutar migraciones y seeders (en este orden)
+bashphp artisan migrate
+php artisan db:seed
+El db:seed ejecuta primero RolesAndPermissionsSeeder (crea roles y permisos) y luego AdminSeeder (crea el usuario admin). Ese orden ya está definido en DatabaseSeeder.php, así que no tiene que preocuparse por eso.
+
+6. Levantar el servidor
+bashphp artisan serve
+
+7. Ingresar al sistema
+http://localhost:8000
+Usuario:    admin
+Contraseña: Admin1234!
+
+⚠️ Problemas frecuentes:
+Si da error de permisos de Spatie al hacer db:seed, ejecutar:
+bashphp artisan config:clear
+php artisan cache:clear
+php artisan db:seed
+Si las migraciones fallan por orden de foreign keys:
+bashphp artisan migrate:fresh --seed
+Eso borra todo y vuelve a crear, perfecto para entorno nuevo.

@@ -10,7 +10,7 @@
 <div class="card" style="max-width:720px;">
     <div class="card-header py-2">{{ $tipoInhumacion->nombre }}</div>
     <div class="card-body">
-        <form method="POST" action="{{ route('tipo_inhumaciones.update', $tipoInhumacion) }}">
+        <form method="POST" action="{{ route('tipo_inhumaciones.update', $tipoInhumacion->id) }}">
             @csrf @method('PUT')
             @include('tipo_inhumaciones._form')
             <div class="d-flex gap-2 mt-3">

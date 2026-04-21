@@ -58,7 +58,6 @@ class EspacioController extends Controller
     public function store(EspacioRequest $request)
     {
         $this->authorize('espacios.crear');
-
         DB::transaction(function () use ($request) {
             // 1. Crear dimensión
             $dimension = Dimension::create([
@@ -142,11 +141,12 @@ class EspacioController extends Controller
         if ($espacio->inhumaciones()->count() > 0 || $espacio->contratos()->count() > 0) {
             return back()->with('error', 'No se puede eliminar: el espacio tiene inhumaciones o contratos asociados.');
         }
-
+        // $espacio->delete();
         DB::transaction(function () use ($espacio) {
-            $espacio->direccion?->delete();
-            $espacio->dimension?->delete();
+            $espacio->direccion->delete();
             $espacio->delete();
+
+            //$espacio->dimension->delete();
         });
 
         return redirect()->route('espacios.index')->with('success', 'Espacio eliminado.');

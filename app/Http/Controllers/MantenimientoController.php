@@ -36,7 +36,8 @@ class MantenimientoController extends Controller
     {
         $this->authorize('mantenimientos.crear');
         $espacios = Espacio::with(['cementerio', 'direccion'])->orderBy('id')->get();
-        return view('mantenimientos.create', compact('espacios'));
+        $mantenimiento = new Mantenimiento();
+        return view('mantenimientos.create', compact('espacios', 'mantenimiento'));
     }
 
     public function store(MantenimientoRequest $request)

@@ -64,7 +64,7 @@
                         <td>{{ $c->tipo_cementerio }}</td>
                         <td>{{ $c->localizacion }}</td>
                         <td>
-                            <span class="badge bg-secondary">{{ $c->espacios_count }} espacios</span>
+                            <span class="badge bg-secondary">{{ $c->espacio_disponible }} espacios</span>
                         </td>
                         <td><span class="badge badge-{{ $c->estado }}">{{ ucfirst($c->estado) }}</span></td>
                         <td class="text-center">

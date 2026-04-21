@@ -36,12 +36,12 @@
                     <td><span class="badge badge-{{ $t->estado }}">{{ ucfirst($t->estado) }}</span></td>
                     <td class="text-center">
                         @can('cementerios.editar')
-                        <a href="{{ route('tipo_inhumaciones.edit', $t) }}" class="btn btn-sm btn-outline-primary">
+                        <a href="{{ route('tipo_inhumaciones.edit', $t->id) }}" class="btn btn-sm btn-outline-primary">
                             <i class="bi bi-pencil"></i>
                         </a>
                         @endcan
                         @can('cementerios.eliminar')
-                        <form method="POST" action="{{ route('tipo_inhumaciones.destroy', $t) }}" class="d-inline"
+                        <form method="POST" action="{{ route('tipo_inhumaciones.destroy', $t->id) }}" class="d-inline"
                             onsubmit="return confirm('¿Eliminar {{ addslashes($t->nombre) }}?')">
                             @csrf @method('DELETE')
                             <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>

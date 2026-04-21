@@ -70,6 +70,10 @@ class ClienteController extends Controller
     public function destroy(Cliente $cliente)
     {
         $this->authorize('clientes.eliminar');
+        if ($cliente->contratos()->count() > 0 || $cliente->ventas()->count() > 0) {
+            return redirect()->route('clientes.index')
+                ->with('error', 'No se puede eliminar el cliente porque tiene contratos o ventas asociados .');
+        }
         $cliente->delete();
         return redirect()->route('clientes.index')->with('success', 'Cliente eliminado correctamente.');
     }

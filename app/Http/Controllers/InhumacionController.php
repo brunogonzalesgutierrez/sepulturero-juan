@@ -55,7 +55,9 @@ class InhumacionController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('inhumaciones.create', compact('espacios', 'contratos'));
+        $inhumacion = new Inhumacion();
+
+        return view('inhumaciones.create', compact('espacios', 'contratos', 'inhumacion'));
     }
 
     public function store(InhumacionRequest $request)
