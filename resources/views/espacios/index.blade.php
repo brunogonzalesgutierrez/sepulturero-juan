@@ -19,7 +19,11 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <div class="stat-number" style="font-size:1.4rem;">
+<<<<<<< HEAD
+                        {{ $contadores[$est] }}
+=======
                         {{ \App\Models\Espacio::where('estado',$est)->count() }}
+>>>>>>> 665fe70f9df4c506ced3c6beb45900d4c0698f0c
                     </div>
                     <div class="stat-label">{{ ucfirst($est) }}</div>
                 </div>

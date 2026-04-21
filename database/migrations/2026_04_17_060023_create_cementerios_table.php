@@ -16,7 +16,11 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('localizacion');
             $table->enum('estado', ['activo', 'inactivo'])->default('activo');
+<<<<<<< HEAD
+            $table->integer('espacio_total')->default(0);
+=======
             $table->integer('espacio_disponible')->default(0);
+>>>>>>> 665fe70f9df4c506ced3c6beb45900d4c0698f0c
             $table->string('tipo_cementerio');
             $table->timestamps();
             $table->softDeletes();

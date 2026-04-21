@@ -19,10 +19,17 @@
         @error('localizacion')<div class="invalid-feedback">{{ $message }}</div>@enderror
     </div>
     <div class="col-md-2">
+<<<<<<< HEAD
+        <label class="form-label fw-semibold">Espacios Totales</label>
+        <input type="number" name="espacio_total" class="form-control @error('espacio_disponible') is-invalid @enderror"
+            value="{{ old('espacio_total', $cementerio->espacio_total ?? 0) }}" min="0">
+        @error('espacio_total')<div class="invalid-feedback">{{ $message }}</div>@enderror
+=======
         <label class="form-label fw-semibold">Espacios Disponibles</label>
         <input type="number" name="espacio_disponible" class="form-control @error('espacio_disponible') is-invalid @enderror"
             value="{{ old('espacio_disponible', $cementerio->espacio_disponible ?? 0) }}" min="0">
         @error('espacio_disponible')<div class="invalid-feedback">{{ $message }}</div>@enderror
+>>>>>>> 665fe70f9df4c506ced3c6beb45900d4c0698f0c
     </div>
     <div class="col-md-2">
         <label class="form-label fw-semibold">Estado <span class="text-danger">*</span></label>
