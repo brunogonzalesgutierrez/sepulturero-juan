@@ -34,6 +34,7 @@
                         <td>{{ $cementerio->localizacion }}</td>
                     </tr>
                     <tr>
+<<<<<<< HEAD
                         <th>Espacios Totales</th>
                         <td>{{ $cementerio->espacio_total }}</td>
                     </tr>
@@ -52,6 +53,14 @@
                                 {{ ucfirst($cementerio->estado) }}
                             </span>
                         </td>
+=======
+                        <th>Disponibles</th>
+                        <td>{{ $cementerio->espacio_disponible }}</td>
+                    </tr>
+                    <tr>
+                        <th>Estado</th>
+                        <td><span class="badge badge-{{ $cementerio->estado }}">{{ ucfirst($cementerio->estado) }}</span></td>
+>>>>>>> 665fe70f9df4c506ced3c6beb45900d4c0698f0c
                     </tr>
                 </table>
             </div>
