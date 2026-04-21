@@ -8,7 +8,7 @@
     </a>
 </div>
 <div class="card">
-    <div class="card-header py-2">{{ $espacio->cementerio->nombre }} — Sección {{ $espacio->direccion->seccion }}</div>
+    <div class="card-header py-2">{{ $espacio->cementerio->nombre }} — Sección {{ $espacio->direccion->seccion ?? 'desconocido' }}</div>
     <div class="card-body">
         <form method="POST" action="{{ route('espacios.update', $espacio) }}">
             @csrf @method('PUT')

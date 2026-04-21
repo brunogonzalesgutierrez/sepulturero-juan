@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('largo', 8, 2);
             $table->decimal('area', 8, 2)->storedAs('ancho * largo');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

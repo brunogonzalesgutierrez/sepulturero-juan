@@ -89,8 +89,8 @@
                     @forelse($espacios as $e)
                     <tr>
                         <td class="text-muted" style="font-size:0.8rem;">{{ $e->id }}</td>
-                        <td>{{ $e->cementerio->nombre }}</td>
-                        <td>{{ $e->tipoInhumacion->nombre }}</td>
+                        <td>{{ $e->cementerio->nombre ?? 'desconocido' }}</td>
+                        <td>{{ $e->tipoInhumacion->nombre ?? 'desconocido' }}</td>
                         <td>{{ $e->direccion->seccion ?? '—' }}</td>
                         <td>{{ $e->direccion->fila ?? '—' }} / {{ $e->direccion->numero ?? '—' }}</td>
                         <td>

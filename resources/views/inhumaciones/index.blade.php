@@ -74,16 +74,16 @@
                             {{ $inh->contrato->cliente->paterno }}
                         </td>
                         <td class="text-center">
-                            <a href="{{ route('inhumaciones.show', $inh) }}" class="btn btn-sm btn-outline-secondary">
+                            <a href="{{ route('inhumaciones.show', $inh->id) }}" class="btn btn-sm btn-outline-secondary">
                                 <i class="bi bi-eye"></i>
                             </a>
                             @can('inhumaciones.editar')
-                            <a href="{{ route('inhumaciones.edit', $inh) }}" class="btn btn-sm btn-outline-primary">
+                            <a href="{{ route('inhumaciones.edit', $inh->id) }}" class="btn btn-sm btn-outline-primary">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             @endcan
                             @can('inhumaciones.eliminar')
-                            <form method="POST" action="{{ route('inhumaciones.destroy', $inh) }}" class="d-inline"
+                            <form method="POST" action="{{ route('inhumaciones.destroy', $inh->id) }}" class="d-inline"
                                 onsubmit="return confirm('¿Eliminar esta inhumación?')">
                                 @csrf @method('DELETE')
                                 <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>

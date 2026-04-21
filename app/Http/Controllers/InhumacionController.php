@@ -50,7 +50,7 @@ class InhumacionController extends Controller
         $espacios  = Espacio::whereIn('estado', ['disponible', 'ocupado'])
             ->with(['cementerio', 'direccion', 'tipoInhumacion'])
             ->get();
-        $contratos = Contrato::where('estado', 'activo')
+        $contratos = Contrato::whereIn('estado', ['activo', 'pagado'])
             ->with('cliente')
             ->orderBy('created_at', 'desc')
             ->get();
@@ -73,16 +73,20 @@ class InhumacionController extends Controller
             ->with('success', 'Inhumación registrada correctamente.');
     }
 
-    public function show(Inhumacion $inhumacion)
+    public function show($id)
     {
         $this->authorize('inhumaciones.ver');
+        $inhumacion = Inhumacion::findorfail($id);
+        // dd($inhumacion);
         $inhumacion->load(['espacio.cementerio', 'espacio.direccion', 'espacio.tipoInhumacion', 'contrato.cliente']);
         return view('inhumaciones.show', compact('inhumacion'));
     }
 
-    public function edit(Inhumacion $inhumacion)
+    public function edit($id)
     {
         $this->authorize('inhumaciones.editar');
+        $inhumacion = Inhumacion::findorfail($id);
+        // dd($inhumacion);
         $espacios  = Espacio::whereIn('estado', ['disponible', 'ocupado'])
             ->with(['cementerio', 'direccion', 'tipoInhumacion'])
             ->get();
@@ -93,18 +97,22 @@ class InhumacionController extends Controller
         return view('inhumaciones.edit', compact('inhumacion', 'espacios', 'contratos'));
     }
 
-    public function update(InhumacionRequest $request, Inhumacion $inhumacion)
+    public function update(InhumacionRequest $request, $id)
     {
+        // dd($id);
         $this->authorize('inhumaciones.editar');
+        $inhumacion = Inhumacion::findorfail($id);
         $inhumacion->update($request->validated());
         return redirect()->route('inhumaciones.index')
             ->with('success', 'Inhumación actualizada correctamente.');
     }
 
-    public function destroy(Inhumacion $inhumacion)
+    public function destroy($id)
     {
         $this->authorize('inhumaciones.eliminar');
+        $inhumacion = Inhumacion::findorfail($id);
         $espacio = $inhumacion->espacio;
+        // dd($inhumacion);
         $inhumacion->delete();
 
         // Si no quedan más inhumaciones, liberar espacio

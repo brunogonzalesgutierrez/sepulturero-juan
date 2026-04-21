@@ -10,7 +10,7 @@
 <div class="card">
     <div class="card-header py-2">{{ $inhumacion->nombre }} {{ $inhumacion->paterno }}</div>
     <div class="card-body">
-        <form method="POST" action="{{ route('inhumaciones.update', $inhumacion) }}">
+        <form method="POST" action="{{ route('inhumaciones.update', $inhumacion->id) }}">
             @csrf @method('PUT')
             @include('inhumaciones._form')
             <div class="d-flex gap-2 mt-3">
