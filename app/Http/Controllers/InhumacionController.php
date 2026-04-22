@@ -47,7 +47,7 @@ class InhumacionController extends Controller
         $this->authorize('inhumaciones.crear');
 
         // Solo espacios con contrato activo
-        $espacios  = Espacio::whereIn('estado', ['disponible', 'ocupado'])
+        $espacios = Espacio::whereIn('estado', ['disponible', 'ocupado', 'reservado'])
             ->with(['cementerio', 'direccion', 'tipoInhumacion'])
             ->get();
         $contratos = Contrato::where('estado', 'activo')
@@ -83,7 +83,7 @@ class InhumacionController extends Controller
     public function edit(Inhumacion $inhumacion)
     {
         $this->authorize('inhumaciones.editar');
-        $espacios  = Espacio::whereIn('estado', ['disponible', 'ocupado'])
+        $espacios = Espacio::whereIn('estado', ['disponible', 'ocupado', 'reservado'])
             ->with(['cementerio', 'direccion', 'tipoInhumacion'])
             ->get();
         $contratos = Contrato::where('estado', 'activo')
