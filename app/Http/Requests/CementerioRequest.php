@@ -17,7 +17,7 @@ class CementerioRequest extends FormRequest
             'nombre'           => 'required|string|max:150',
             'localizacion'     => 'required|string|max:255',
             'tipo_cementerio'  => 'required|string|max:100',
-            'espacio_disponible' => 'required|integer|min:0',
+            'espacio_total' => 'required|integer|min:0',
             'estado'           => 'required|in:activo,inactivo',
         ];
     }

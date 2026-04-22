@@ -79,8 +79,8 @@ class EspacioController extends Controller
         // Validar que no se exceda el límite de espacios del cementerio
         $cementerio = Cementerio::findOrFail($request->cementerio_id);
         $espaciosActuales = Espacio::where('cementerio_id', $request->cementerio_id)->count();
-
-        if ($espaciosActuales >= $cementerio->espacio_total) {
+        // dd($cementerio->espacio_disponible);
+        if ($espaciosActuales >= $cementerio->espacio_disponible) {
             return back()->withInput()->with(
                 'error',
                 "El cementerio '{$cementerio->nombre}' ya alcanzó su límite de {$cementerio->espacio_total} espacios."
@@ -129,7 +129,6 @@ class EspacioController extends Controller
         $cementerios = Cementerio::where('estado', 'activo')->orderBy('nombre')->get();
         $tipos       = TipoInhumacion::where('estado', 'activo')->orderBy('nombre')->get();
         $espacio->load(['dimension', 'direccion']);
-
         return view('espacios.edit', compact('espacio', 'cementerios', 'tipos'));
     }
 
@@ -157,24 +156,12 @@ class EspacioController extends Controller
             ]);
 
             // Actualizar dirección
-            if ($espacio->direccion == null) {
-                // 3. Crear dirección
-                $direccion = Direccion::create([
-                    'espacio_id' => $espacio->id,
-                    'seccion'    => $request->seccion,
-                    'numero'     => $request->numero,
-                    'calle'      => $request->calle,
-                    'fila'       => $request->fila,
-                ]);
-                $espacio->direccion = $direccion;
-            } else {
-                $espacio->direccion->update([
-                    'seccion' => $request->seccion,
-                    'numero'  => $request->numero,
-                    'calle'   => $request->calle,
-                    'fila'    => $request->fila,
-                ]);
-            }
+            $espacio->direccion->update([
+                'seccion' => $request->seccion,
+                'numero'  => $request->numero,
+                'calle'   => $request->calle,
+                'fila'    => $request->fila,
+            ]);
         });
 
         return redirect()->route('espacios.index')->with('success', 'Espacio actualizado correctamente.');

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Cementerio extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['nombre', 'localizacion', 'estado', 'espacio_disponible', 'tipo_cementerio'];
+    protected $fillable = ['nombre', 'localizacion', 'estado', 'espacio_total', 'tipo_cementerio'];
 
     public function espacios()
     {

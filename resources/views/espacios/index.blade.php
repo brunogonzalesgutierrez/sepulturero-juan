@@ -19,7 +19,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <div class="stat-number" style="font-size:1.4rem;">
-                        {{ \App\Models\Espacio::where('estado',$est)->count() }}
+                        {{ $contadores[$est] }}
                     </div>
                     <div class="stat-label">{{ ucfirst($est) }}</div>
                 </div>
