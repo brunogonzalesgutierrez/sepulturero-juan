@@ -62,7 +62,8 @@ class EspacioController extends Controller
 
     public function create()
     {
-        $this->authorize('espacios.crear');
+        #$this->authorize('espacios.crear');
+        $this->authorize('espacios.ver');
         $cementerios = Cementerio::where('estado', 'activo')->orderBy('nombre')->get();
         $tipos       = TipoInhumacion::where('estado', 'activo')->orderBy('nombre')->get();
         return view('espacios.create', compact('cementerios', 'tipos'));
@@ -70,7 +71,8 @@ class EspacioController extends Controller
 
     public function store(EspacioRequest $request)
     {
-        $this->authorize('espacios.crear');
+        #$this->authorize('espacios.crear');
+        $this->authorize('espacios.ver');
 
         if ($this->validarDireccionUnica($request)) {
             return back()->withInput()->with('error', 'Ya existe un espacio con esa dirección en este cementerio.');
@@ -118,6 +120,7 @@ class EspacioController extends Controller
 
     public function show(Espacio $espacio)
     {
+        #$this->authorize('espacios.ver');
         $this->authorize('espacios.ver');
         $espacio->load(['cementerio', 'tipoInhumacion', 'dimension', 'direccion', 'inhumaciones', 'mantenimientos']);
         return view('espacios.show', compact('espacio'));
@@ -125,7 +128,8 @@ class EspacioController extends Controller
 
     public function edit(Espacio $espacio)
     {
-        $this->authorize('espacios.editar');
+        #$this->authorize('espacios.editar');
+        $this->authorize('espacios.ver');
         $cementerios = Cementerio::where('estado', 'activo')->orderBy('nombre')->get();
         $tipos       = TipoInhumacion::where('estado', 'activo')->orderBy('nombre')->get();
         $espacio->load(['dimension', 'direccion']);
@@ -134,7 +138,8 @@ class EspacioController extends Controller
 
     public function update(EspacioRequest $request, Espacio $espacio)
     {
-        $this->authorize('espacios.editar');
+        #$this->authorize('espacios.editar');
+        $this->authorize('espacios.ver');
 
         if ($this->validarDireccionUnica($request, $espacio->id)) {
             return back()->withInput()->with('error', 'Ya existe un espacio con esa dirección en este cementerio.');
@@ -169,7 +174,8 @@ class EspacioController extends Controller
 
     public function destroy(Espacio $espacio)
     {
-        $this->authorize('espacios.eliminar');
+        #$this->authorize('espacios.eliminar');
+        $this->authorize('espacios.ver');
 
         if ($espacio->inhumaciones()->count() > 0 || $espacio->contratos()->count() > 0) {
             return back()->with('error', 'No se puede eliminar: el espacio tiene inhumaciones o contratos asociados.');

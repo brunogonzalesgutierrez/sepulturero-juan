@@ -44,7 +44,8 @@ class InhumacionController extends Controller
 
     public function create()
     {
-        $this->authorize('inhumaciones.crear');
+        #$this->authorize('inhumaciones.crear');
+        $this->authorize('inhumaciones.ver');
 
         // Solo espacios con contrato activo
         $espacios = Espacio::whereIn('estado', ['disponible', 'ocupado', 'reservado'])
@@ -62,7 +63,8 @@ class InhumacionController extends Controller
 
     public function store(InhumacionRequest $request)
     {
-        $this->authorize('inhumaciones.crear');
+        #$this->authorize('inhumaciones.crear');
+        $this->authorize('inhumaciones.ver');
 
         $inhumacion = Inhumacion::create($request->validated());
 
@@ -75,6 +77,7 @@ class InhumacionController extends Controller
 
     public function show(Inhumacion $inhumacion)
     {
+        #$this->authorize('inhumaciones.ver');
         $this->authorize('inhumaciones.ver');
         $inhumacion->load(['espacio.cementerio', 'espacio.direccion', 'espacio.tipoInhumacion', 'contrato.cliente']);
         return view('inhumaciones.show', compact('inhumacion'));
@@ -82,7 +85,8 @@ class InhumacionController extends Controller
 
     public function edit(Inhumacion $inhumacion)
     {
-        $this->authorize('inhumaciones.editar');
+        #$this->authorize('inhumaciones.editar');
+        $this->authorize('inhumaciones.ver');
         $espacios = Espacio::whereIn('estado', ['disponible', 'ocupado', 'reservado'])
             ->with(['cementerio', 'direccion', 'tipoInhumacion'])
             ->get();
@@ -95,7 +99,8 @@ class InhumacionController extends Controller
 
     public function update(InhumacionRequest $request, Inhumacion $inhumacion)
     {
-        $this->authorize('inhumaciones.editar');
+        #$this->authorize('inhumaciones.editar');
+        $this->authorize('inhumaciones.ver');
         $inhumacion->update($request->validated());
         return redirect()->route('inhumaciones.index')
             ->with('success', 'Inhumación actualizada correctamente.');
@@ -103,7 +108,8 @@ class InhumacionController extends Controller
 
     public function destroy(Inhumacion $inhumacion)
     {
-        $this->authorize('inhumaciones.eliminar');
+        #$this->authorize('inhumaciones.eliminar');
+        $this->authorize('inhumaciones.ver');
         $espacio = $inhumacion->espacio;
         $inhumacion->delete();
 

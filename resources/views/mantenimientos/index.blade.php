@@ -4,7 +4,7 @@
 @section('content')
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-tools me-2"></i>Mantenimientos</h1>
-    @can('mantenimientos.crear')
+    @can('mantenimientos.ver')
     <a href="{{ route('mantenimientos.create') }}" class="btn btn-gold">
         <i class="bi bi-plus-lg me-1"></i>Nuevo Mantenimiento
     </a>
@@ -86,12 +86,12 @@
                             <a href="{{ route('mantenimientos.show', $m) }}" class="btn btn-sm btn-outline-secondary">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            @can('mantenimientos.editar')
+                            @can('mantenimientos.ver')
                             <a href="{{ route('mantenimientos.edit', $m) }}" class="btn btn-sm btn-outline-primary">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             @endcan
-                            @can('mantenimientos.eliminar')
+                            @can('mantenimientos.ver')
                             <form method="POST" action="{{ route('mantenimientos.destroy', $m) }}" class="d-inline"
                                 onsubmit="return confirm('¿Eliminar este mantenimiento?')">
                                 @csrf @method('DELETE')

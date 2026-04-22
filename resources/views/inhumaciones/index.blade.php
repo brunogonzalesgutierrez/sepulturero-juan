@@ -4,7 +4,7 @@
 @section('content')
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-flower1 me-2"></i>Inhumaciones</h1>
-    @can('inhumaciones.crear')
+    @can('inhumaciones.ver')
     <a href="{{ route('inhumaciones.create') }}" class="btn btn-gold">
         <i class="bi bi-plus-lg me-1"></i>Nueva Inhumación
     </a>
@@ -77,12 +77,12 @@
                             <a href="{{ route('inhumaciones.show', $inh) }}" class="btn btn-sm btn-outline-secondary">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            @can('inhumaciones.editar')
+                            @can('inhumaciones.ver')
                             <a href="{{ route('inhumaciones.edit', $inh) }}" class="btn btn-sm btn-outline-primary">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             @endcan
-                            @can('inhumaciones.eliminar')
+                            @can('inhumaciones.ver')
                             <form method="POST" action="{{ route('inhumaciones.destroy', $inh) }}" class="d-inline"
                                 onsubmit="return confirm('¿Eliminar esta inhumación?')">
                                 @csrf @method('DELETE')

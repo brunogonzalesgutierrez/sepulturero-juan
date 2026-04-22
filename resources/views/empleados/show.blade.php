@@ -77,14 +77,14 @@
                         </td>
                     </tr>
                 </table>
-                @can('usuarios.editar')
+                @can('usuarios.ver')
                 <a href="{{ route('usuarios.edit', $empleado->usuario) }}" class="btn btn-sm btn-outline-primary mt-2">
                     <i class="bi bi-pencil me-1"></i>Editar usuario
                 </a>
                 @endcan
                 @else
                 <p class="text-muted mb-2">Este empleado no tiene usuario asignado.</p>
-                @can('usuarios.crear')
+                @can('usuarios.ver')
                 <a href="{{ route('usuarios.create') }}" class="btn btn-sm btn-gold">
                     <i class="bi bi-plus-lg me-1"></i>Crear usuario
                 </a>

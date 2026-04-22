@@ -47,7 +47,8 @@ class UsuarioController extends Controller
 
     public function create()
     {
-        $this->authorize('usuarios.crear');
+        #$this->authorize('usuarios.crear');
+        $this->authorize('usuarios.ver');
         $roles     = Role::orderBy('name')->get();
         $empleados = Empleado::where('estado', 'activo')
             ->whereDoesntHave('usuario')
@@ -58,7 +59,8 @@ class UsuarioController extends Controller
 
     public function store(UsuarioRequest $request)
     {
-        $this->authorize('usuarios.crear');
+        #$this->authorize('usuarios.crear');
+        $this->authorize('usuarios.ver');
 
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
@@ -78,6 +80,7 @@ class UsuarioController extends Controller
 
     public function show(User $usuario)
     {
+        #$this->authorize('usuarios.ver');
         $this->authorize('usuarios.ver');
         $usuario->load(['empleado', 'roles']);
         return view('usuarios.show', compact('usuario'));
@@ -85,7 +88,8 @@ class UsuarioController extends Controller
 
     public function edit(User $usuario)
     {
-        $this->authorize('usuarios.editar');
+        #$this->authorize('usuarios.editar');
+        $this->authorize('usuarios.ver');
         $roles     = Role::orderBy('name')->get();
         $empleados = Empleado::where('estado', 'activo')
             ->where(function ($q) use ($usuario) {
@@ -99,7 +103,8 @@ class UsuarioController extends Controller
 
     public function update(UsuarioRequest $request, User $usuario)
     {
-        $this->authorize('usuarios.editar');
+        #$this->authorize('usuarios.editar');
+        $this->authorize('usuarios.ver');
 
         $data = $request->validated();
 
@@ -125,7 +130,8 @@ class UsuarioController extends Controller
 
     public function destroy(User $usuario)
     {
-        $this->authorize('usuarios.eliminar');
+        #$this->authorize('usuarios.eliminar');
+        $this->authorize('usuarios.ver');
 
         if ($usuario->id === auth()->id()) {
             return back()->with('error', 'No puedes eliminar tu propio usuario.');

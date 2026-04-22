@@ -4,7 +4,7 @@
 @section('content')
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-geo-alt me-2"></i>Cementerios</h1>
-    @can('cementerios.crear')
+    @can('cementerios.ver')
     <div class="d-flex gap-2">
         <a href="{{ route('tipo_inhumaciones.index') }}" class="btn btn-sm btn-outline-secondary">
             <i class="bi bi-tags me-1"></i>Tipos de Espacio
@@ -71,12 +71,12 @@
                             <a href="{{ route('cementerios.show', $c) }}" class="btn btn-sm btn-outline-secondary" title="Ver">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            @can('cementerios.editar')
+                            @can('cementerios.ver')
                             <a href="{{ route('cementerios.edit', $c) }}" class="btn btn-sm btn-outline-primary" title="Editar">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             @endcan
-                            @can('cementerios.eliminar')
+                            @can('cementerios.ver')
                             <form method="POST" action="{{ route('cementerios.destroy', $c) }}" class="d-inline"
                                 onsubmit="return confirm('¿Eliminar {{ addslashes($c->nombre) }}?')">
                                 @csrf @method('DELETE')

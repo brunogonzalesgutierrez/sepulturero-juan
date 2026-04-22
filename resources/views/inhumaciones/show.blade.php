@@ -4,7 +4,7 @@
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-flower1 me-2"></i>{{ $inhumacion->nombre }} {{ $inhumacion->paterno }}</h1>
     <div class="d-flex gap-2">
-        @can('inhumaciones.editar')
+        @can('inhumaciones.ver')
         <a href="{{ route('inhumaciones.edit', $inhumacion) }}" class="btn btn-sm btn-gold">
             <i class="bi bi-pencil me-1"></i>Editar
         </a>

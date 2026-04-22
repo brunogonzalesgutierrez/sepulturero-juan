@@ -5,7 +5,7 @@
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-cash-coin me-2"></i>Gestión de Pagos</h1>
     <div class="d-flex gap-2">
-        @can('pagos.editar')
+        @can('pagos.ver')
         <form method="POST" action="{{ route('pagos.marcarVencidas') }}">
             @csrf
             <button type="submit" class="btn btn-sm btn-outline-warning"
@@ -14,7 +14,7 @@
             </button>
         </form>
         @endcan
-        @can('pagos.crear')
+        @can('pagos.ver')
         <a href="{{ route('pagos.create') }}" class="btn btn-gold">
             <i class="bi bi-plus-lg me-1"></i>Registrar Pago
         </a>
@@ -143,7 +143,7 @@
                             <a href="{{ route('pagos.show', $p) }}" class="btn btn-sm btn-outline-secondary">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            @can('pagos.editar')
+                            @can('pagos.ver')
                             <a href="{{ route('pagos.edit', $p) }}" class="btn btn-sm btn-outline-primary">
                                 <i class="bi bi-pencil"></i>
                             </a>
@@ -212,7 +212,7 @@
                             </span>
                         </td>
                         <td>
-                            @can('pagos.crear')
+                            @can('pagos.ver')
                             <a href="{{ route('pagos.create') }}?cuota_id={{ $cuota->id }}"
                                 class="btn btn-sm btn-gold py-0 px-2">
                                 <i class="bi bi-cash me-1"></i>Cobrar

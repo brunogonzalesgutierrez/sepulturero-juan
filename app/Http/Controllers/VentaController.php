@@ -48,7 +48,8 @@ class VentaController extends Controller
 
     public function create()
     {
-        $this->authorize('ventas.crear');
+        #$this->authorize('ventas.crear');
+        $this->authorize('ventas.ver');
         // Solo contratos activos sin venta aún
         $contratos = Contrato::where('estado', 'activo')
             ->whereDoesntHave('venta')
@@ -60,7 +61,8 @@ class VentaController extends Controller
 
     public function store(VentaRequest $request)
     {
-        $this->authorize('ventas.crear');
+        #$this->authorize('ventas.crear');
+        $this->authorize('ventas.ver');
 
         DB::transaction(function () use ($request) {
 
@@ -184,6 +186,7 @@ class VentaController extends Controller
 
     public function show(Venta $venta)
     {
+        #$this->authorize('ventas.ver');
         $this->authorize('ventas.ver');
         $venta->load([
             'cliente',
@@ -200,7 +203,8 @@ class VentaController extends Controller
     public function edit(Venta $venta)
     {
         // Solo permitir editar ventas sin pagos registrados
-        $this->authorize('ventas.editar');
+        #$this->authorize('ventas.editar');
+        $this->authorize('ventas.ver');
         return back()->with('error', 'Las ventas no pueden editarse directamente. Gestione desde el contrato.');
     }
 
@@ -211,7 +215,8 @@ class VentaController extends Controller
 
     public function destroy(Venta $venta)
     {
-        $this->authorize('ventas.eliminar');
+        #$this->authorize('ventas.eliminar');
+        $this->authorize('ventas.ver');
         return back()->with('error', 'Las ventas no pueden eliminarse por integridad del sistema.');
     }
 }

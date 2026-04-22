@@ -35,19 +35,22 @@ class EmpleadoController extends Controller
 
     public function create()
     {
-        $this->authorize('empleados.crear');
+        #$this->authorize('empleados.crear');
+        $this->authorize('empleados.ver');
         return view('empleados.create');
     }
 
     public function store(EmpleadoRequest $request)
     {
-        $this->authorize('empleados.crear');
+        #$this->authorize('empleados.crear');    
+        $this->authorize('empleados.ver');
         Empleado::create($request->validated());
         return redirect()->route('empleados.index')->with('success', 'Empleado registrado correctamente.');
     }
 
     public function show(Empleado $empleado)
     {
+        #$this->authorize('empleados.ver');
         $this->authorize('empleados.ver');
         $empleado->load('usuario');
         return view('empleados.show', compact('empleado'));
@@ -55,20 +58,23 @@ class EmpleadoController extends Controller
 
     public function edit(Empleado $empleado)
     {
-        $this->authorize('empleados.editar');
+        #$this->authorize('empleados.editar');
+        $this->authorize('empleados.ver');
         return view('empleados.edit', compact('empleado'));
     }
 
     public function update(EmpleadoRequest $request, Empleado $empleado)
     {
-        $this->authorize('empleados.editar');
+        #$this->authorize('empleados.editar');
+        $this->authorize('empleados.ver');
         $empleado->update($request->validated());
         return redirect()->route('empleados.index')->with('success', 'Empleado actualizado correctamente.');
     }
 
     public function destroy(Empleado $empleado)
     {
-        $this->authorize('empleados.eliminar');
+        #$this->authorize('empleados.eliminar');
+        $this->authorize('empleados.ver');
 
         if ($empleado->usuario) {
             return back()->with('error', 'No se puede eliminar: el empleado tiene un usuario asignado.');

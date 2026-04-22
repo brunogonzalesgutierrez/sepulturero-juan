@@ -4,7 +4,7 @@
 @section('content')
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-shield-lock me-2"></i>Roles y Permisos</h1>
-    @can('roles.crear')
+    @can('roles.ver')
     <a href="{{ route('roles.create') }}" class="btn btn-gold">
         <i class="bi bi-plus-lg me-1"></i>Nuevo Rol
     </a>
@@ -22,12 +22,12 @@
                     <span class="badge bg-secondary ms-1">{{ $rol->permissions->count() }} permisos</span>
                 </span>
                 <div class="d-flex gap-1">
-                    @can('roles.editar')
+                    @can('roles.ver')
                     <a href="{{ route('roles.edit', $rol) }}" class="btn btn-sm btn-outline-primary py-0 px-2">
                         <i class="bi bi-pencil"></i>
                     </a>
                     @endcan
-                    @can('roles.eliminar')
+                    @can('roles.ver')
                     @if(!in_array($rol->name, ['Administrador','Cajero','Operador','Supervisor']))
                     <form method="POST" action="{{ route('roles.destroy', $rol) }}" class="d-inline"
                         onsubmit="return confirm('¿Eliminar rol {{ $rol->name }}?')">

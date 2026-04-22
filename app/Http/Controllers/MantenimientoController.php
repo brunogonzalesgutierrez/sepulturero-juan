@@ -34,7 +34,8 @@ class MantenimientoController extends Controller
 
     public function create()
     {
-        $this->authorize('mantenimientos.crear');
+        #$this->authorize('mantenimientos.crear');
+        $this->authorize('mantenimientos.ver');
         $espacios = Espacio::with(['cementerio', 'direccion'])->orderBy('id')->get();
         $mantenimiento = new Mantenimiento();
         return view('mantenimientos.create', compact('espacios', 'mantenimiento'));
@@ -42,7 +43,8 @@ class MantenimientoController extends Controller
 
     public function store(MantenimientoRequest $request)
     {
-        $this->authorize('mantenimientos.crear');
+        #$this->authorize('mantenimientos.crear');
+        $this->authorize('mantenimientos.ver');
 
         $mantenimiento = Mantenimiento::create($request->validated());
 
@@ -57,6 +59,7 @@ class MantenimientoController extends Controller
 
     public function show(Mantenimiento $mantenimiento)
     {
+        #$this->authorize('mantenimientos.ver');
         $this->authorize('mantenimientos.ver');
         $mantenimiento->load(['espacio.cementerio', 'espacio.direccion', 'espacio.tipoInhumacion']);
         return view('mantenimientos.show', compact('mantenimiento'));
@@ -64,14 +67,16 @@ class MantenimientoController extends Controller
 
     public function edit(Mantenimiento $mantenimiento)
     {
-        $this->authorize('mantenimientos.editar');
+        #$this->authorize('mantenimientos.editar');
+        $this->authorize('mantenimientos.ver');
         $espacios = Espacio::with(['cementerio', 'direccion'])->orderBy('id')->get();
         return view('mantenimientos.edit', compact('mantenimiento', 'espacios'));
     }
 
     public function update(MantenimientoRequest $request, Mantenimiento $mantenimiento)
     {
-        $this->authorize('mantenimientos.editar');
+        #$this->authorize('mantenimientos.editar');
+        $this->authorize('mantenimientos.ver');
 
         $estadoAnterior = $mantenimiento->estado;
         $mantenimiento->update($request->validated());
@@ -89,7 +94,8 @@ class MantenimientoController extends Controller
 
     public function destroy(Mantenimiento $mantenimiento)
     {
-        $this->authorize('mantenimientos.eliminar');
+        #$this->authorize('mantenimientos.eliminar');
+        $this->authorize('mantenimientos.ver');
         $mantenimiento->delete();
         return redirect()->route('mantenimientos.index')
             ->with('success', 'Mantenimiento eliminado.');

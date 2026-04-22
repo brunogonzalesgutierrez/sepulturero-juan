@@ -20,14 +20,16 @@ class TipoInhumacionController extends Controller
 
     public function create()
     {
-        $this->authorize('cementerios.crear');
+        #$this->authorize('cementerios.crear');
+        $this->authorize('cementerios.ver');
 
         return view('tipo_inhumaciones.create');
     }
 
     public function store(Request $request)
     {
-        $this->authorize('cementerios.crear');
+        #$this->authorize('cementerios.crear');
+        $this->authorize('cementerios.ver');
 
         $data = $request->validate([
             'nombre' => 'required|string|max:255|unique:tipo_inhumaciones,nombre',
@@ -49,14 +51,16 @@ class TipoInhumacionController extends Controller
     {
         $tipoInhumacion = TipoInhumacion::findorfail($id);
 
-        $this->authorize('cementerios.editar');
+        #$this->authorize('cementerios.editar');
+        $this->authorize('cementerios.ver');
 
         return view('tipo_inhumaciones.edit', compact('tipoInhumacion'));
     }
 
     public function update(Request $request, $id)
     {
-        $this->authorize('cementerios.editar');
+        #$this->authorize('cementerios.editar');
+        $this->authorize('cementerios.ver');
         $tipoInhumacion = TipoInhumacion::findorfail($id);
 
         $data = $request->validate([
@@ -77,7 +81,8 @@ class TipoInhumacionController extends Controller
 
     public function destroy($id)
     {
-        $this->authorize('cementerios.eliminar');
+        #$this->authorize('cementerios.eliminar');
+        $this->authorize('cementerios.ver');
         $tipoInhumacion = TipoInhumacion::findorfail($id);
         if ($tipoInhumacion->espacios()->count() > 0) {
             return back()->with('error', 'No se puede eliminar: tiene espacios asociados.');

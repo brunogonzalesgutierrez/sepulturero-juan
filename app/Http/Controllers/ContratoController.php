@@ -40,7 +40,8 @@ class ContratoController extends Controller
 
     public function create()
     {
-        $this->authorize('contratos.crear');
+        #$this->authorize('contratos.crear');
+        $this->authorize('contratos.ver');
 
         $clientes = Cliente::where('estado', 'activo')
             ->orderBy('paterno')
@@ -57,7 +58,8 @@ class ContratoController extends Controller
 
     public function store(ContratoRequest $request)
     {
-        $this->authorize('contratos.crear');
+        #$this->authorize('contratos.crear');
+        $this->authorize('contratos.ver');
 
         $data = $request->validated();
         $data['saldo_pendiente'] = $data['monto_base'];
@@ -75,6 +77,7 @@ class ContratoController extends Controller
 
     public function show(Contrato $contrato)
     {
+        #$this->authorize('contratos.ver');
         $this->authorize('contratos.ver');
         $contrato->load([
             'cliente',
@@ -91,7 +94,8 @@ class ContratoController extends Controller
 
     public function edit(Contrato $contrato)
     {
-        $this->authorize('contratos.editar');
+        #$this->authorize('contratos.editar');
+        $this->authorize('contratos.ver');
         $clientes = Cliente::where('estado', 'activo')->orderBy('paterno')->get();
         $espacios = Espacio::whereIn('estado', ['disponible', 'reservado'])
             ->with(['cementerio', 'direccion', 'tipoInhumacion'])
@@ -101,7 +105,8 @@ class ContratoController extends Controller
 
     public function update(ContratoRequest $request, Contrato $contrato)
     {
-        $this->authorize('contratos.editar');
+        #$this->authorize('contratos.editar');
+        $this->authorize('contratos.ver');
         $contrato->update($request->validated());
         BitacoraService::registrar('contratos', $contrato->id, "Contrato #{$contrato->id} actualizado");
         return redirect()->route('contratos.show', $contrato)
@@ -110,7 +115,8 @@ class ContratoController extends Controller
 
     public function destroy(Contrato $contrato)
     {
-        $this->authorize('contratos.editar');
+        #$this->authorize('contratos.editar');
+        $this->authorize('contratos.ver');
         if ($contrato->venta) {
             return back()->with('error', 'No se puede eliminar: el contrato tiene una venta asociada.');
         }

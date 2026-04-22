@@ -109,6 +109,67 @@ Contrato
 
 =========================
 git add .
-git commit -m "mamdas"
+git commit -m "mamdas   XDDDDDD"
 git push
 ===============
+
+
+$this->authorize('clientes.ver');
+
+
+
+
+
+
+
+
+
+
+
+$this->authorize('contratos.ver');
+
+
+
+app/Http/Controllers/EmpleadoController.php
+$this->authorize('empleados.ver');
+
+app/Http/Controllers/UsuarioController.php
+$this->authorize('usuarios.ver');
+
+app/Http/Controllers/CementerioController.php
+$this->authorize('cementerios.ver');
+
+app/Http/Controllers/EspacioController.php
+$this->authorize('espacios.ver');
+
+app/Http/Controllers/TipoInhumacionController.php
+$this->authorize('cementerios.ver');
+
+app/Http/Controllers/MantenimientoController.php
+app/Http/Controllers/InhumacionController.php
+app/Http/Controllers/ContratoController.php
+app/Http/Controllers/VentaController.php
+app/Http/Controllers/PagoController.php
+app/Http/Controllers/RolController.php
+
+
+Y en las vistas, todos los 
+
+
+
+cámbialos por 
+
+
+@can('empleados.ver')
+@can('usuarios.ver')
+@can('roles.ver')
+@can('cementerios.ver')
+@can('espacios.ver')
+@can('inhumaciones.ver')
+@can('mantenimientos.ver')
+@can('clientes.ver')
+@can('contratos.ver')
+@can('ventas.ver')
+@can('pagos.ver')
+@can('reportes.ver')
+@can('bitacora.ver')
