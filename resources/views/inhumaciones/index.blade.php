@@ -4,11 +4,11 @@
 @section('content')
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-flower1 me-2"></i>Inhumaciones</h1>
-    @can('inhumaciones.crear')
+    {{-- @can('inhumaciones.crear') --}}
     <a href="{{ route('inhumaciones.create') }}" class="btn btn-gold">
         <i class="bi bi-plus-lg me-1"></i>Nueva Inhumación
     </a>
-    @endcan
+    {{-- @endcan --}}
 </div>
 
 <div class="card mb-3">
@@ -77,18 +77,18 @@
                             <a href="{{ route('inhumaciones.show', $inh->id) }}" class="btn btn-sm btn-outline-secondary">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            @can('inhumaciones.editar')
+                            {{-- @can('inhumaciones.editar') --}}
                             <a href="{{ route('inhumaciones.edit', $inh->id) }}" class="btn btn-sm btn-outline-primary">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            @endcan
-                            @can('inhumaciones.eliminar')
+                            {{-- @endcan --}}
+                            {{-- @can('inhumaciones.eliminar') --}}
                             <form method="POST" action="{{ route('inhumaciones.destroy', $inh->id) }}" class="d-inline"
                                 onsubmit="return confirm('¿Eliminar esta inhumación?')">
                                 @csrf @method('DELETE')
                                 <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                             </form>
-                            @endcan
+                            {{-- @endcan --}}
                         </td>
                     </tr>
                     @empty

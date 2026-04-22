@@ -4,11 +4,11 @@
 @section('content')
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-grid-3x3-gap me-2"></i>Espacios Funerarios</h1>
-    @can('espacios.crear')
+    {{-- @can('espacios.crear') --}}
     <a href="{{ route('espacios.create') }}" class="btn btn-gold">
         <i class="bi bi-plus-lg me-1"></i>Nuevo Espacio
     </a>
-    @endcan
+    {{-- @endcan --}}
 </div>
 
 {{-- Estadísticas rápidas --}}
@@ -105,12 +105,12 @@
                             <a href="{{ route('espacios.show', $e) }}" class="btn btn-sm btn-outline-secondary" title="Ver">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            @can('espacios.editar')
+                            {{-- @can('espacios.editar') --}}
                             <a href="{{ route('espacios.edit', $e) }}" class="btn btn-sm btn-outline-primary" title="Editar">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            @endcan
-                            @can('espacios.eliminar')
+                            {{-- @endcan --}}
+                            {{-- @can('espacios.eliminar') --}}
                             <form method="POST" action="{{ route('espacios.destroy', $e) }}" class="d-inline"
                                 onsubmit="return confirm('¿Eliminar espacio #{{ $e->id }}?')">
                                 @csrf @method('DELETE')
@@ -118,7 +118,7 @@
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>
-                            @endcan
+                            {{-- @endcan --}}
                         </td>
                     </tr>
                     @empty

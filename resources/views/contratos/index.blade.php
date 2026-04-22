@@ -4,11 +4,11 @@
 @section('content')
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-file-earmark-text me-2"></i>Contratos</h1>
-    @can('contratos.crear')
+    {{-- @can('contratos.crear') --}}
     <a href="{{ route('contratos.create') }}" class="btn btn-gold">
         <i class="bi bi-plus-lg me-1"></i>Nuevo Contrato
     </a>
-    @endcan
+    {{-- @endcan --}}
 </div>
 
 <div class="card mb-3">
@@ -92,24 +92,24 @@
                                 <i class="bi bi-check-lg"></i> {{ ucfirst($c->venta->tipo_venta) }}
                             </span>
                             @else
-                            @can('ventas.crear')
+                            {{-- @can('ventas.crear') --}}
                             <a href="{{ route('ventas.create') }}?contrato_id={{ $c->id }}"
                                 class="btn btn-sm btn-gold py-0 px-2">
                                 <i class="bi bi-cart-plus"></i> Vender
                             </a>
-                            @endcan
+                            {{-- @endcan --}}
                             @endif
                         </td>
                         <td class="text-center">
                             <a href="{{ route('contratos.show', $c) }}" class="btn btn-sm btn-outline-secondary">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            @can('contratos.editar')
+                            {{-- @can('contratos.editar') --}}
                             <a href="{{ route('contratos.edit', $c) }}" class="btn btn-sm btn-outline-primary">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            @endcan
-                            @can('contratos.editar')
+                            {{-- @endcan --}}
+                            {{-- @can('contratos.editar') --}}
                             @if(!$c->venta)
                             <form method="POST" action="{{ route('contratos.destroy', $c) }}" class="d-inline"
                                 onsubmit="return confirm('¿Eliminar contrato #{{ $c->id }}?')">
@@ -117,7 +117,7 @@
                                 <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                             </form>
                             @endif
-                            @endcan
+                            {{-- @endcan --}}
                         </td>
                     </tr>
                     @empty

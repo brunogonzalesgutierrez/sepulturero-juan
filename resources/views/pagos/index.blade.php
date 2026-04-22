@@ -143,11 +143,11 @@
                             <a href="{{ route('pagos.show', $p) }}" class="btn btn-sm btn-outline-secondary">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            @can('pagos.editar')
+                            {{-- @can('pagos.editar') --}}
                             <a href="{{ route('pagos.edit', $p) }}" class="btn btn-sm btn-outline-primary">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            @endcan
+                            {{-- @endcan --}}
                         </td>
                     </tr>
                     @empty
@@ -212,12 +212,12 @@
                             </span>
                         </td>
                         <td>
-                            @can('pagos.crear')
+                            {{-- @can('pagos.crear') --}}
                             <a href="{{ route('pagos.create') }}?cuota_id={{ $cuota->id }}"
                                 class="btn btn-sm btn-gold py-0 px-2">
                                 <i class="bi bi-cash me-1"></i>Cobrar
                             </a>
-                            @endcan
+                            {{-- @endcan --}}
                         </td>
                     </tr>
                     @empty

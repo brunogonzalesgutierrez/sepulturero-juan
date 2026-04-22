@@ -4,11 +4,11 @@
 @section('content')
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-people me-2"></i>Usuarios del Sistema</h1>
-    @can('usuarios.crear')
+    {{-- @can('usuarios.crear') --}}
     <a href="{{ route('usuarios.create') }}" class="btn btn-gold">
         <i class="bi bi-plus-lg me-1"></i>Nuevo Usuario
     </a>
-    @endcan
+    {{-- @endcan --}}
 </div>
 
 <div class="card mb-3">
@@ -84,12 +84,12 @@
                             <a href="{{ route('usuarios.show', $u) }}" class="btn btn-sm btn-outline-secondary" title="Ver">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            @can('usuarios.editar')
+                            {{-- @can('usuarios.editar') --}}
                             <a href="{{ route('usuarios.edit', $u) }}" class="btn btn-sm btn-outline-primary" title="Editar">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            @endcan
-                            @can('usuarios.eliminar')
+                            {{-- @endcan --}}
+                            {{-- @can('usuarios.eliminar') --}}
                             @if($u->id !== auth()->id())
                             <form method="POST" action="{{ route('usuarios.destroy', $u) }}" class="d-inline"
                                 onsubmit="return confirm('¿Eliminar usuario {{ addslashes($u->username) }}?')">
@@ -99,7 +99,7 @@
                                 </button>
                             </form>
                             @endif
-                            @endcan
+                            {{-- @endcan --}}
                         </td>
                     </tr>
                     @empty

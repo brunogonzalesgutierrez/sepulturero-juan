@@ -4,11 +4,11 @@
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-geo-alt me-2"></i>{{ $cementerio->nombre }}</h1>
     <div class="d-flex gap-2">
-        @can('cementerios.editar')
+        {{-- @can('cementerios.editar') --}}
         <a href="{{ route('cementerios.edit', $cementerio) }}" class="btn btn-sm btn-gold">
             <i class="bi bi-pencil me-1"></i>Editar
         </a>
-        @endcan
+        {{-- @endcan --}}
         <a href="{{ route('cementerios.index') }}" class="btn btn-sm btn-outline-secondary">
             <i class="bi bi-arrow-left me-1"></i>Volver
         </a>
@@ -61,11 +61,11 @@
         <div class="card">
             <div class="card-header py-2 d-flex justify-content-between align-items-center">
                 <span><i class="bi bi-grid-3x3-gap me-1"></i>Espacios ({{ $cementerio->espacios->count() }})</span>
-                @can('espacios.crear')
+                {{-- @can('espacios.crear') --}}
                 <a href="{{ route('espacios.create') }}" class="btn btn-sm btn-gold">
                     <i class="bi bi-plus-lg me-1"></i>Nuevo Espacio
                 </a>
-                @endcan
+                {{-- @endcan --}}
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">

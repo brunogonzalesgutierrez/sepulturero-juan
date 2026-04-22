@@ -4,11 +4,11 @@
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-receipt me-2"></i>Pago #{{ $pago->id }}</h1>
     <div class="d-flex gap-2">
-        @can('pagos.editar')
+        {{-- @can('pagos.editar') --}}
         <a href="{{ route('pagos.edit', $pago) }}" class="btn btn-sm btn-gold">
             <i class="bi bi-pencil me-1"></i>Editar
         </a>
-        @endcan
+        {{-- @endcan --}}
         <a href="{{ route('pagos.index') }}" class="btn btn-sm btn-outline-secondary">
             <i class="bi bi-arrow-left me-1"></i>Volver
         </a>

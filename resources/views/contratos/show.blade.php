@@ -5,17 +5,17 @@
     <h1 class="page-title"><i class="bi bi-file-earmark-text me-2"></i>Contrato #{{ $contrato->id }}</h1>
     <div class="d-flex gap-2">
         @if(!$contrato->venta)
-        @can('ventas.crear')
+        {{-- @can('ventas.crear') --}}
         <a href="{{ route('ventas.create') }}?contrato_id={{ $contrato->id }}" class="btn btn-sm btn-gold">
             <i class="bi bi-cart-plus me-1"></i>Registrar Venta
         </a>
-        @endcan
+        {{-- @endcan --}}
         @endif
-        @can('contratos.editar')
+        {{-- @can('contratos.editar') --}}
         <a href="{{ route('contratos.edit', $contrato) }}" class="btn btn-sm btn-outline-primary">
             <i class="bi bi-pencil me-1"></i>Editar
         </a>
-        @endcan
+        {{-- @endcan --}}
         <a href="{{ route('contratos.index') }}" class="btn btn-sm btn-outline-secondary">
             <i class="bi bi-arrow-left me-1"></i>Volver
         </a>
@@ -124,11 +124,11 @@
         <div class="card">
             <div class="card-header py-2 d-flex justify-content-between align-items-center">
                 <span><i class="bi bi-flower1 me-1"></i>Inhumaciones ({{ $contrato->inhumaciones->count() }})</span>
-                @can('inhumaciones.crear')
+                {{-- @can('inhumaciones.crear') --}}
                 <a href="{{ route('inhumaciones.create') }}" class="btn btn-sm btn-outline-secondary py-0">
                     <i class="bi bi-plus-lg"></i>
                 </a>
-                @endcan
+                {{-- @endcan --}}
             </div>
             <div class="card-body p-0">
                 <table class="table table-sm mb-0">
@@ -231,11 +231,11 @@
             <div class="card-body text-center py-4">
                 <i class="bi bi-cart-x fs-2 text-muted d-block mb-2"></i>
                 <p class="text-muted mb-3">Este contrato no tiene venta registrada.</p>
-                @can('ventas.crear')
+                {{-- @can('ventas.crear') --}}
                 <a href="{{ route('ventas.create') }}?contrato_id={{ $contrato->id }}" class="btn btn-gold">
                     <i class="bi bi-cart-plus me-1"></i>Registrar Venta
                 </a>
-                @endcan
+                {{-- @endcan --}}
             </div>
         </div>
         @endif

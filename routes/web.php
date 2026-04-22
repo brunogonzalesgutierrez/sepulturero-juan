@@ -33,7 +33,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('espacios',          EspacioController::class);
     Route::resource('tipo_inhumaciones', TipoInhumacionController::class);
     Route::resource('mantenimientos',    MantenimientoController::class);
-    Route::resource('inhumaciones',      InhumacionController::class);
+    Route::resource('inhumaciones', InhumacionController::class)->parameters([
+        'inhumaciones' => 'inhumacion'
+    ]);
     Route::resource('contratos',         ContratoController::class);
     Route::resource('ventas',            VentaController::class);
     Route::resource('roles',             RolController::class)->except(['show']);

@@ -4,11 +4,11 @@
 @section('content')
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-cart-check me-2"></i>Ventas</h1>
-    @can('ventas.crear')
+    {{-- @can('ventas.crear') --}}
     <a href="{{ route('ventas.create') }}" class="btn btn-gold">
         <i class="bi bi-plus-lg me-1"></i>Nueva Venta
     </a>
-    @endcan
+    {{-- @endcan --}}
 </div>
 
 <div class="card mb-3">

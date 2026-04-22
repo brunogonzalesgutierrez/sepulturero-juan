@@ -28,11 +28,11 @@
             </div>
             <div class="col-md-7 d-flex gap-2">
                 <button class="btn btn-sm btn-primary"><i class="bi bi-search me-1"></i>Filtrar</button>
-                @can('reportes.exportar')
+                {{-- @can('reportes.exportar') --}}
                 <button name="exportar" value="pdf" class="btn btn-sm btn-danger">
                     <i class="bi bi-file-pdf me-1"></i>PDF
                 </button>
-                @endcan
+                {{-- @endcan --}}
                 <a href="{{ route('reportes.contratos') }}" class="btn btn-sm btn-outline-secondary">
                     <i class="bi bi-x-lg"></i>
                 </a>

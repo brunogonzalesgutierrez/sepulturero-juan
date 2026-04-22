@@ -5,11 +5,11 @@
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-person-badge me-2"></i>{{ $empleado->nombre }} {{ $empleado->paterno }}</h1>
     <div class="d-flex gap-2">
-        @can('empleados.editar')
+        {{-- @can('empleados.editar') --}}
         <a href="{{ route('empleados.edit', $empleado) }}" class="btn btn-sm btn-gold">
             <i class="bi bi-pencil me-1"></i>Editar
         </a>
-        @endcan
+        {{-- @endcan --}}
         <a href="{{ route('empleados.index') }}" class="btn btn-sm btn-outline-secondary">
             <i class="bi bi-arrow-left me-1"></i>Volver
         </a>
@@ -77,18 +77,18 @@
                         </td>
                     </tr>
                 </table>
-                @can('usuarios.editar')
+                {{-- @can('usuarios.editar') --}}
                 <a href="{{ route('usuarios.edit', $empleado->usuario) }}" class="btn btn-sm btn-outline-primary mt-2">
                     <i class="bi bi-pencil me-1"></i>Editar usuario
                 </a>
-                @endcan
+                {{-- @endcan --}}
                 @else
                 <p class="text-muted mb-2">Este empleado no tiene usuario asignado.</p>
-                @can('usuarios.crear')
+                {{-- @can('usuarios.crear') --}}
                 <a href="{{ route('usuarios.create') }}" class="btn btn-sm btn-gold">
                     <i class="bi bi-plus-lg me-1"></i>Crear usuario
                 </a>
-                @endcan
+                {{-- @endcan --}}
                 @endif
             </div>
         </div>

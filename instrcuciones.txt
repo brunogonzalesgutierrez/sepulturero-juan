@@ -90,3 +90,25 @@ Si las migraciones fallan por orden de foreign keys:
 php artisan migrate:fresh --seed
 
 Eso borra todo y vuelve a crear, perfecto para entorno nuevo.
+
+
+
+
+
+
+
+
+Como registrar cosas (orden)
+
+
+Cliente
+
+Contrato
+
+
+
+=========================
+git add .
+git commit -m "mamdas"
+git push
+===============

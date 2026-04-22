@@ -4,11 +4,11 @@
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-tools me-2"></i>Mantenimiento #{{ $mantenimiento->id }}</h1>
     <div class="d-flex gap-2">
-        @can('mantenimientos.editar')
+        {{-- @can('mantenimientos.editar') --}}
         <a href="{{ route('mantenimientos.edit', $mantenimiento) }}" class="btn btn-sm btn-gold">
             <i class="bi bi-pencil me-1"></i>Editar
         </a>
-        @endcan
+        {{-- @endcan --}}
         <a href="{{ route('mantenimientos.index') }}" class="btn btn-sm btn-outline-secondary">
             <i class="bi bi-arrow-left me-1"></i>Volver
         </a>

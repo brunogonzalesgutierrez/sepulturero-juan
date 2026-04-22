@@ -3,11 +3,11 @@
 @section('content')
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-tags me-2"></i>Tipos de Espacio / Inhumación</h1>
-    @can('cementerios.crear')
+    {{-- @can('cementerios.crear') --}}
     <a href="{{ route('tipo_inhumaciones.create') }}" class="btn btn-gold">
         <i class="bi bi-plus-lg me-1"></i>Nuevo Tipo
     </a>
-    @endcan
+    {{-- @endcan --}}
 </div>
 <div class="card">
     <div class="card-body p-0">
@@ -35,18 +35,18 @@
                     <td>{{ $t->area_base }} m²</td>
                     <td><span class="badge badge-{{ $t->estado }}">{{ ucfirst($t->estado) }}</span></td>
                     <td class="text-center">
-                        @can('cementerios.editar')
+                        {{-- @can('cementerios.editar') --}}
                         <a href="{{ route('tipo_inhumaciones.edit', $t->id) }}" class="btn btn-sm btn-outline-primary">
                             <i class="bi bi-pencil"></i>
                         </a>
-                        @endcan
-                        @can('cementerios.eliminar')
+                        {{-- @endcan --}}
+                        {{-- @can('cementerios.eliminar') --}}
                         <form method="POST" action="{{ route('tipo_inhumaciones.destroy', $t->id) }}" class="d-inline"
                             onsubmit="return confirm('¿Eliminar {{ addslashes($t->nombre) }}?')">
                             @csrf @method('DELETE')
                             <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                         </form>
-                        @endcan
+                        {{-- @endcan --}}
                     </td>
                 </tr>
                 @empty

@@ -4,11 +4,11 @@
 @section('content')
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-person-lines-fill me-2"></i>Clientes</h1>
-    @can('clientes.crear')
+    {{-- @can('clientes.crear') --}}
     <a href="{{ route('clientes.create') }}" class="btn btn-gold">
         <i class="bi bi-plus-lg me-1"></i>Nuevo Cliente
     </a>
-    @endcan
+    {{-- @endcan --}}
 </div>
 
 {{-- Filtros --}}
@@ -73,13 +73,13 @@
                                 class="btn btn-sm btn-outline-secondary" title="Ver">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            @can('clientes.editar')
+                            {{-- @can('clientes.editar') --}}
                             <a href="{{ route('clientes.edit', $cliente) }}"
                                 class="btn btn-sm btn-outline-primary" title="Editar">
                                 <i class="bi bi-pencil"></i>
                             </a>
-                            @endcan
-                            @can('clientes.eliminar')
+                            {{-- @endcan --}}
+                            {{-- @can('clientes.eliminar') --}}
                             <form method="POST" action="{{ route('clientes.destroy', $cliente) }}"
                                 class="d-inline"
                                 onsubmit="return confirm('¿Eliminar cliente {{ addslashes($cliente->nombre) }}?')">
@@ -88,7 +88,7 @@
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>
-                            @endcan
+                            {{-- @endcan --}}
                         </td>
                     </tr>
                     @empty

@@ -85,12 +85,24 @@
 
 @push('scripts')
 <script>
-    // Auto-seleccionar espacio al elegir contrato
     document.getElementById('contrato_id').addEventListener('change', function() {
-        const espacioId = this.options[this.selectedIndex]?.dataset?.espacio;
+        const opt = this.options[this.selectedIndex];
+        const espacioId = opt?.dataset?.espacio;
+
+        const selectEspacio = document.getElementById('espacio_id');
+
+        // Resetear
+        selectEspacio.value = '';
+
         if (espacioId) {
-            const select = document.getElementById('espacio_id');
-            select.value = espacioId;
+            // Buscar el option con ese valor y seleccionarlo
+            const opciones = selectEspacio.options;
+            for (let i = 0; i < opciones.length; i++) {
+                if (opciones[i].value == espacioId) {
+                    selectEspacio.value = espacioId;
+                    break;
+                }
+            }
         }
     });
 </script>

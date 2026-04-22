@@ -133,11 +133,11 @@
         <div class="card">
             <div class="card-header py-2 d-flex justify-content-between align-items-center">
                 <span><i class="bi bi-calendar-check me-1"></i>Plan de Pagos — Cuotas</span>
-                @can('pagos.crear')
+                {{-- @can('pagos.crear') --}}
                 <a href="{{ route('pagos.index') }}?venta_id={{ $venta->id }}" class="btn btn-sm btn-gold py-0 px-2">
                     <i class="bi bi-cash-coin me-1"></i>Registrar Pago
                 </a>
-                @endcan
+                {{-- @endcan --}}
             </div>
             <div class="card-body p-0" style="max-height:500px; overflow-y:auto;">
                 <table class="table table-sm mb-0">
