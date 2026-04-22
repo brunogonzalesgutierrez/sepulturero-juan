@@ -40,7 +40,6 @@ class EspacioController extends Controller
             $query->where('tipo_inhumacion_id', $request->tipo_inhumacion_id);
         }
 
-<<<<<<< HEAD
         $espacios    = $query->orderBy('created_at', 'desc')->paginate(20)->withQueryString();
         $cementerios = Cementerio::where('estado', 'activo')->orderBy('nombre')->get();
         $tipos       = TipoInhumacion::where('estado', 'activo')->orderBy('nombre')->get();
@@ -59,13 +58,6 @@ class EspacioController extends Controller
         ];
 
         return view('espacios.index', compact('espacios', 'cementerios', 'tipos', 'contadores'));
-=======
-        $espacios      = $query->orderBy('created_at', 'desc')->paginate(20)->withQueryString();
-        $cementerios   = Cementerio::where('estado', 'activo')->orderBy('nombre')->get();
-        $tipos         = TipoInhumacion::where('estado', 'activo')->orderBy('nombre')->get();
-
-        return view('espacios.index', compact('espacios', 'cementerios', 'tipos'));
->>>>>>> 665fe70f9df4c506ced3c6beb45900d4c0698f0c
     }
 
     public function create()
@@ -79,7 +71,6 @@ class EspacioController extends Controller
     public function store(EspacioRequest $request)
     {
         $this->authorize('espacios.crear');
-<<<<<<< HEAD
 
         if ($this->validarDireccionUnica($request)) {
             return back()->withInput()->with('error', 'Ya existe un espacio con esa dirección en este cementerio.');
@@ -96,8 +87,6 @@ class EspacioController extends Controller
             );
         }
 
-=======
->>>>>>> 665fe70f9df4c506ced3c6beb45900d4c0698f0c
         DB::transaction(function () use ($request) {
             // 1. Crear dimensión
             $dimension = Dimension::create([
@@ -147,13 +136,10 @@ class EspacioController extends Controller
     {
         $this->authorize('espacios.editar');
 
-<<<<<<< HEAD
         if ($this->validarDireccionUnica($request, $espacio->id)) {
             return back()->withInput()->with('error', 'Ya existe un espacio con esa dirección en este cementerio.');
         }
 
-=======
->>>>>>> 665fe70f9df4c506ced3c6beb45900d4c0698f0c
         DB::transaction(function () use ($request, $espacio) {
             // Actualizar dimensión
             $espacio->dimension->update([
@@ -188,7 +174,6 @@ class EspacioController extends Controller
         if ($espacio->inhumaciones()->count() > 0 || $espacio->contratos()->count() > 0) {
             return back()->with('error', 'No se puede eliminar: el espacio tiene inhumaciones o contratos asociados.');
         }
-<<<<<<< HEAD
 
         DB::transaction(function () use ($espacio) {
             $dimension = $espacio->dimension;
@@ -196,19 +181,10 @@ class EspacioController extends Controller
             $espacio->direccion?->delete();
             $espacio->forceDelete(); // elimina físicamente aunque tenga SoftDeletes
             $dimension?->delete();
-=======
-        // $espacio->delete();
-        DB::transaction(function () use ($espacio) {
-            $espacio->direccion->delete();
-            $espacio->delete();
-
-            //$espacio->dimension->delete();
->>>>>>> 665fe70f9df4c506ced3c6beb45900d4c0698f0c
         });
 
         return redirect()->route('espacios.index')->with('success', 'Espacio eliminado.');
     }
-<<<<<<< HEAD
 
 
 
@@ -226,6 +202,4 @@ class EspacioController extends Controller
             ->where('calle',   $request->calle)
             ->exists();
     }
-=======
->>>>>>> 665fe70f9df4c506ced3c6beb45900d4c0698f0c
 }
