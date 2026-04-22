@@ -109,7 +109,7 @@ Contrato
 
 =========================
 git add .
-git commit -m "mamdas  del diavlo"
+git commit -m "mamdas  del diavlo45"
 git push
 ===============
 
