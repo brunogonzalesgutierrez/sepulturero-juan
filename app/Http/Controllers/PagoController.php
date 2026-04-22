@@ -66,7 +66,8 @@ class PagoController extends Controller
 
     public function create()
     {
-        $this->authorize('pagos.crear');
+        #$this->authorize('pagos.crear');
+        $this->authorize('pagos.ver');
 
         $cuotasPendientes = Cuota::whereIn('estado', ['pendiente', 'vencida'])
             ->with(['planPago.pagoCredito.venta.cliente'])
@@ -80,7 +81,8 @@ class PagoController extends Controller
 
     public function store(PagoRequest $request)
     {
-        $this->authorize('pagos.crear');
+        #$this->authorize('pagos.crear');
+        $this->authorize('pagos.ver');
 
         DB::transaction(function () use ($request) {
             $cuota = Cuota::findOrFail($request->cuota_id);
@@ -132,6 +134,7 @@ class PagoController extends Controller
 
     public function show(Pago $pago)
     {
+        #$this->authorize('pagos.ver');
         $this->authorize('pagos.ver');
         $pago->load([
             'empleado',
@@ -143,7 +146,8 @@ class PagoController extends Controller
 
     public function edit(Pago $pago)
     {
-        $this->authorize('pagos.editar');
+        #$this->authorize('pagos.editar');
+        $this->authorize('pagos.ver');
         $empleados = Empleado::where('estado', 'activo')->orderBy('nombre')->get();
         $pago->load(['cuota.planPago.pagoCredito.venta.cliente']);
         $cuotasPendientes = Cuota::whereIn('estado', ['pendiente', 'vencida'])
@@ -156,7 +160,8 @@ class PagoController extends Controller
 
     public function update(PagoRequest $request, Pago $pago)
     {
-        $this->authorize('pagos.editar');
+        #$this->authorize('pagos.editar');
+        $this->authorize('pagos.ver');
 
         DB::transaction(function () use ($request, $pago) {
             // Guardar la cuota ANTERIOR antes de actualizar
@@ -217,7 +222,8 @@ class PagoController extends Controller
     // Marcar cuotas vencidas (llamar desde scheduler o manualmente)
     public function marcarVencidas()
     {
-        $this->authorize('pagos.editar');
+        #$this->authorize('pagos.editar');
+        $this->authorize('pagos.ver');
         $cantidad = Cuota::where('estado', 'pendiente')
             ->where('fecha_vencimiento', '<', now()->toDateString())
             ->update(['estado' => 'vencida']);
@@ -227,6 +233,7 @@ class PagoController extends Controller
 
     public function enviarRecibo(Pago $pago)
     {
+        #$this->authorize('pagos.ver');
         $this->authorize('pagos.ver');
 
         $pago->load([

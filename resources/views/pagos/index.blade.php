@@ -5,7 +5,7 @@
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-cash-coin me-2"></i>Gestión de Pagos</h1>
     <div class="d-flex gap-2">
-        @can('pagos.editar')
+        {{-- @can('pagos.ver') --}}
         <form method="POST" action="{{ route('pagos.marcarVencidas') }}">
             @csrf
             <button type="submit" class="btn btn-sm btn-outline-warning"
@@ -13,12 +13,12 @@
                 <i class="bi bi-exclamation-triangle me-1"></i>Marcar Vencidas
             </button>
         </form>
-        @endcan
-        @can('pagos.crear')
+        {{-- @endcan --}}
+        {{-- @can('pagos.ver') --}}
         <a href="{{ route('pagos.create') }}" class="btn btn-gold">
             <i class="bi bi-plus-lg me-1"></i>Registrar Pago
         </a>
-        @endcan
+        {{-- @endcan --}}
     </div>
 </div>
 

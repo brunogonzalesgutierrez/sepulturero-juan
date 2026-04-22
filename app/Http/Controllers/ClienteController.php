@@ -36,13 +36,15 @@ class ClienteController extends Controller
 
     public function create()
     {
-        $this->authorize('clientes.crear');
+        #$this->authorize('clientes.crear');
+        $this->authorize('clientes.ver');
         return view('clientes.create');
     }
 
     public function store(ClienteRequest $request)
     {
-        $this->authorize('clientes.crear');
+        #$this->authorize('clientes.crear');
+        $this->authorize('clientes.ver');
         Cliente::create($request->validated());
         return redirect()->route('clientes.index')->with('success', 'Cliente registrado correctamente.');
     }
@@ -56,20 +58,23 @@ class ClienteController extends Controller
 
     public function edit(Cliente $cliente)
     {
-        $this->authorize('clientes.editar');
+        #$this->authorize('clientes.editar');
+        $this->authorize('clientes.ver');
         return view('clientes.edit', compact('cliente'));
     }
 
     public function update(ClienteRequest $request, Cliente $cliente)
     {
-        $this->authorize('clientes.editar');
+        #$this->authorize('clientes.editar');
+        $this->authorize('clientes.ver');
         $cliente->update($request->validated());
         return redirect()->route('clientes.index')->with('success', 'Cliente actualizado correctamente.');
     }
 
     public function destroy(Cliente $cliente)
     {
-        $this->authorize('clientes.eliminar');
+        #$this->authorize('clientes.eliminar');
+        $this->authorize('clientes.ver');
         if ($cliente->contratos()->count() > 0 || $cliente->ventas()->count() > 0) {
             return redirect()->route('clientes.index')
                 ->with('error', 'No se puede eliminar el cliente porque tiene contratos o ventas asociados .');

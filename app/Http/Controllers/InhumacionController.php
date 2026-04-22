@@ -44,7 +44,8 @@ class InhumacionController extends Controller
 
     public function create()
     {
-        $this->authorize('inhumaciones.crear');
+        #$this->authorize('inhumaciones.crear');
+        $this->authorize('inhumaciones.ver');
 
         // Solo espacios con contrato activo
         $espacios = Espacio::whereIn('estado', ['disponible', 'ocupado', 'reservado'])
@@ -62,7 +63,8 @@ class InhumacionController extends Controller
 
     public function store(InhumacionRequest $request)
     {
-        $this->authorize('inhumaciones.crear');
+        #$this->authorize('inhumaciones.crear');
+        $this->authorize('inhumaciones.ver');
 
         $inhumacion = Inhumacion::create($request->validated());
 
@@ -75,6 +77,7 @@ class InhumacionController extends Controller
 
     public function show($id)
     {
+        #$this->authorize('inhumaciones.ver');
         $this->authorize('inhumaciones.ver');
         $inhumacion = Inhumacion::findorfail($id);
         // dd($inhumacion);
@@ -84,7 +87,8 @@ class InhumacionController extends Controller
 
     public function edit($id)
     {
-        $this->authorize('inhumaciones.editar');
+        #$this->authorize('inhumaciones.editar');
+        $this->authorize('inhumaciones.ver');
         $espacios = Espacio::whereIn('estado', ['disponible', 'ocupado', 'reservado'])
             ->with(['cementerio', 'direccion', 'tipoInhumacion'])
             ->get();
@@ -98,8 +102,8 @@ class InhumacionController extends Controller
 
     public function update(InhumacionRequest $request, $id)
     {
-        // dd($id);
-        $this->authorize('inhumaciones.editar');
+        #$this->authorize('inhumaciones.editar');
+        $this->authorize('inhumaciones.ver');
         $inhumacion = Inhumacion::findorfail($id);
         $inhumacion->update($request->validated());
         return redirect()->route('inhumaciones.index')
@@ -108,8 +112,9 @@ class InhumacionController extends Controller
 
     public function destroy($id)
     {
-        $this->authorize('inhumaciones.eliminar');
+        #$this->authorize('inhumaciones.eliminar');
         $inhumacion = Inhumacion::findorfail($id);
+        $this->authorize('inhumaciones.ver');
         $espacio = $inhumacion->espacio;
         // dd($inhumacion);
         $inhumacion->delete();

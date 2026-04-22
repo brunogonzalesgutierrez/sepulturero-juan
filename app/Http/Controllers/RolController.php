@@ -17,14 +17,16 @@ class RolController extends Controller
 
     public function create()
     {
-        $this->authorize('roles.crear');
+        #$this->authorize('roles.crear');
+        $this->authorize('roles.ver');
         $permisos = Permission::orderBy('name')->get()->groupBy(fn($p) => explode('.', $p->name)[0]);
         return view('roles.create', compact('permisos'));
     }
 
     public function store(Request $request)
     {
-        $this->authorize('roles.crear');
+        #$this->authorize('roles.crear');
+        $this->authorize('roles.ver');
         $request->validate(['nombre' => 'required|string|max:50|unique:roles,name']);
 
         $rol = Role::create(['name' => $request->nombre]);
@@ -37,7 +39,8 @@ class RolController extends Controller
 
     public function edit(Role $role)
     {
-        $this->authorize('roles.editar');
+        #$this->authorize('roles.editar');
+        $this->authorize('roles.ver');
         $permisos       = Permission::orderBy('name')->get()->groupBy(fn($p) => explode('.', $p->name)[0]);
         $permisosActivos = $role->permissions->pluck('name')->toArray();
         return view('roles.edit', compact('role', 'permisos', 'permisosActivos'));
@@ -45,7 +48,8 @@ class RolController extends Controller
 
     public function update(Request $request, Role $role)
     {
-        $this->authorize('roles.editar');
+        #$this->authorize('roles.editar');
+        $this->authorize('roles.ver');
 
         if (in_array($role->name, ['Administrador', 'Cajero', 'Operador', 'Supervisor'])) {
             // Solo actualizar permisos, no el nombre de roles base
@@ -62,7 +66,8 @@ class RolController extends Controller
 
     public function destroy(Role $role)
     {
-        $this->authorize('roles.eliminar');
+        #$this->authorize('roles.eliminar');
+        $this->authorize('roles.ver');
 
         if (in_array($role->name, ['Administrador', 'Cajero', 'Operador', 'Supervisor'])) {
             return back()->with('error', 'No se pueden eliminar los roles del sistema.');
