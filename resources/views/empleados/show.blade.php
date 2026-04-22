@@ -5,7 +5,7 @@
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-person-badge me-2"></i>{{ $empleado->nombre }} {{ $empleado->paterno }}</h1>
     <div class="d-flex gap-2">
-        @can('empleados.editar')
+        @can('empleados.ver')
         <a href="{{ route('empleados.edit', $empleado) }}" class="btn btn-sm btn-gold">
             <i class="bi bi-pencil me-1"></i>Editar
         </a>

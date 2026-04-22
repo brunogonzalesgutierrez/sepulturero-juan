@@ -4,7 +4,7 @@
 @section('content')
 <div class="page-header">
     <h1 class="page-title"><i class="bi bi-person-badge me-2"></i>Empleados</h1>
-    @can('empleados.crear')
+    @can('empleados.ver')
     <a href="{{ route('empleados.create') }}" class="btn btn-gold">
         <i class="bi bi-plus-lg me-1"></i>Nuevo Empleado
     </a>
@@ -74,12 +74,12 @@
                             <a href="{{ route('empleados.show', $e) }}" class="btn btn-sm btn-outline-secondary" title="Ver">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            @can('empleados.editar')
+                            @can('empleados.ver')
                             <a href="{{ route('empleados.edit', $e) }}" class="btn btn-sm btn-outline-primary" title="Editar">
                                 <i class="bi bi-pencil"></i>
                             </a>
                             @endcan
-                            @can('empleados.eliminar')
+                            @can('empleados.ver')
                             <form method="POST" action="{{ route('empleados.destroy', $e) }}" class="d-inline"
                                 onsubmit="return confirm('¿Eliminar empleado {{ addslashes($e->nombre) }}?')">
                                 @csrf @method('DELETE')
