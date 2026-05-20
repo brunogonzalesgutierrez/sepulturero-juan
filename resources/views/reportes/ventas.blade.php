@@ -340,5 +340,22 @@
         form.appendChild(input);
         form.submit();
     }
+
+
+    document.getElementById('modalEnviar').addEventListener('show.bs.modal', function () {
+        seleccionados.clear();
+        document.querySelectorAll('.btn-seleccionar').forEach(btn => {
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-outline-secondary');
+            btn.innerHTML = '<i class="bi bi-circle me-1"></i>Seleccionar';
+        });
+        document.querySelectorAll('tr[id^="fila_"]').forEach(tr => tr.classList.remove('table-success'));
+        document.getElementById('correos_externos').value = '';
+        document.getElementById('resumen_destinatarios').classList.add('d-none');
+    });
+
+    document.getElementById('modalEnviar').addEventListener('shown.bs.modal', function () {
+        this.scrollTop = 0;
+    });
 </script>
 @endpush
