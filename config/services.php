@@ -42,4 +42,9 @@ return [
         'secret_key' => env('RECAPTCHA_SECRET_KEY'),
     ],
 
+    'libelula' => [
+        'url'    => env('LIBELULA_URL'),
+        'appkey' => env('LIBELULA_APPKEY'),
+    ],
+
 ];
