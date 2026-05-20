@@ -13,56 +13,32 @@
     <div class="card-body py-2">
         <form method="GET" id="formEspacios" class="row g-2 align-items-end">
             <input type="hidden" name="correo_destino" id="correo_destino_input">
-
             <div class="col-md-4">
                 <select name="cementerio_id" class="form-select form-select-sm">
                     <option value="">Todos los cementerios</option>
                     @foreach($cementerios as $c)
-                    <option value="{{ $c->id }}" {{ $cementerioId == $c->id ? 'selected' : '' }}>
-                        {{ $c->nombre }}
-                    </option>
+                    <option value="{{ $c->id }}" {{ $cementerioId == $c->id ? 'selected' : '' }}>{{ $c->nombre }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="col-md-8">
                 <div class="d-flex gap-2 align-items-end flex-wrap">
-
-                    {{-- Filtrar --}}
-                    <button class="btn btn-sm btn-primary">
-                        <i class="bi bi-search me-1"></i>Filtrar
-                    </button>
-
+                    <button class="btn btn-sm btn-primary"><i class="bi bi-search me-1"></i>Filtrar</button>
                     @can('reportes.exportar')
-
-                    {{-- Descargar PDF --}}
                     <button name="exportar" value="pdf" class="btn btn-sm btn-danger">
                         <i class="bi bi-file-pdf me-1"></i>Descargar PDF
                     </button>
-
-                    {{-- Enviar PDF --}}
-                    <button
-                        type="button"
-                        class="btn btn-sm btn-outline-primary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#modalEnviar"
-                    >
+                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalEnviar">
                         <i class="bi bi-envelope me-1"></i>Enviar PDF
                     </button>
-
                     @endcan
-
-                    {{-- Limpiar --}}
-                    <a href="{{ route('reportes.espacios') }}" class="btn btn-sm btn-outline-secondary">
-                        <i class="bi bi-x-lg"></i>
-                    </a>
-
+                    <a href="{{ route('reportes.espacios') }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-x-lg"></i></a>
                 </div>
             </div>
         </form>
     </div>
 </div>
 
-{{-- Tarjetas resumen --}}
 <div class="row g-3 mb-3">
     @foreach($porEstado as $estado => $cantidad)
     <div class="col-6 col-md-3">
@@ -76,27 +52,21 @@
     @endforeach
 </div>
 
-{{-- Gráficas --}}
 <div class="row g-3 mb-3">
     <div class="col-md-6">
         <div class="card">
             <div class="card-header py-2"><i class="bi bi-pie-chart me-1"></i>Por Estado</div>
-            <div class="card-body">
-                <canvas id="estadoChart" height="160"></canvas>
-            </div>
+            <div class="card-body"><canvas id="estadoChart" height="160"></canvas></div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="card">
             <div class="card-header py-2"><i class="bi bi-bar-chart me-1"></i>Por Tipo</div>
-            <div class="card-body">
-                <canvas id="tipoChart" height="160"></canvas>
-            </div>
+            <div class="card-body"><canvas id="tipoChart" height="160"></canvas></div>
         </div>
     </div>
 </div>
 
-{{-- Tabla --}}
 <div class="card">
     <div class="card-body p-0">
         <div class="table-responsive">
@@ -123,11 +93,7 @@
                         <td>{{ number_format($e->dimension->ancho, 2) }}</td>
                         <td>{{ number_format($e->dimension->largo, 2) }}</td>
                         <td>{{ number_format($e->dimension->area, 2) }}</td>
-                        <td>
-                            <span class="badge badge-{{ $e->estado }}">
-                                {{ ucfirst($e->estado) }}
-                            </span>
-                        </td>
+                        <td><span class="badge badge-{{ $e->estado }}">{{ ucfirst($e->estado) }}</span></td>
                         <td>{{ number_format($e->tipoInhumacion->precio_m2, 2) }}</td>
                         <td>{{ $e->tipoInhumacion->capacidad_max }}</td>
                     </tr>
@@ -142,46 +108,54 @@
     </div>
 </div>
 
-{{-- Modal Enviar PDF --}}
 @can('reportes.exportar')
 <div class="modal fade" id="modalEnviar" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="bi bi-envelope me-2"></i>Enviar Reporte PDF</h5>
+                <h5 class="modal-title"><i class="bi bi-send me-2"></i>Enviar Reporte PDF</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-
                 @if($usuariosActivos->count() > 0)
-                <p class="fw-bold small mb-1">Usuarios del sistema:</p>
-                <div class="border rounded p-2 mb-3" style="max-height:180px; overflow-y:auto;">
-                    @foreach($usuariosActivos as $u)
-                    <div class="form-check">
-                        <input
-                            class="form-check-input destinatario-check"
-                            type="checkbox"
-                            value="{{ $u->email }}"
-                            id="dest_{{ $u->id }}"
-                        >
-                        <label class="form-check-label small" for="dest_{{ $u->id }}">
-                            {{ $u->empleado->nombre }} {{ $u->empleado->paterno }}
-                            <span class="text-muted">&lt;{{ $u->email }}&gt;</span>
-                        </label>
-                    </div>
-                    @endforeach
+                <p class="fw-bold small mb-2">Usuarios del sistema:</p>
+                <div class="table-responsive mb-3">
+                    <table class="table table-hover table-sm mb-0 align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width:40px;"></th>
+                                <th>Empleado</th>
+                                <th>Correo</th>
+                                <th style="width:100px;" class="text-center">Seleccionar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($usuariosActivos as $u)
+                            @php $iniciales = strtoupper(substr($u->empleado->nombre,0,1).substr($u->empleado->paterno,0,1)); @endphp
+                            <tr id="fila_{{ $u->id }}">
+                                <td>
+                                    <div style="width:34px;height:34px;border-radius:50%;background:#1a1a2e;color:#c9a84c;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;">{{ $iniciales }}</div>
+                                </td>
+                                <td>{{ $u->empleado->nombre }} {{ $u->empleado->paterno }}</td>
+                                <td class="text-muted small">{{ $u->email }}</td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary btn-seleccionar"
+                                        data-email="{{ $u->email }}" data-uid="{{ $u->id }}" onclick="toggleDestinatario(this)">
+                                        <i class="bi bi-circle me-1"></i>Seleccionar
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
                 @endif
-
                 <p class="fw-bold small mb-1">Correos externos adicionales:</p>
-                <input
-                    type="text"
-                    id="correos_externos"
-                    class="form-control form-control-sm"
-                    placeholder="correo1@ejemplo.com, correo2@ejemplo.com"
-                >
+                <input type="text" id="correos_externos" class="form-control form-control-sm mb-1" placeholder="correo1@ejemplo.com, correo2@ejemplo.com">
                 <small class="text-muted">Separa múltiples correos con coma.</small>
-
+                <div id="resumen_destinatarios" class="mt-3 p-2 rounded bg-light d-none">
+                    <small class="text-muted">Destinatarios: <span id="lista_seleccionados" class="fw-bold text-dark"></span></small>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -203,60 +177,78 @@
         type: 'pie',
         data: {
             labels: @json($porEstado->keys()->map(fn($k) => ucfirst($k))),
-            datasets: [{
-                data: @json($porEstado->values()),
-                backgroundColor: ['#198754', '#dc3545', '#ffc107', '#0dcaf0']
-            }]
+            datasets: [{ data: @json($porEstado->values()), backgroundColor: ['#198754','#dc3545','#ffc107','#0dcaf0'] }]
         },
-        options: {
-            responsive: true,
-            plugins: { legend: { position: 'bottom' } }
-        }
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
     });
 
     new Chart(document.getElementById('tipoChart'), {
         type: 'bar',
         data: {
             labels: @json($porTipo->keys()),
-            datasets: [{
-                label: 'Espacios',
-                data: @json($porTipo->values()),
-                backgroundColor: 'rgba(201,168,76,0.7)',
-                borderColor: '#c9a84c',
-                borderWidth: 2,
-                borderRadius: 4
-            }]
+            datasets: [{ label: 'Espacios', data: @json($porTipo->values()), backgroundColor: 'rgba(201,168,76,0.7)', borderColor: '#c9a84c', borderWidth: 2, borderRadius: 4 }]
         },
-        options: {
-            responsive: true,
-            plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true } }
-        }
+        options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
     });
 
-    function enviarReporte() {
-        const checks = [...document.querySelectorAll('.destinatario-check:checked')]
-            .map(c => c.value);
+    const seleccionados = new Set();
 
-        const externos = document.getElementById('correos_externos').value
-            .split(',').map(e => e.trim()).filter(e => e);
-
-        const todos = [...new Set([...checks, ...externos])];
-
-        if (todos.length === 0) {
-            alert('Selecciona al menos un destinatario.');
-            return;
+    function toggleDestinatario(btn) {
+        const email = btn.dataset.email;
+        const uid   = btn.dataset.uid;
+        if (seleccionados.has(email)) {
+            seleccionados.delete(email);
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-outline-secondary');
+            btn.innerHTML = '<i class="bi bi-circle me-1"></i>Seleccionar';
+            document.getElementById('fila_' + uid).classList.remove('table-success');
+        } else {
+            seleccionados.add(email);
+            btn.classList.remove('btn-outline-secondary');
+            btn.classList.add('btn-success');
+            btn.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i>Seleccionado';
+            document.getElementById('fila_' + uid).classList.add('table-success');
         }
+        actualizarResumen();
+    }
 
+    function actualizarResumen() {
+        const externos = document.getElementById('correos_externos').value.split(',').map(e => e.trim()).filter(e => e);
+        const todos    = [...new Set([...seleccionados, ...externos])];
+        const resumen  = document.getElementById('resumen_destinatarios');
+        const lista    = document.getElementById('lista_seleccionados');
+        if (todos.length > 0) { lista.textContent = todos.join(', '); resumen.classList.remove('d-none'); }
+        else { resumen.classList.add('d-none'); }
+    }
+
+    document.getElementById('correos_externos')?.addEventListener('input', actualizarResumen);
+
+    function enviarReporte() {
+        const externos = document.getElementById('correos_externos').value.split(',').map(e => e.trim()).filter(e => e);
+        const todos    = [...new Set([...seleccionados, ...externos])];
+        if (todos.length === 0) { alert('Selecciona al menos un destinatario.'); return; }
         document.getElementById('correo_destino_input').value = todos.join(',');
-
         const form = document.getElementById('formEspacios');
         const input = document.createElement('input');
-        input.type  = 'hidden';
-        input.name  = 'exportar';
-        input.value = 'pdf';
+        input.type = 'hidden'; input.name = 'exportar'; input.value = 'pdf';
         form.appendChild(input);
         form.submit();
     }
+
+    document.getElementById('modalEnviar').addEventListener('show.bs.modal', function () {
+        seleccionados.clear();
+        document.querySelectorAll('.btn-seleccionar').forEach(btn => {
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-outline-secondary');
+            btn.innerHTML = '<i class="bi bi-circle me-1"></i>Seleccionar';
+        });
+        document.querySelectorAll('tr[id^="fila_"]').forEach(tr => tr.classList.remove('table-success'));
+        document.getElementById('correos_externos').value = '';
+        document.getElementById('resumen_destinatarios').classList.add('d-none');
+    });
+
+    document.getElementById('modalEnviar').addEventListener('shown.bs.modal', function () {
+        this.scrollTop = 0;
+    });
 </script>
 @endpush
