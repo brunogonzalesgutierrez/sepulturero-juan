@@ -1,0 +1,305 @@
+/* ============================================
+   TEMAS - VERSIÓN CORREGIDA
+   CON TRANSICIONES SUAVES
+   ============================================ */
+
+/* ============================================
+   TRANSICIÓN GLOBAL PARA CAMBIOS DE TEMA
+   ============================================ */
+html {
+    transition: background-color 0.4s ease, color 0.3s ease;
+}
+
+body {
+    transition: background-color 0.4s ease, color 0.3s ease;
+}
+
+/* Transición para todos los elementos que cambian con el tema */
+* {
+    transition-property: background-color, background, color, border-color, box-shadow, text-shadow;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+
+/* Excepción para elementos que no deben tener transición */
+.gallery-item img,
+.space-card img {
+    transition: transform 0.5s, filter 0.4s;
+}
+
+.hero-bg {
+    transition: opacity 0.5s ease;
+}
+
+/* Transiciones específicas para elementos del header */
+.theme-header-btn {
+    transition: all 0.3s ease;
+}
+
+.theme-header-dropdown {
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+/* ============================================
+   MODO DÍA (CLARO - POR DEFECTO)
+   ============================================ */
+[data-theme="light"] {
+    --navy-deep: #f5f7fa;
+    --navy-dark: #ffffff;
+    --navy-mid: #e8ecf1;
+    --navy-light: #dce2e8;
+    --navy-card: #ffffff;
+    --gold: #c9a84c;
+    --gold-light: #d4b35c;
+    --gold-dim: #b8960a;
+    --cream: #2c3e50;
+    --cream-dim: #5a6c7a;
+    --white: #ffffff;
+    --text-muted: #7f8c8d;
+    --border: rgba(0, 0, 0, 0.1);
+    --border-light: rgba(0, 0, 0, 0.05);
+}
+
+/* ============================================
+   MODO NOCHE (OSCURO ELEGANTE)
+   ============================================ */
+[data-theme="dark"] {
+    --navy-deep: #0a0a0f;
+    --navy-dark: #0f0f1a;
+    --navy-mid: #151525;
+    --navy-light: #1a1a30;
+    --navy-card: #11111a;
+    --gold: #c9a84c;
+    --gold-light: #d4b35c;
+    --gold-dim: #8a6d2f;
+    --cream: #e0e0e0;
+    --cream-dim: #a0a0a0;
+    --white: #ffffff;
+    --text-muted: #707070;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-light: rgba(255, 255, 255, 0.04);
+}
+
+/* ============================================
+   TEMA NIÑOS - MODO DÍA
+   ============================================ */
+[data-age="ninos"][data-theme="light"] {
+    --navy-deep: #FFF8F0;
+    --navy-dark: #FFFFFF;
+    --navy-mid: #FFEFD5;
+    --navy-light: #FFE4C4;
+    --navy-card: #FFFFFF;
+    --gold: #FF6B6B;
+    --gold-light: #FF8E8E;
+    --gold-dim: #FF5252;
+    --cream: #5D4037;
+    --cream-dim: #8D6E63;
+    --text-muted: #A1887F;
+    --border: rgba(255, 107, 107, 0.25);
+}
+
+[data-age="ninos"][data-theme="dark"] {
+    --navy-deep: #2d1b2e;
+    --navy-dark: #3a1f3a;
+    --navy-mid: #1a0f1a;
+    --navy-card: #2d1b2e;
+    --gold: #FF6B6B;
+    --gold-light: #FF8E8E;
+    --gold-dim: #FF5252;
+    --cream: #FFDAB9;
+    --cream-dim: #FFC0CB;
+    --text-muted: #D2B48C;
+    --border: rgba(255, 107, 107, 0.25);
+}
+
+[data-age="ninos"] .btn-primary {
+    background: linear-gradient(135deg, #FF6B6B, #FF5252);
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+[data-age="ninos"] .btn-primary:hover {
+    background: linear-gradient(135deg, #FF8E8E, #FF6B6B);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+[data-age="ninos"] .space-tag {
+    background: #FF6B6B;
+    color: white;
+}
+
+[data-age="ninos"] .stat-num {
+    color: #FF6B6B;
+}
+
+[data-age="ninos"] .hero-badge {
+    background: rgba(255, 107, 107, 0.15);
+    border-color: #FF6B6B;
+}
+
+/* ============================================
+   TEMA JÓVENES - MODO DÍA
+   ============================================ */
+[data-age="jovenes"][data-theme="light"] {
+    --navy-deep: #E8F4FD;
+    --navy-dark: #FFFFFF;
+    --navy-mid: #D6EEF8;
+    --navy-light: #C5E8F4;
+    --navy-card: #FFFFFF;
+    --gold: #00B4D8;
+    --gold-light: #48CAE4;
+    --gold-dim: #0077B6;
+    --cream: #023E8A;
+    --cream-dim: #0077B6;
+    --text-muted: #48CAE4;
+    --border: rgba(0, 180, 216, 0.3);
+}
+
+[data-age="jovenes"][data-theme="dark"] {
+    --navy-deep: #0a0a0f;
+    --navy-dark: #0f0f1a;
+    --navy-mid: #151525;
+    --navy-card: rgba(0, 0, 0, 0.4);
+    --gold: #FF00FF;
+    --gold-light: #FF55FF;
+    --gold-dim: #CC00CC;
+    --cream: #ffffff;
+    --cream-dim: #e0e0e0;
+    --text-muted: #888888;
+    --border: rgba(255, 0, 255, 0.25);
+}
+
+[data-age="jovenes"] .btn-primary {
+    background: linear-gradient(135deg, #00B4D8, #0077B6);
+}
+
+[data-theme="dark"][data-age="jovenes"] .btn-primary {
+    background: linear-gradient(135deg, #FF00FF, #CC00CC);
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+}
+
+[data-age="jovenes"] .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 180, 216, 0.4);
+}
+
+[data-theme="dark"][data-age="jovenes"] .btn-primary:hover {
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+}
+
+[data-age="jovenes"] .stat-num {
+    color: #00B4D8;
+}
+
+[data-theme="dark"][data-age="jovenes"] .stat-num {
+    color: #FF00FF;
+    text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+}
+
+[data-age="jovenes"] .hero-badge {
+    background: rgba(0, 180, 216, 0.15);
+    border-color: #00B4D8;
+}
+
+[data-theme="dark"][data-age="jovenes"] .hero-badge {
+    background: rgba(255, 0, 255, 0.15);
+    border-color: #FF00FF;
+}
+
+[data-age="jovenes"] .card {
+    backdrop-filter: blur(10px);
+}
+
+/* ============================================
+   TEMA ADULTOS - MODO DÍA
+   ============================================ */
+[data-age="adultos"][data-theme="light"] {
+    --navy-deep: #F0F2F5;
+    --navy-dark: #FFFFFF;
+    --navy-mid: #E4E9ED;
+    --navy-light: #D8DEE4;
+    --navy-card: #FFFFFF;
+    --gold: #8B7355;
+    --gold-light: #A0926B;
+    --gold-dim: #6B5335;
+    --cream: #2C3E50;
+    --cream-dim: #5A6C7A;
+    --text-muted: #95A5A6;
+    --border: rgba(0, 0, 0, 0.08);
+}
+
+[data-age="adultos"][data-theme="dark"] {
+    --navy-deep: #1a1a1a;
+    --navy-dark: #2d2d2d;
+    --navy-mid: #3d3d3d;
+    --navy-card: #2d2d2d;
+    --gold: #c9a84c;
+    --gold-light: #d4b35c;
+    --gold-dim: #8a6d2f;
+    --cream: #e0e0e0;
+    --cream-dim: #a0a0a0;
+    --text-muted: #888888;
+    --border: rgba(255, 255, 255, 0.08);
+}
+
+[data-age="adultos"] .btn-primary {
+    background: linear-gradient(135deg, #8B7355, #6B5335);
+}
+
+[data-theme="dark"][data-age="adultos"] .btn-primary {
+    background: linear-gradient(135deg, #c9a84c, #8a6d2f);
+}
+
+[data-age="adultos"] .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+[data-age="adultos"] .stat-num {
+    color: #8B7355;
+}
+
+[data-theme="dark"][data-age="adultos"] .stat-num {
+    color: #c9a84c;
+}
+
+[data-age="adultos"] .hero-badge {
+    background: rgba(139, 115, 85, 0.1);
+    border-color: #8B7355;
+}
+
+[data-theme="dark"][data-age="adultos"] .hero-badge {
+    background: rgba(201, 168, 76, 0.12);
+    border-color: #c9a84c;
+}
+
+/* ============================================
+   MEJORAS DE CONTRASTE
+   ============================================ */
+[data-theme="light"] .stat-bar {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .card,
+[data-theme="light"] .service-card,
+[data-theme="light"] .contact-form {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .service-card:hover,
+[data-theme="light"] .card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .service-card {
+    border: 1px solid var(--border);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+    background: var(--navy-mid);
+    border-color: var(--border);
+    color: var(--cream);
+}

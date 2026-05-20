@@ -15,6 +15,9 @@
 
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
+    <!-- Fuentes adicionales para los temas -->
+    <link rel="stylesheet" href="{{ asset('css/theme-home.css') }}?v=2">
+
 </head>
 
 <body>
@@ -85,6 +88,326 @@
                     <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
                 </a>
                 @endauth
+                {{-- SELECTOR DE TEMAS EN EL HEADER --}}
+<div class="theme-header-container">
+    <button class="theme-header-btn" id="themeHeaderToggle">
+        <i class="fas fa-palette"></i> Temas
+        <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="theme-header-dropdown" id="themeHeaderDropdown">
+        <div class="theme-header-section">
+            <div class="theme-header-title">🌓 Modo de color</div>
+            <div class="theme-header-buttons">
+                <button class="theme-header-option mode-btn" data-mode="light">
+                    <i class="fas fa-sun"></i> Día
+                </button>
+                <button class="theme-header-option mode-btn" data-mode="dark">
+                    <i class="fas fa-moon"></i> Noche
+                </button>
+            </div>
+        </div>
+        <div class="theme-header-divider"></div>
+        <div class="theme-header-section">
+            <div class="theme-header-title">🎨 Estilo visual</div>
+            <div class="theme-header-buttons">
+                <button class="theme-header-option age-btn" data-age="adultos">
+                    <i class="fas fa-user-tie"></i> Adultos
+                </button>
+                <button class="theme-header-option age-btn" data-age="jovenes">
+                    <i class="fas fa-bolt"></i> Jóvenes
+                </button>
+                <button class="theme-header-option age-btn" data-age="ninos">
+                    <i class="fas fa-child"></i> Niños
+                </button>
+            </div>
+        </div>
+        <div class="theme-header-divider"></div>
+        <button class="theme-header-reset" id="resetThemeBtnHeader">
+            <i class="fas fa-undo-alt"></i> Volver al original
+        </button>
+    </div>
+</div>
+
+<style>
+    /* ============================================
+       SELECTOR DE TEMAS EN HEADER
+    ============================================ */
+    .theme-header-container {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .theme-header-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 1rem;
+        background: rgba(201, 168, 76, 0.15);
+        border: 1px solid var(--border, rgba(201, 168, 76, 0.18));
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--cream-dim, #d4cfc5);
+        transition: all 0.3s ease;
+    }
+    
+    .theme-header-btn:hover {
+        background: rgba(201, 168, 76, 0.25);
+        color: var(--gold, #c9a84c);
+        border-color: var(--gold-dim, #8a6d2f);
+    }
+    
+    .theme-header-btn i:first-child {
+        font-size: 0.8rem;
+    }
+    
+    .theme-header-btn i:last-child {
+        font-size: 0.7rem;
+        transition: transform 0.3s ease;
+    }
+    
+    .theme-header-btn.open i:last-child {
+        transform: rotate(180deg);
+    }
+    
+    .theme-header-dropdown {
+        position: absolute;
+        top: calc(100% + 5px);
+        right: 0;
+        background: var(--navy-dark, #131929);
+        min-width: 220px;
+        border-radius: 6px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--border, rgba(201, 168, 76, 0.18));
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        padding: 0.75rem;
+    }
+    
+    .theme-header-dropdown.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .theme-header-section {
+        margin-bottom: 0.5rem;
+    }
+    
+    .theme-header-title {
+        font-size: 0.65rem;
+        font-weight: 600;
+        color: var(--gold, #c9a84c);
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+    }
+    
+    .theme-header-buttons {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .theme-header-option {
+        background: transparent;
+        border: 1px solid var(--border, rgba(201, 168, 76, 0.18));
+        border-radius: 4px;
+        padding: 0.3rem 0.7rem;
+        font-size: 0.7rem;
+        color: var(--cream-dim, #d4cfc5);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+    
+    .theme-header-option i {
+        font-size: 0.7rem;
+    }
+    
+    .theme-header-option:hover {
+        border-color: var(--gold, #c9a84c);
+        color: var(--gold, #c9a84c);
+    }
+    
+    .theme-header-option.active {
+        background: var(--gold, #c9a84c);
+        border-color: var(--gold, #c9a84c);
+        color: var(--navy-deep, #0d1220);
+    }
+    
+    .theme-header-divider {
+        height: 1px;
+        background: var(--border, rgba(201, 168, 76, 0.18));
+        margin: 0.5rem 0;
+    }
+    
+    .theme-header-reset {
+        width: 100%;
+        background: rgba(192, 57, 43, 0.1);
+        border: 1px solid rgba(192, 57, 43, 0.3);
+        border-radius: 4px;
+        padding: 0.4rem 0.7rem;
+        font-size: 0.7rem;
+        color: #e74c3c;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    
+    .theme-header-reset:hover {
+        background: rgba(192, 57, 43, 0.2);
+        border-color: #e74c3c;
+    }
+    
+    @media (max-width: 768px) {
+        .theme-header-btn {
+            padding: 0.3rem 0.8rem;
+            font-size: 0.65rem;
+        }
+        .theme-header-dropdown {
+            right: -80px;
+            min-width: 240px;
+        }
+    }
+</style>
+
+<script>
+    // ============================================
+    // GESTIÓN DE TEMAS (CON BOTÓN EN HEADER)
+    // ============================================
+    
+    // Verificar si hay un tema guardado
+    const savedAgeHeader = localStorage.getItem('user-age');
+    const savedModeHeader = localStorage.getItem('user-mode');
+    
+    // Función para aplicar tema
+    function setThemeHeader(age, mode) {
+        if (age) {
+            document.documentElement.setAttribute('data-age', age);
+            localStorage.setItem('user-age', age);
+        }
+        if (mode) {
+            document.documentElement.setAttribute('data-theme', mode);
+            localStorage.setItem('user-mode', mode);
+        }
+        
+        // Actualizar clases activas en botones del header
+        document.querySelectorAll('.age-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-age') === age) {
+                btn.classList.add('active');
+            }
+        });
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-mode') === mode) {
+                btn.classList.add('active');
+            }
+        });
+    }
+    
+    // Función para limpiar temas (volver a los valores CSS por defecto - ORIGINAL)
+    function clearThemesHeader() {
+        document.documentElement.removeAttribute('data-age');
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.removeItem('user-age');
+        localStorage.removeItem('user-mode');
+        
+        // Quitar clases activas de todos los botones
+        document.querySelectorAll('.age-btn, .mode-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+    }
+    
+    // Aplicar tema guardado SOLO si existe
+    if (savedAgeHeader && savedModeHeader) {
+        setThemeHeader(savedAgeHeader, savedModeHeader);
+    } else {
+        document.documentElement.removeAttribute('data-age');
+        document.documentElement.removeAttribute('data-theme');
+    }
+    
+    // Toggle para mostrar/ocultar el dropdown de temas
+    const themeToggle = document.getElementById('themeHeaderToggle');
+    const themeDropdown = document.getElementById('themeHeaderDropdown');
+    
+    if (themeToggle && themeDropdown) {
+        themeToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            themeDropdown.classList.toggle('show');
+            themeToggle.classList.toggle('open');
+        });
+        
+        // Cerrar dropdown al hacer clic fuera
+        document.addEventListener('click', (e) => {
+            if (!themeToggle.contains(e.target) && !themeDropdown.contains(e.target)) {
+                themeDropdown.classList.remove('show');
+                themeToggle.classList.remove('open');
+            }
+        });
+        
+        // Prevenir que el dropdown se cierre al hacer clic dentro
+        themeDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+    
+    // Event listeners para botones de edad
+    document.querySelectorAll('.age-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const age = btn.getAttribute('data-age');
+            const currentMode = document.documentElement.getAttribute('data-theme');
+            if (currentMode) {
+                setThemeHeader(age, currentMode);
+            } else {
+                setThemeHeader(age, 'light');
+            }
+            // Cerrar dropdown después de seleccionar
+            themeDropdown.classList.remove('show');
+            themeToggle.classList.remove('open');
+        });
+    });
+    
+    // Event listeners para botones de modo
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const mode = btn.getAttribute('data-mode');
+            const currentAge = document.documentElement.getAttribute('data-age');
+            if (currentAge) {
+                setThemeHeader(currentAge, mode);
+            } else {
+                setThemeHeader('adultos', mode);
+            }
+            // Cerrar dropdown después de seleccionar
+            themeDropdown.classList.remove('show');
+            themeToggle.classList.remove('open');
+        });
+    });
+    
+    // Botón para volver al diseño ORIGINAL
+    const resetBtnHeader = document.getElementById('resetThemeBtnHeader');
+    if (resetBtnHeader) {
+        resetBtnHeader.addEventListener('click', () => {
+            clearThemesHeader();
+            // Cerrar dropdown después de seleccionar
+            themeDropdown.classList.remove('show');
+            themeToggle.classList.remove('open');
+        });
+    }
+</script>
             </div>
         </nav>
     </header>
@@ -821,6 +1144,7 @@
 
 
     </script>
+
 </body>
 
 </html>

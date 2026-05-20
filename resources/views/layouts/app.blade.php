@@ -33,7 +33,7 @@
             <button class="btn-toggle-sidebar" id="sidebarToggle">
                 <i class="bi bi-list"></i>
             </button>
-            <a href="{{ route('dashboard') }}" class="navbar-brand-custom">
+            <a href="{{ route('home') }}" class="navbar-brand-custom">
                 <i class="bi bi-building"></i>
                 El Sepulturero Juan
             </a>
