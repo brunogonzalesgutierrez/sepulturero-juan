@@ -1136,7 +1136,7 @@
                         <span class="result-tipo">${e.tipo_inhumacion?.nombre ?? 'Espacio'}</span>
                         <span style="color:#8a8a9a; margin-left:0.5rem;">${e.cementerio?.nombre ?? ''}</span>
                     </div>
-                    <span class="result-precio">Bs. ${parseFloat(e.precio_m2).toFixed(2)}/m²</span>
+                    <span class="result-precio">Bs. ${parseFloat(e.tipo_inhumacion?.precio_m2 ?? 0).toFixed(2)}/m²</span>
                 </div>
             `).join('') + (espacios.length > 5 ? `<div class="result-empty">Y ${espacios.length - 5} más disponibles. <a href="{{ route('cliente.login') }}" style="color:#c9a84c;">Contáctenos</a></div>` : '');
         }

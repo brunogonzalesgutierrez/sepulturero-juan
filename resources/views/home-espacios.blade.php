@@ -186,7 +186,7 @@
                         <td>{{ $e->dimension->ancho ?? '—' }}</td>
                         <td>{{ $e->dimension->largo ?? '—' }}</td>
                         <td>{{ $e->dimension->area ?? '—' }}</td>
-                        <td class="precio">Bs. {{ number_format($e->precio_m2, 2) }}</td>
+                        <td class="precio">Bs. {{ number_format($e->tipoInhumacion->precio_m2 ?? 0, 2) }}</td>
                     </tr>
                     @endforeach
                 </tbody>

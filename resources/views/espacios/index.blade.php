@@ -99,7 +99,7 @@
                             @else —
                             @endif
                         </td>
-                        <td>{{ number_format($e->precio_m2, 2) }}</td>
+                        <td>{{ number_format($e->tipoInhumacion->precio_m2, 2) }}</td>
                         <td><span class="badge badge-{{ $e->estado }}">{{ ucfirst($e->estado) }}</span></td>
                         <td class="text-center">
                             <a href="{{ route('espacios.show', $e) }}" class="btn btn-sm btn-outline-secondary" title="Ver">
