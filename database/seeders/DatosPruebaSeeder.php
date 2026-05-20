@@ -73,12 +73,22 @@ class DatosPruebaSeeder extends Seeder
         // ────────────────────────────────────────────────
         // 3. EMPLEADOS
         // ────────────────────────────────────────────────
-        $empAdmin = Empleado::firstOrCreate(['ci' => '1234567'], [
-            'nombre'    => 'Juan',
-            'paterno'   => 'Pérez',
-            'materno'   => 'García',
+        $empBruno = Empleado::firstOrCreate(['ci' => '1234567'], [
+            'nombre'    => 'Bruno Daniel',
+            'paterno'   => 'Gonzales',
+            'materno'   => 'Gutierrez',
             'direccion' => 'Av. Monseñor Rivero #123',
             'telefono'  => '77712345',
+            'cargo'     => 'Administrador',
+            'estado'    => 'activo',
+        ]);
+
+        $empWilliam = Empleado::firstOrCreate(['ci' => '1234568'], [
+            'nombre'    => 'William',
+            'paterno'   => 'Torrico',
+            'materno'   => 'Jimenez',
+            'direccion' => 'Av. Monseñor Rivero #124',
+            'telefono'  => '77712346',
             'cargo'     => 'Administrador',
             'estado'    => 'activo',
         ]);
@@ -127,7 +137,7 @@ class DatosPruebaSeeder extends Seeder
         // 4. USUARIOS
         // ────────────────────────────────────────────────
         $userBruno = User::firstOrCreate(['username' => 'bruno'], [
-            'empleado_id' => $empAdmin->id,
+            'empleado_id' => $empBruno->id,
             'email'       => 'bruno@sepulturerojuan.xyz',
             'password'    => Hash::make('Bruno1234!'),
             'estado'      => 'activo',
@@ -135,7 +145,7 @@ class DatosPruebaSeeder extends Seeder
         $userBruno->syncRoles([$admin]);
 
         $userWilliam = User::firstOrCreate(['username' => 'william'], [
-            'empleado_id' => $empAdmin->id,
+            'empleado_id' => $empWilliam->id,
             'email'       => 'william@sepulturerojuan.xyz',
             'password'    => Hash::make('William1234!'),
             'estado'      => 'activo',
@@ -627,7 +637,7 @@ class DatosPruebaSeeder extends Seeder
 
         // ── C3: Contado con desc. / Lote C-1 Munic. / ene-2026 ──────────────
         ($crearContratoContado)(
-            $espaciosCreados[10], $clientes[2], $empAdmin,
+            $espaciosCreados[10], $clientes[2], $empBruno,
             Carbon::create(2026, 1, 20),
             200, 'transferencia',
             ['nombre'=>'Ernesto','paterno'=>'Vargas','materno'=>'Cortez','nacimiento'=>'1950-11-05',
@@ -699,7 +709,7 @@ class DatosPruebaSeeder extends Seeder
 
         // ── C9: Contado transferencia / Nicho A-2 Jardines / mar-2026 ────────
         ($crearContratoContado)(
-            $espaciosCreados[14], $clientes[8], $empAdmin,
+            $espaciosCreados[14], $clientes[8], $empBruno,
             Carbon::create(2026, 3, 22),
             100, 'transferencia',
             ['nombre'=>'Blanca','paterno'=>'Herbas','materno'=>'Cabrera','nacimiento'=>'1958-04-10',
@@ -766,7 +776,7 @@ class DatosPruebaSeeder extends Seeder
 
         // ── C15: Crédito quincenal 4c / Mausoleo B-1 El Cristo / may-2026 ────
         ($crearContratoCredito)(
-            $espaciosCreados[24], $clientes[14], $empAdmin,
+            $espaciosCreados[24], $clientes[14], $empWilliam,
             Carbon::create(2026, 5, 19),
             15.00, 4, 'quincenal',
             [Carbon::create(2026,6,2),  Carbon::create(2026,6,17),
@@ -831,25 +841,25 @@ class DatosPruebaSeeder extends Seeder
         // 12. BITÁCORA — acciones administrativas históricas
         // ────────────────────────────────────────────────
         $bitacoraExtra = [
-            [$empAdmin->id,     Carbon::create(2025,10,1),  'cementerios',       '1', 'Registro del Cementerio Municipal San Juan. Capacidad: 500 espacios.'],
-            [$empAdmin->id,     Carbon::create(2025,10,1),  'cementerios',       '2', 'Registro de Jardines del Recuerdo. Capacidad: 300 espacios.'],
-            [$empAdmin->id,     Carbon::create(2025,10,2),  'cementerios',       '3', 'Registro de Parque Memorial El Cristo. Capacidad: 200 espacios.'],
-            [$empAdmin->id,     Carbon::create(2025,10,3),  'tipo_inhumaciones', '1', 'Tipo Nicho creado. Precio/m²: 1400 BOB. Inhumación: 500 BOB.'],
-            [$empAdmin->id,     Carbon::create(2025,10,3),  'tipo_inhumaciones', '2', 'Tipo Mausoleo creado. Precio/m²: 1200 BOB. Inhumación: 2500 BOB.'],
-            [$empAdmin->id,     Carbon::create(2025,10,3),  'tipo_inhumaciones', '3', 'Tipo Lote creado. Precio/m²: 900 BOB. Inhumación: 800 BOB.'],
-            [$empAdmin->id,     Carbon::create(2025,10,3),  'tipo_inhumaciones', '4', 'Tipo Individual creado. Precio/m²: 833 BOB. Inhumación: 600 BOB.'],
-            [$empAdmin->id,     Carbon::create(2025,10,5),  'empleados',         '2', 'Empleada María López dada de alta como Cajera.'],
-            [$empAdmin->id,     Carbon::create(2025,10,5),  'empleados',         '3', 'Empleado Rodrigo Varela dado de alta como Cajero.'],
-            [$empAdmin->id,     Carbon::create(2025,10,5),  'empleados',         '4', 'Empleado Carlos Ríos dado de alta como Operario.'],
-            [$empAdmin->id,     Carbon::create(2025,10,5),  'empleados',         '5', 'Empleado Miguel Torrez dado de alta como Operario.'],
-            [$empAdmin->id,     Carbon::create(2025,10,10), 'espacios',          '1', 'Registro de 6 nichos sección A en Cementerio Municipal.'],
-            [$empAdmin->id,     Carbon::create(2025,10,10), 'espacios',          '2', 'Registro de 4 mausoleos sección B en Cementerio Municipal.'],
-            [$empAdmin->id,     Carbon::create(2025,10,10), 'espacios',          '3', 'Registro de 3 lotes sección C en Cementerio Municipal.'],
-            [$empAdmin->id,     Carbon::create(2025,10,12), 'espacios',          '4', 'Registro de 4 nichos y 2 mausoleos en Jardines del Recuerdo.'],
-            [$empAdmin->id,     Carbon::create(2025,10,12), 'espacios',          '5', 'Registro de 3 nichos, 2 mausoleos, 2 lotes y 2 individuales en Parque El Cristo.'],
+            [$empBruno->id,     Carbon::create(2025,10,1),  'cementerios',       '1', 'Registro del Cementerio Municipal San Juan. Capacidad: 500 espacios.'],
+            [$empBruno->id,     Carbon::create(2025,10,1),  'cementerios',       '2', 'Registro de Jardines del Recuerdo. Capacidad: 300 espacios.'],
+            [$empWilliam->id,   Carbon::create(2025,10,2),  'cementerios',       '3', 'Registro de Parque Memorial El Cristo. Capacidad: 200 espacios.'],
+            [$empBruno->id,     Carbon::create(2025,10,3),  'tipo_inhumaciones', '1', 'Tipo Nicho creado. Precio/m²: 1400 BOB. Inhumación: 500 BOB.'],
+            [$empBruno->id,     Carbon::create(2025,10,3),  'tipo_inhumaciones', '2', 'Tipo Mausoleo creado. Precio/m²: 1200 BOB. Inhumación: 2500 BOB.'],
+            [$empWilliam->id,   Carbon::create(2025,10,3),  'tipo_inhumaciones', '3', 'Tipo Lote creado. Precio/m²: 900 BOB. Inhumación: 800 BOB.'],
+            [$empWilliam->id,   Carbon::create(2025,10,3),  'tipo_inhumaciones', '4', 'Tipo Individual creado. Precio/m²: 833 BOB. Inhumación: 600 BOB.'],
+            [$empBruno->id,     Carbon::create(2025,10,5),  'empleados',         '2', 'Empleada María López dada de alta como Cajera.'],
+            [$empWilliam->id,   Carbon::create(2025,10,5),  'empleados',         '3', 'Empleado Rodrigo Varela dado de alta como Cajero.'],
+            [$empBruno->id,     Carbon::create(2025,10,5),  'empleados',         '4', 'Empleado Carlos Ríos dado de alta como Operario.'],
+            [$empWilliam->id,   Carbon::create(2025,10,5),  'empleados',         '5', 'Empleado Miguel Torrez dado de alta como Operario.'],
+            [$empBruno->id,     Carbon::create(2025,10,10), 'espacios',          '1', 'Registro de 6 nichos sección A en Cementerio Municipal.'],
+            [$empWilliam->id,   Carbon::create(2025,10,10), 'espacios',          '2', 'Registro de 4 mausoleos sección B en Cementerio Municipal.'],
+            [$empBruno->id,     Carbon::create(2025,10,10), 'espacios',          '3', 'Registro de 3 lotes sección C en Cementerio Municipal.'],
+            [$empWilliam->id,   Carbon::create(2025,10,12), 'espacios',          '4', 'Registro de 4 nichos y 2 mausoleos en Jardines del Recuerdo.'],
+            [$empBruno->id,     Carbon::create(2025,10,12), 'espacios',          '5', 'Registro de 3 nichos, 2 mausoleos, 2 lotes y 2 individuales en Parque El Cristo.'],
             [$empCajero->id,    Carbon::create(2025,12,1),  'clientes',          '1', 'Cliente Roberto Flores registrado. CI: 4567890.'],
             [$empCajero->id,    Carbon::create(2025,12,15), 'clientes',          '2', 'Cliente Ana Gutierrez registrada. CI: 5678901.'],
-            [$empAdmin->id,     Carbon::create(2026,1,5),   'clientes',          '3', 'Cliente Luis Vargas registrado. CI: 6789012.'],
+            [$empBruno->id,     Carbon::create(2026,1,5),   'clientes',          '3', 'Cliente Luis Vargas registrado. CI: 6789012.'],
             [$empCajero->id,    Carbon::create(2026,1,20),  'clientes',          '4', 'Cliente Carmen Mendoza registrada. CI: 7890123.'],
             [$empCajero2->id,   Carbon::create(2026,2,1),   'clientes',          '5', 'Cliente Jorge Chávez registrado. CI: 8901234.'],
             [$empCajero2->id,   Carbon::create(2026,2,5),   'clientes',          '6', 'Cliente Patricia Mamani registrada. CI: 9012345.'],
@@ -861,12 +871,12 @@ class DatosPruebaSeeder extends Seeder
             [$empCajero->id,    Carbon::create(2026,4,1),   'clientes',         '12', 'Cliente Silvia Camacho registrada. CI: 9678901.'],
             [$empCajero2->id,   Carbon::create(2026,4,8),   'clientes',         '13', 'Cliente Héctor Villalobos registrado. CI: 9789012.'],
             [$empCajero->id,    Carbon::create(2026,4,14),  'clientes',         '14', 'Cliente Lorena Orellana registrada. CI: 9890123.'],
-            [$empAdmin->id,     Carbon::create(2026,4,20),  'clientes',         '15', 'Cliente Diego Balcázar registrado. CI: 9901234.'],
+            [$empWilliam->id,   Carbon::create(2026,4,20),  'clientes',         '15', 'Cliente Diego Balcázar registrado. CI: 9901234.'],
             [$empOperario->id,  Carbon::create(2026,3,25),  'espacios',          '3', 'Espacio nicho A-3 Munic. marcado para renovación.'],
             [$empOperario2->id, Carbon::create(2026,4,10),  'espacios',          '9', 'Inspección mausoleo B-3 Munic. Requiere limpieza post-ocupación.'],
-            [$empAdmin->id,     Carbon::create(2026,4,30),  'usuarios',          '4', 'Usuario rodrigo dado de alta. Rol: Cajero.'],
-            [$empAdmin->id,     Carbon::create(2026,5,1),   'usuarios',          '5', 'Usuario miguel dado de alta. Rol: Operario.'],
-            [$empAdmin->id,     Carbon::create(2026,5,16),  'usuarios',          '3', 'Contraseña del usuario cajero restablecida por administrador.'],
+            [$empBruno->id,     Carbon::create(2026,4,30),  'usuarios',          '4', 'Usuario rodrigo dado de alta. Rol: Cajero.'],
+            [$empWilliam->id,   Carbon::create(2026,5,1),   'usuarios',          '5', 'Usuario miguel dado de alta. Rol: Operario.'],
+            [$empBruno->id,     Carbon::create(2026,5,16),  'usuarios',          '3', 'Contraseña del usuario cajero restablecida por administrador.'],
             [$empOperario->id,  Carbon::create(2026,5,19),  'espacios',         '22', 'Espacio nicho A-1 El Cristo preparado para inhumación próxima.'],
             [$empOperario2->id, Carbon::create(2026,5,19),  'espacios',         '25', 'Espacio mausoleo B-1 El Cristo registrado para contrato del día.'],
         ];
@@ -888,8 +898,8 @@ class DatosPruebaSeeder extends Seeder
         $this->command->info('✅ Datos de prueba cargados correctamente.');
         $this->command->info('');
         $this->command->info('👤 Usuarios:');
-        $this->command->info('   bruno    / Bruno1234!    → Administrador');
-        $this->command->info('   william  / William1234!  → Administrador');
+        $this->command->info('   bruno    / Bruno1234!    → Administrador  (Bruno Daniel Gonzales Gutierrez)');
+        $this->command->info('   william  / William1234!  → Administrador  (William Torrico Jimenez)');
         $this->command->info('   cajero   / cajero1234!   → Cajero');
         $this->command->info('   rodrigo  / Rodrigo1234!  → Cajero');
         $this->command->info('   dennis   / Dennis1234!   → Operario');
