@@ -178,31 +178,31 @@ class DatosPruebaSeeder extends Seeder
         // 5. CLIENTES (25 clientes bolivianos)
         // ────────────────────────────────────────────────
         $clientesData = [
-            ['ci' => '4567890', 'nombre' => 'Roberto',    'paterno' => 'Flores',     'materno' => 'Vaca',       'telefono' => '77745678', 'correo' => 'roberto.flores@mail.com'],
-            ['ci' => '5678901', 'nombre' => 'Ana',         'paterno' => 'Gutierrez',  'materno' => 'Torrez',     'telefono' => '77756789', 'correo' => 'ana.gutierrez@mail.com'],
-            ['ci' => '6789012', 'nombre' => 'Luis',        'paterno' => 'Vargas',     'materno' => 'Cortez',     'telefono' => '77767890', 'correo' => 'luis.vargas@mail.com'],
-            ['ci' => '7890123', 'nombre' => 'Carmen',      'paterno' => 'Mendoza',    'materno' => 'Suárez',     'telefono' => '77778901', 'correo' => 'carmen.mendoza@mail.com'],
-            ['ci' => '8901234', 'nombre' => 'Jorge',       'paterno' => 'Chávez',     'materno' => 'Rojas',      'telefono' => '77789012', 'correo' => 'jorge.chavez@mail.com'],
-            ['ci' => '9012345', 'nombre' => 'Patricia',    'paterno' => 'Mamani',     'materno' => 'Quispe',     'telefono' => '77790123', 'correo' => 'patricia.mamani@mail.com'],
-            ['ci' => '9123456', 'nombre' => 'Fernando',    'paterno' => 'Sandoval',   'materno' => 'Pedraza',    'telefono' => '77791234', 'correo' => 'fernando.sandoval@mail.com'],
-            ['ci' => '9234567', 'nombre' => 'Graciela',    'paterno' => 'Torrico',    'materno' => 'Antelo',     'telefono' => '77792345', 'correo' => 'graciela.torrico@mail.com'],
-            ['ci' => '9345678', 'nombre' => 'Marcelo',     'paterno' => 'Herbas',     'materno' => 'Cabrera',    'telefono' => '77793456', 'correo' => 'marcelo.herbas@mail.com'],
-            ['ci' => '9456789', 'nombre' => 'Valentina',   'paterno' => 'Aguilera',   'materno' => 'Montaño',    'telefono' => '77794567', 'correo' => 'valentina.aguilera@mail.com'],
-            ['ci' => '9567890', 'nombre' => 'Raúl',        'paterno' => 'Zambrana',   'materno' => 'Peña',       'telefono' => '77795678', 'correo' => 'raul.zambrana@mail.com'],
-            ['ci' => '9678901', 'nombre' => 'Silvia',      'paterno' => 'Camacho',    'materno' => 'Ríos',       'telefono' => '77796789', 'correo' => 'silvia.camacho@mail.com'],
-            ['ci' => '9789012', 'nombre' => 'Héctor',      'paterno' => 'Villalobos', 'materno' => 'Cruz',       'telefono' => '77797890', 'correo' => 'hector.villalobos@mail.com'],
-            ['ci' => '9890123', 'nombre' => 'Lorena',      'paterno' => 'Orellana',   'materno' => 'Mostacedo',  'telefono' => '77798901', 'correo' => 'lorena.orellana@mail.com'],
-            ['ci' => '9901234', 'nombre' => 'Diego',       'paterno' => 'Balcázar',   'materno' => 'Vásquez',    'telefono' => '77799012', 'correo' => 'diego.balcazar@mail.com'],
-            ['ci' => '9901235', 'nombre' => 'Mónica',      'paterno' => 'Suárez',     'materno' => 'Hinojosa',   'telefono' => '77799013', 'correo' => 'monica.suarez@mail.com'],
-            ['ci' => '9901236', 'nombre' => 'Álvaro',      'paterno' => 'Pereira',    'materno' => 'Nogales',    'telefono' => '77799014', 'correo' => 'alvaro.pereira@mail.com'],
-            ['ci' => '9901237', 'nombre' => 'Claudia',     'paterno' => 'Terceros',   'materno' => 'Melgar',     'telefono' => '77799015', 'correo' => 'claudia.terceros@mail.com'],
-            ['ci' => '9901238', 'nombre' => 'Ernesto',     'paterno' => 'Becerra',    'materno' => 'Salazar',    'telefono' => '77799016', 'correo' => 'ernesto.becerra@mail.com'],
-            ['ci' => '9901239', 'nombre' => 'Isabel',      'paterno' => 'Quiroga',    'materno' => 'Arancibia',  'telefono' => '77799017', 'correo' => 'isabel.quiroga@mail.com'],
-            ['ci' => '9901240', 'nombre' => 'Pablo',       'paterno' => 'Antezana',   'materno' => 'Torrez',     'telefono' => '77799018', 'correo' => 'pablo.antezana@mail.com'],
-            ['ci' => '9901241', 'nombre' => 'Rosa',        'paterno' => 'Cuellar',    'materno' => 'Villca',     'telefono' => '77799019', 'correo' => 'rosa.cuellar@mail.com'],
-            ['ci' => '9901242', 'nombre' => 'Gonzalo',     'paterno' => 'Morales',    'materno' => 'Choque',     'telefono' => '77799020', 'correo' => 'gonzalo.morales@mail.com'],
-            ['ci' => '9901243', 'nombre' => 'Teresa',      'paterno' => 'Añez',       'materno' => 'Rivero',     'telefono' => '77799021', 'correo' => 'teresa.anez@mail.com'],
-            ['ci' => '9901244', 'nombre' => 'Sebastián',   'paterno' => 'Montero',    'materno' => 'Delgado',    'telefono' => '77799022', 'correo' => 'sebastian.montero@mail.com'],
+            ['ci' => '4567890', 'nombre' => 'Roberto',   'paterno' => 'Flores',     'materno' => 'Vaca',      'telefono' => '77745678', 'correo' => 'roberto.flores@mail.com'],
+            ['ci' => '5678901', 'nombre' => 'Ana',        'paterno' => 'Gutierrez',  'materno' => 'Torrez',    'telefono' => '77756789', 'correo' => 'ana.gutierrez@mail.com'],
+            ['ci' => '6789012', 'nombre' => 'Luis',       'paterno' => 'Vargas',     'materno' => 'Cortez',    'telefono' => '77767890', 'correo' => 'luis.vargas@mail.com'],
+            ['ci' => '7890123', 'nombre' => 'Carmen',     'paterno' => 'Mendoza',    'materno' => 'Suárez',    'telefono' => '77778901', 'correo' => 'carmen.mendoza@mail.com'],
+            ['ci' => '8901234', 'nombre' => 'Jorge',      'paterno' => 'Chávez',     'materno' => 'Rojas',     'telefono' => '77789012', 'correo' => 'jorge.chavez@mail.com'],
+            ['ci' => '9012345', 'nombre' => 'Patricia',   'paterno' => 'Mamani',     'materno' => 'Quispe',    'telefono' => '77790123', 'correo' => 'patricia.mamani@mail.com'],
+            ['ci' => '9123456', 'nombre' => 'Fernando',   'paterno' => 'Sandoval',   'materno' => 'Pedraza',   'telefono' => '77791234', 'correo' => 'fernando.sandoval@mail.com'],
+            ['ci' => '9234567', 'nombre' => 'Graciela',   'paterno' => 'Torrico',    'materno' => 'Antelo',    'telefono' => '77792345', 'correo' => 'graciela.torrico@mail.com'],
+            ['ci' => '9345678', 'nombre' => 'Marcelo',    'paterno' => 'Herbas',     'materno' => 'Cabrera',   'telefono' => '77793456', 'correo' => 'marcelo.herbas@mail.com'],
+            ['ci' => '9456789', 'nombre' => 'Valentina',  'paterno' => 'Aguilera',   'materno' => 'Montaño',   'telefono' => '77794567', 'correo' => 'valentina.aguilera@mail.com'],
+            ['ci' => '9567890', 'nombre' => 'Raúl',       'paterno' => 'Zambrana',   'materno' => 'Peña',      'telefono' => '77795678', 'correo' => 'raul.zambrana@mail.com'],
+            ['ci' => '9678901', 'nombre' => 'Silvia',     'paterno' => 'Camacho',    'materno' => 'Ríos',      'telefono' => '77796789', 'correo' => 'silvia.camacho@mail.com'],
+            ['ci' => '9789012', 'nombre' => 'Héctor',     'paterno' => 'Villalobos', 'materno' => 'Cruz',      'telefono' => '77797890', 'correo' => 'hector.villalobos@mail.com'],
+            ['ci' => '9890123', 'nombre' => 'Lorena',     'paterno' => 'Orellana',   'materno' => 'Mostacedo', 'telefono' => '77798901', 'correo' => 'lorena.orellana@mail.com'],
+            ['ci' => '9901234', 'nombre' => 'Diego',      'paterno' => 'Balcázar',   'materno' => 'Vásquez',   'telefono' => '77799012', 'correo' => 'diego.balcazar@mail.com'],
+            ['ci' => '9901235', 'nombre' => 'Mónica',     'paterno' => 'Suárez',     'materno' => 'Hinojosa',  'telefono' => '77799013', 'correo' => 'monica.suarez@mail.com'],
+            ['ci' => '9901236', 'nombre' => 'Álvaro',     'paterno' => 'Pereira',    'materno' => 'Nogales',   'telefono' => '77799014', 'correo' => 'alvaro.pereira@mail.com'],
+            ['ci' => '9901237', 'nombre' => 'Claudia',    'paterno' => 'Terceros',   'materno' => 'Melgar',    'telefono' => '77799015', 'correo' => 'claudia.terceros@mail.com'],
+            ['ci' => '9901238', 'nombre' => 'Ernesto',    'paterno' => 'Becerra',    'materno' => 'Salazar',   'telefono' => '77799016', 'correo' => 'ernesto.becerra@mail.com'],
+            ['ci' => '9901239', 'nombre' => 'Isabel',     'paterno' => 'Quiroga',    'materno' => 'Arancibia', 'telefono' => '77799017', 'correo' => 'isabel.quiroga@mail.com'],
+            ['ci' => '9901240', 'nombre' => 'Pablo',      'paterno' => 'Antezana',   'materno' => 'Torrez',    'telefono' => '77799018', 'correo' => 'pablo.antezana@mail.com'],
+            ['ci' => '9901241', 'nombre' => 'Rosa',       'paterno' => 'Cuellar',    'materno' => 'Villca',    'telefono' => '77799019', 'correo' => 'rosa.cuellar@mail.com'],
+            ['ci' => '9901242', 'nombre' => 'Gonzalo',    'paterno' => 'Morales',    'materno' => 'Choque',    'telefono' => '77799020', 'correo' => 'gonzalo.morales@mail.com'],
+            ['ci' => '9901243', 'nombre' => 'Teresa',     'paterno' => 'Añez',       'materno' => 'Rivero',    'telefono' => '77799021', 'correo' => 'teresa.anez@mail.com'],
+            ['ci' => '9901244', 'nombre' => 'Sebastián',  'paterno' => 'Montero',    'materno' => 'Delgado',   'telefono' => '77799022', 'correo' => 'sebastian.montero@mail.com'],
         ];
 
         $clientes = [];
@@ -239,6 +239,7 @@ class DatosPruebaSeeder extends Seeder
 
         // ────────────────────────────────────────────────
         // 7. TIPOS DE INHUMACIÓN
+        // Nicho | Mausoleo | Lote | Individual
         // ────────────────────────────────────────────────
         $tipoNicho = TipoInhumacion::firstOrCreate(['nombre' => 'Nicho'], [
             'precio'        => 500.00,
@@ -248,18 +249,26 @@ class DatosPruebaSeeder extends Seeder
             'area_base'     => 2.50,
         ]);
 
-        $tipoBoveda = TipoInhumacion::firstOrCreate(['nombre' => 'Bóveda'], [
+        $tipoMausoleo = TipoInhumacion::firstOrCreate(['nombre' => 'Mausoleo'], [
+            'precio'        => 2500.00,
+            'precio_m2'     => 1200.00,
+            'capacidad_max' => 12,
+            'estado'        => 'activo',
+            'area_base'     => 25.00,
+        ]);
+
+        $tipoLote = TipoInhumacion::firstOrCreate(['nombre' => 'Lote'], [
             'precio'        => 800.00,
-            'precio_m2'     => 888.00,
+            'precio_m2'     => 900.00,
             'capacidad_max' => 4,
             'estado'        => 'activo',
             'area_base'     => 9.00,
         ]);
 
-        $tipoTerreno = TipoInhumacion::firstOrCreate(['nombre' => 'Terreno'], [
+        $tipoIndividual = TipoInhumacion::firstOrCreate(['nombre' => 'Individual'], [
             'precio'        => 600.00,
             'precio_m2'     => 833.00,
-            'capacidad_max' => 2,
+            'capacidad_max' => 1,
             'estado'        => 'activo',
             'area_base'     => 6.00,
         ]);
@@ -267,57 +276,58 @@ class DatosPruebaSeeder extends Seeder
         // ────────────────────────────────────────────────
         // 8. TIPOS DE MANTENIMIENTO
         // ────────────────────────────────────────────────
-        $tipoLimpieza   = TipoMantenimiento::firstOrCreate(['nombre' => 'Limpieza'],   ['descripcion' => 'Limpieza general del espacio funerario',              'precio_base' => 50.00]);
-        $tipoReparacion = TipoMantenimiento::firstOrCreate(['nombre' => 'Reparación'], ['descripcion' => 'Reparación de daños estructurales (grietas, humedad)', 'precio_base' => 200.00]);
-        $tipoPintura    = TipoMantenimiento::firstOrCreate(['nombre' => 'Pintura'],    ['descripcion' => 'Pintura y mantenimiento estético',                     'precio_base' => 150.00]);
-        $tipoJardineria = TipoMantenimiento::firstOrCreate(['nombre' => 'Jardinería'], ['descripcion' => 'Mantenimiento de áreas verdes',                        'precio_base' => 80.00]);
-        $tipoRenovacion = TipoMantenimiento::firstOrCreate(['nombre' => 'Renovación'], ['descripcion' => 'Renovación completa del espacio',                      'precio_base' => 500.00]);
+        $tipoLimpieza   = TipoMantenimiento::firstOrCreate(['nombre' => 'Limpieza'],   ['descripcion' => 'Limpieza general del espacio funerario',               'precio_base' => 50.00]);
+        $tipoReparacion = TipoMantenimiento::firstOrCreate(['nombre' => 'Reparación'], ['descripcion' => 'Reparación de daños estructurales (grietas, humedad)',  'precio_base' => 200.00]);
+        $tipoPintura    = TipoMantenimiento::firstOrCreate(['nombre' => 'Pintura'],    ['descripcion' => 'Pintura y mantenimiento estético',                      'precio_base' => 150.00]);
+        $tipoJardineria = TipoMantenimiento::firstOrCreate(['nombre' => 'Jardinería'], ['descripcion' => 'Mantenimiento de áreas verdes',                         'precio_base' => 80.00]);
+        $tipoRenovacion = TipoMantenimiento::firstOrCreate(['nombre' => 'Renovación'], ['descripcion' => 'Renovación completa del espacio',                       'precio_base' => 500.00]);
         TipoMantenimiento::firstOrCreate(['nombre' => 'Otro'], ['descripcion' => 'Otros tipos de mantenimiento', 'precio_base' => 100.00]);
 
         // ────────────────────────────────────────────────
         // 9. ESPACIOS (30 espacios en 3 cementerios)
-        // ────────────────────────────────────────────────
         // [cementerio_id, tipo_id, ancho, largo, seccion, numero, calle, fila]
+        // ────────────────────────────────────────────────
         $espaciosData = [
             // Cementerio Municipal San Juan — Sección A (Nichos)
-            [$cementerio->id, $tipoNicho->id,   1.00, 2.50, 'A', '1',  'Calle 1', '1'],
-            [$cementerio->id, $tipoNicho->id,   1.00, 2.50, 'A', '2',  'Calle 1', '1'],
-            [$cementerio->id, $tipoNicho->id,   1.00, 2.50, 'A', '3',  'Calle 1', '2'],
-            [$cementerio->id, $tipoNicho->id,   1.00, 2.50, 'A', '4',  'Calle 1', '2'],
-            [$cementerio->id, $tipoNicho->id,   1.00, 2.50, 'A', '5',  'Calle 1', '3'],
-            [$cementerio->id, $tipoNicho->id,   1.00, 2.50, 'A', '6',  'Calle 1', '3'],
-            // Cementerio Municipal San Juan — Sección B (Bóvedas)
-            [$cementerio->id, $tipoBoveda->id,  3.00, 3.00, 'B', '1',  'Calle 2', '1'],
-            [$cementerio->id, $tipoBoveda->id,  3.00, 3.00, 'B', '2',  'Calle 2', '1'],
-            [$cementerio->id, $tipoBoveda->id,  3.00, 3.00, 'B', '3',  'Calle 2', '2'],
-            [$cementerio->id, $tipoBoveda->id,  3.00, 3.00, 'B', '4',  'Calle 2', '2'],
-            // Cementerio Municipal San Juan — Sección C (Terrenos)
-            [$cementerio->id, $tipoTerreno->id, 2.00, 3.00, 'C', '1',  'Calle 3', '1'],
-            [$cementerio->id, $tipoTerreno->id, 2.00, 3.00, 'C', '2',  'Calle 3', '1'],
-            [$cementerio->id, $tipoTerreno->id, 2.00, 3.00, 'C', '3',  'Calle 3', '2'],
+            [$cementerio->id, $tipoNicho->id,      1.00, 2.50, 'A', '1', 'Calle 1', '1'],
+            [$cementerio->id, $tipoNicho->id,      1.00, 2.50, 'A', '2', 'Calle 1', '1'],
+            [$cementerio->id, $tipoNicho->id,      1.00, 2.50, 'A', '3', 'Calle 1', '2'],
+            [$cementerio->id, $tipoNicho->id,      1.00, 2.50, 'A', '4', 'Calle 1', '2'],
+            [$cementerio->id, $tipoNicho->id,      1.00, 2.50, 'A', '5', 'Calle 1', '3'],
+            [$cementerio->id, $tipoNicho->id,      1.00, 2.50, 'A', '6', 'Calle 1', '3'],
+            // Cementerio Municipal San Juan — Sección B (Mausoleos)
+            [$cementerio->id, $tipoMausoleo->id,   5.00, 5.00, 'B', '1', 'Calle 2', '1'],
+            [$cementerio->id, $tipoMausoleo->id,   5.00, 5.00, 'B', '2', 'Calle 2', '1'],
+            [$cementerio->id, $tipoMausoleo->id,   5.00, 5.00, 'B', '3', 'Calle 2', '2'],
+            [$cementerio->id, $tipoMausoleo->id,   5.00, 5.00, 'B', '4', 'Calle 2', '2'],
+            // Cementerio Municipal San Juan — Sección C (Lotes)
+            [$cementerio->id, $tipoLote->id,       3.00, 3.00, 'C', '1', 'Calle 3', '1'],
+            [$cementerio->id, $tipoLote->id,       3.00, 3.00, 'C', '2', 'Calle 3', '1'],
+            [$cementerio->id, $tipoLote->id,       3.00, 3.00, 'C', '3', 'Calle 3', '2'],
             // Jardines del Recuerdo — Sección A (Nichos)
-            [$cementerio2->id, $tipoNicho->id,  1.00, 2.50, 'A', '1',  'Av. 1',   '1'],
-            [$cementerio2->id, $tipoNicho->id,  1.00, 2.50, 'A', '2',  'Av. 1',   '1'],
-            [$cementerio2->id, $tipoNicho->id,  1.00, 2.50, 'A', '3',  'Av. 1',   '2'],
-            [$cementerio2->id, $tipoNicho->id,  1.00, 2.50, 'A', '4',  'Av. 1',   '2'],
-            // Jardines del Recuerdo — Sección B (Bóvedas)
-            [$cementerio2->id, $tipoBoveda->id, 3.00, 3.00, 'B', '1',  'Av. 2',   '1'],
-            [$cementerio2->id, $tipoBoveda->id, 3.00, 3.00, 'B', '2',  'Av. 2',   '1'],
-            // Jardines del Recuerdo — Sección C (Terrenos)
-            [$cementerio2->id, $tipoTerreno->id,2.00, 3.00, 'C', '1',  'Av. 3',   '1'],
-            [$cementerio2->id, $tipoTerreno->id,2.00, 3.00, 'C', '2',  'Av. 3',   '1'],
+            [$cementerio2->id, $tipoNicho->id,     1.00, 2.50, 'A', '1', 'Av. 1',   '1'],
+            [$cementerio2->id, $tipoNicho->id,     1.00, 2.50, 'A', '2', 'Av. 1',   '1'],
+            [$cementerio2->id, $tipoNicho->id,     1.00, 2.50, 'A', '3', 'Av. 1',   '2'],
+            [$cementerio2->id, $tipoNicho->id,     1.00, 2.50, 'A', '4', 'Av. 1',   '2'],
+            // Jardines del Recuerdo — Sección B (Mausoleos)
+            [$cementerio2->id, $tipoMausoleo->id,  5.00, 5.00, 'B', '1', 'Av. 2',   '1'],
+            [$cementerio2->id, $tipoMausoleo->id,  5.00, 5.00, 'B', '2', 'Av. 2',   '1'],
+            // Jardines del Recuerdo — Sección C (Individuales)
+            [$cementerio2->id, $tipoIndividual->id, 2.00, 3.00, 'C', '1', 'Av. 3',   '1'],
+            [$cementerio2->id, $tipoIndividual->id, 2.00, 3.00, 'C', '2', 'Av. 3',   '1'],
             // Parque Memorial El Cristo — Sección A (Nichos)
-            [$cementerio3->id, $tipoNicho->id,  1.00, 2.50, 'A', '1',  'Paseo 1', '1'],
-            [$cementerio3->id, $tipoNicho->id,  1.00, 2.50, 'A', '2',  'Paseo 1', '1'],
-            [$cementerio3->id, $tipoNicho->id,  1.00, 2.50, 'A', '3',  'Paseo 1', '2'],
-            // Parque Memorial El Cristo — Sección B (Bóvedas)
-            [$cementerio3->id, $tipoBoveda->id, 3.00, 3.00, 'B', '1',  'Paseo 2', '1'],
-            [$cementerio3->id, $tipoBoveda->id, 3.00, 3.00, 'B', '2',  'Paseo 2', '1'],
-            // Parque Memorial El Cristo — Sección C (Terrenos)
-            [$cementerio3->id, $tipoTerreno->id,2.00, 3.00, 'C', '1',  'Paseo 3', '1'],
-            [$cementerio3->id, $tipoTerreno->id,2.00, 3.00, 'C', '2',  'Paseo 3', '1'],
-            [$cementerio3->id, $tipoTerreno->id,2.00, 3.00, 'C', '3',  'Paseo 3', '2'],
-            [$cementerio3->id, $tipoTerreno->id,2.00, 3.00, 'C', '4',  'Paseo 3', '2'],
+            [$cementerio3->id, $tipoNicho->id,     1.00, 2.50, 'A', '1', 'Paseo 1', '1'],
+            [$cementerio3->id, $tipoNicho->id,     1.00, 2.50, 'A', '2', 'Paseo 1', '1'],
+            [$cementerio3->id, $tipoNicho->id,     1.00, 2.50, 'A', '3', 'Paseo 1', '2'],
+            // Parque Memorial El Cristo — Sección B (Mausoleos)
+            [$cementerio3->id, $tipoMausoleo->id,  5.00, 5.00, 'B', '1', 'Paseo 2', '1'],
+            [$cementerio3->id, $tipoMausoleo->id,  5.00, 5.00, 'B', '2', 'Paseo 2', '1'],
+            // Parque Memorial El Cristo — Sección C (Lotes)
+            [$cementerio3->id, $tipoLote->id,      3.00, 3.00, 'C', '1', 'Paseo 3', '1'],
+            [$cementerio3->id, $tipoLote->id,      3.00, 3.00, 'C', '2', 'Paseo 3', '1'],
+            // Parque Memorial El Cristo — Sección D (Individuales)
+            [$cementerio3->id, $tipoIndividual->id, 2.00, 3.00, 'D', '1', 'Paseo 4', '1'],
+            [$cementerio3->id, $tipoIndividual->id, 2.00, 3.00, 'D', '2', 'Paseo 4', '1'],
         ];
 
         $espaciosCreados = [];
@@ -457,8 +467,8 @@ class DatosPruebaSeeder extends Seeder
             Carbon $fechaContrato,
             float $interes,
             int $nroCuotas,
-            string $frecuencia,          // 'mensual' | 'quincenal'
-            array $fechasVencimiento,    // Carbon[] — una por cuota
+            string $frecuencia,
+            array $fechasVencimiento,
             int $cuotasPagadas,
             array $inhumado,
             string $observacion = ''
@@ -602,8 +612,7 @@ class DatosPruebaSeeder extends Seeder
             'Pago al contado en efectivo sin observaciones.'
         );
 
-        // ── C2: Crédito mensual 6c / Bóveda B-1 Munic. / ene-2026 ───────────
-        // Cuotas: feb, mar, abr, may, jun, jul → pagadas: feb, mar, abr (≤ 19/05)
+        // ── C2: Crédito mensual 6c / Mausoleo B-1 Munic. / ene-2026 ─────────
         ($crearContratoCredito)(
             $espaciosCreados[6], $clientes[1], $empCajero,
             Carbon::create(2026, 1, 10),
@@ -616,7 +625,7 @@ class DatosPruebaSeeder extends Seeder
             'Crédito 6 cuotas mensuales al 12% anual.'
         );
 
-        // ── C3: Contado con desc. / Terreno C-1 Munic. / ene-2026 ───────────
+        // ── C3: Contado con desc. / Lote C-1 Munic. / ene-2026 ──────────────
         ($crearContratoContado)(
             $espaciosCreados[10], $clientes[2], $empAdmin,
             Carbon::create(2026, 1, 20),
@@ -627,7 +636,6 @@ class DatosPruebaSeeder extends Seeder
         );
 
         // ── C4: Crédito quincenal 4c / Nicho A-1 Jardines / feb-2026 ─────────
-        // Cuotas: 15/feb, 28/feb, 15/mar, 31/mar → pagadas: las 4 (todas ≤ 19/05)
         ($crearContratoCredito)(
             $espaciosCreados[13], $clientes[3], $empCajero,
             Carbon::create(2026, 2, 1),
@@ -650,16 +658,15 @@ class DatosPruebaSeeder extends Seeder
             ''
         );
 
-        // ── C6: Crédito mensual 12c / Bóveda B-1 Jardines / feb-2026 ─────────
-        // Cuotas: mar a feb-2027 → pagadas: mar, abr (≤ 19/05/2026)
+        // ── C6: Crédito mensual 12c / Mausoleo B-1 Jardines / feb-2026 ───────
         ($crearContratoCredito)(
             $espaciosCreados[17], $clientes[5], $empCajero2,
             Carbon::create(2026, 2, 20),
             10.00, 12, 'mensual',
-            [Carbon::create(2026,3,20), Carbon::create(2026,4,20), Carbon::create(2026,5,20),
-             Carbon::create(2026,6,20), Carbon::create(2026,7,20), Carbon::create(2026,8,20),
-             Carbon::create(2026,9,20), Carbon::create(2026,10,20),Carbon::create(2026,11,20),
-             Carbon::create(2026,12,20),Carbon::create(2027,1,20), Carbon::create(2027,2,20)],
+            [Carbon::create(2026,3,20),  Carbon::create(2026,4,20),  Carbon::create(2026,5,20),
+             Carbon::create(2026,6,20),  Carbon::create(2026,7,20),  Carbon::create(2026,8,20),
+             Carbon::create(2026,9,20),  Carbon::create(2026,10,20), Carbon::create(2026,11,20),
+             Carbon::create(2026,12,20), Carbon::create(2027,1,20),  Carbon::create(2027,2,20)],
             2,
             ['nombre'=>'Ramón','paterno'=>'Mamani','materno'=>'Condori','nacimiento'=>'1940-06-15',
              'defuncion'=>'2026-02-18','causa'=>'Falla renal crónica'],
@@ -676,8 +683,7 @@ class DatosPruebaSeeder extends Seeder
             ''
         );
 
-        // ── C8: Crédito mensual 6c / Terreno C-2 Munic. / mar-2026 ───────────
-        // Cuotas: abr a sep → pagadas: abr, may (may = 01/05/2026 ≤ 19/05) ✓
+        // ── C8: Crédito mensual 6c / Lote C-2 Munic. / mar-2026 ─────────────
         ($crearContratoCredito)(
             $espaciosCreados[11], $clientes[7], $empCajero2,
             Carbon::create(2026, 3, 15),
@@ -691,7 +697,7 @@ class DatosPruebaSeeder extends Seeder
             'Crédito 6 cuotas mensuales al 12% anual.'
         );
 
-        // ── C9: Contado transferencia / Nicho A-2 Jardines / mar-2026 ─────────
+        // ── C9: Contado transferencia / Nicho A-2 Jardines / mar-2026 ────────
         ($crearContratoContado)(
             $espaciosCreados[14], $clientes[8], $empAdmin,
             Carbon::create(2026, 3, 22),
@@ -702,7 +708,6 @@ class DatosPruebaSeeder extends Seeder
         );
 
         // ── C10: Crédito quincenal 6c / Nicho A-4 Munic. / abr-2026 ──────────
-        // Cuotas: 15/abr, 30/abr, 15/may → estas ≤ 19/05/2026, pagadas: 2
         ($crearContratoCredito)(
             $espaciosCreados[3], $clientes[9], $empCajero,
             Carbon::create(2026, 4, 1),
@@ -715,7 +720,7 @@ class DatosPruebaSeeder extends Seeder
             'Crédito quincenal 6 cuotas al 15% anual.'
         );
 
-        // ── C11: Contado QR / Bóveda B-3 Munic. / abr-2026 ──────────────────
+        // ── C11: Contado QR / Mausoleo B-3 Munic. / abr-2026 ────────────────
         ($crearContratoContado)(
             $espaciosCreados[8], $clientes[10], $empCajero2,
             Carbon::create(2026, 4, 8),
@@ -726,7 +731,6 @@ class DatosPruebaSeeder extends Seeder
         );
 
         // ── C12: Crédito mensual 6c / Nicho A-3 Jardines / abr-2026 ──────────
-        // Cuotas: may a oct → pagada: may (01/05/2026 ≤ 19/05) ✓
         ($crearContratoCredito)(
             $espaciosCreados[15], $clientes[11], $empCajero,
             Carbon::create(2026, 4, 15),
@@ -740,7 +744,7 @@ class DatosPruebaSeeder extends Seeder
             'Crédito 6 cuotas mensuales al 12% anual.'
         );
 
-        // ── C13: Contado efectivo / Terreno C-1 Jardines / may-2026 ──────────
+        // ── C13: Contado efectivo / Individual C-1 Jardines / may-2026 ───────
         ($crearContratoContado)(
             $espaciosCreados[19], $clientes[12], $empCajero2,
             Carbon::create(2026, 5, 2),
@@ -760,8 +764,7 @@ class DatosPruebaSeeder extends Seeder
             'Descuento 150 BOB por familiar ya registrado.'
         );
 
-        // ── C15: Crédito quincenal 4c / Bóveda B-1 El Cristo / may-2026 ──────
-        // Cuotas: 19/may, 02/jun, 17/jun, 02/jul → pagada: ninguna aún (hoy = 19/05)
+        // ── C15: Crédito quincenal 4c / Mausoleo B-1 El Cristo / may-2026 ────
         ($crearContratoCredito)(
             $espaciosCreados[24], $clientes[14], $empAdmin,
             Carbon::create(2026, 5, 19),
@@ -778,19 +781,18 @@ class DatosPruebaSeeder extends Seeder
         // 11. MANTENIMIENTOS (12 registros)
         // ────────────────────────────────────────────────
         $mantenimientosData = [
-            // [espacio_id, tipo_id, precio, estado, descripcion, empleado_id, fecha_inicio]
-            [$espaciosCreados[0]->id,  $tipoLimpieza->id,    60.00,  'completado', 'Limpieza mensual nicho A-1 Munic.',            $empOperario->id,  Carbon::create(2025,12,10)],
-            [$espaciosCreados[1]->id,  $tipoReparacion->id, 230.00,  'completado', 'Reparación grieta lateral nicho A-2 Munic.',   $empOperario->id,  Carbon::create(2026, 1,15)],
-            [$espaciosCreados[6]->id,  $tipoPintura->id,    160.00,  'completado', 'Repintado bóveda B-1 Munic.',                  $empOperario2->id, Carbon::create(2026, 2, 5)],
-            [$espaciosCreados[7]->id,  $tipoJardineria->id,  90.00,  'completado', 'Poda y limpieza área verde bóveda B-2 Munic.', $empOperario->id,  Carbon::create(2026, 2,20)],
-            [$espaciosCreados[10]->id, $tipoLimpieza->id,    65.00,  'completado', 'Limpieza terreno C-1 Munic. post-inhumación.', $empOperario2->id, Carbon::create(2026, 3, 1)],
-            [$espaciosCreados[13]->id, $tipoPintura->id,    155.00,  'completado', 'Repintado nicho A-1 Jardines.',                $empOperario->id,  Carbon::create(2026, 3,18)],
-            [$espaciosCreados[17]->id, $tipoReparacion->id, 210.00,  'completado', 'Reparación humedad bóveda B-1 Jardines.',      $empOperario2->id, Carbon::create(2026, 4, 2)],
-            [$espaciosCreados[19]->id, $tipoJardineria->id,  85.00,  'completado', 'Jardinería terreno C-1 Jardines.',             $empOperario->id,  Carbon::create(2026, 4,22)],
-            [$espaciosCreados[8]->id,  $tipoLimpieza->id,    70.00,  'en_proceso', 'Limpieza bóveda B-3 Munic. post-inhumación.',  $empOperario2->id, Carbon::create(2026, 5, 8)],
-            [$espaciosCreados[2]->id,  $tipoRenovacion->id, 530.00,  'en_proceso', 'Renovación completa nicho A-3 Munic.',         $empOperario->id,  Carbon::create(2026, 5,12)],
-            [$espaciosCreados[21]->id, $tipoPintura->id,    145.00,  'pendiente',  'Pintura nicho A-1 El Cristo.',                 $empOperario2->id, Carbon::create(2026, 5,19)],
-            [$espaciosCreados[24]->id, $tipoLimpieza->id,    75.00,  'pendiente',  'Limpieza bóveda B-1 El Cristo pre-inhumación.',$empOperario->id,  Carbon::create(2026, 5,19)],
+            [$espaciosCreados[0]->id,  $tipoLimpieza->id,    60.00,  'completado', 'Limpieza mensual nicho A-1 Munic.',               $empOperario->id,  Carbon::create(2025,12,10)],
+            [$espaciosCreados[1]->id,  $tipoReparacion->id, 230.00,  'completado', 'Reparación grieta lateral nicho A-2 Munic.',       $empOperario->id,  Carbon::create(2026, 1,15)],
+            [$espaciosCreados[6]->id,  $tipoPintura->id,    160.00,  'completado', 'Repintado mausoleo B-1 Munic.',                    $empOperario2->id, Carbon::create(2026, 2, 5)],
+            [$espaciosCreados[7]->id,  $tipoJardineria->id,  90.00,  'completado', 'Poda y limpieza área verde mausoleo B-2 Munic.',   $empOperario->id,  Carbon::create(2026, 2,20)],
+            [$espaciosCreados[10]->id, $tipoLimpieza->id,    65.00,  'completado', 'Limpieza lote C-1 Munic. post-inhumación.',        $empOperario2->id, Carbon::create(2026, 3, 1)],
+            [$espaciosCreados[13]->id, $tipoPintura->id,    155.00,  'completado', 'Repintado nicho A-1 Jardines.',                    $empOperario->id,  Carbon::create(2026, 3,18)],
+            [$espaciosCreados[17]->id, $tipoReparacion->id, 210.00,  'completado', 'Reparación humedad mausoleo B-1 Jardines.',        $empOperario2->id, Carbon::create(2026, 4, 2)],
+            [$espaciosCreados[19]->id, $tipoJardineria->id,  85.00,  'completado', 'Jardinería individual C-1 Jardines.',              $empOperario->id,  Carbon::create(2026, 4,22)],
+            [$espaciosCreados[8]->id,  $tipoLimpieza->id,    70.00,  'en_proceso', 'Limpieza mausoleo B-3 Munic. post-inhumación.',    $empOperario2->id, Carbon::create(2026, 5, 8)],
+            [$espaciosCreados[2]->id,  $tipoRenovacion->id, 530.00,  'en_proceso', 'Renovación completa nicho A-3 Munic.',             $empOperario->id,  Carbon::create(2026, 5,12)],
+            [$espaciosCreados[21]->id, $tipoPintura->id,    145.00,  'pendiente',  'Pintura nicho A-1 El Cristo.',                     $empOperario2->id, Carbon::create(2026, 5,19)],
+            [$espaciosCreados[24]->id, $tipoLimpieza->id,    75.00,  'pendiente',  'Limpieza mausoleo B-1 El Cristo pre-inhumación.',  $empOperario->id,  Carbon::create(2026, 5,19)],
         ];
 
         foreach ($mantenimientosData as $m) {
@@ -833,17 +835,18 @@ class DatosPruebaSeeder extends Seeder
             [$empAdmin->id,     Carbon::create(2025,10,1),  'cementerios',       '2', 'Registro de Jardines del Recuerdo. Capacidad: 300 espacios.'],
             [$empAdmin->id,     Carbon::create(2025,10,2),  'cementerios',       '3', 'Registro de Parque Memorial El Cristo. Capacidad: 200 espacios.'],
             [$empAdmin->id,     Carbon::create(2025,10,3),  'tipo_inhumaciones', '1', 'Tipo Nicho creado. Precio/m²: 1400 BOB. Inhumación: 500 BOB.'],
-            [$empAdmin->id,     Carbon::create(2025,10,3),  'tipo_inhumaciones', '2', 'Tipo Bóveda creado. Precio/m²: 888 BOB. Inhumación: 800 BOB.'],
-            [$empAdmin->id,     Carbon::create(2025,10,3),  'tipo_inhumaciones', '3', 'Tipo Terreno creado. Precio/m²: 833 BOB. Inhumación: 600 BOB.'],
+            [$empAdmin->id,     Carbon::create(2025,10,3),  'tipo_inhumaciones', '2', 'Tipo Mausoleo creado. Precio/m²: 1200 BOB. Inhumación: 2500 BOB.'],
+            [$empAdmin->id,     Carbon::create(2025,10,3),  'tipo_inhumaciones', '3', 'Tipo Lote creado. Precio/m²: 900 BOB. Inhumación: 800 BOB.'],
+            [$empAdmin->id,     Carbon::create(2025,10,3),  'tipo_inhumaciones', '4', 'Tipo Individual creado. Precio/m²: 833 BOB. Inhumación: 600 BOB.'],
             [$empAdmin->id,     Carbon::create(2025,10,5),  'empleados',         '2', 'Empleada María López dada de alta como Cajera.'],
             [$empAdmin->id,     Carbon::create(2025,10,5),  'empleados',         '3', 'Empleado Rodrigo Varela dado de alta como Cajero.'],
             [$empAdmin->id,     Carbon::create(2025,10,5),  'empleados',         '4', 'Empleado Carlos Ríos dado de alta como Operario.'],
             [$empAdmin->id,     Carbon::create(2025,10,5),  'empleados',         '5', 'Empleado Miguel Torrez dado de alta como Operario.'],
             [$empAdmin->id,     Carbon::create(2025,10,10), 'espacios',          '1', 'Registro de 6 nichos sección A en Cementerio Municipal.'],
-            [$empAdmin->id,     Carbon::create(2025,10,10), 'espacios',          '2', 'Registro de 4 bóvedas sección B en Cementerio Municipal.'],
-            [$empAdmin->id,     Carbon::create(2025,10,10), 'espacios',          '3', 'Registro de 3 terrenos sección C en Cementerio Municipal.'],
-            [$empAdmin->id,     Carbon::create(2025,10,12), 'espacios',          '4', 'Registro de 4 nichos y 2 bóvedas en Jardines del Recuerdo.'],
-            [$empAdmin->id,     Carbon::create(2025,10,12), 'espacios',          '5', 'Registro de 3 nichos, 2 bóvedas y 4 terrenos en Parque El Cristo.'],
+            [$empAdmin->id,     Carbon::create(2025,10,10), 'espacios',          '2', 'Registro de 4 mausoleos sección B en Cementerio Municipal.'],
+            [$empAdmin->id,     Carbon::create(2025,10,10), 'espacios',          '3', 'Registro de 3 lotes sección C en Cementerio Municipal.'],
+            [$empAdmin->id,     Carbon::create(2025,10,12), 'espacios',          '4', 'Registro de 4 nichos y 2 mausoleos en Jardines del Recuerdo.'],
+            [$empAdmin->id,     Carbon::create(2025,10,12), 'espacios',          '5', 'Registro de 3 nichos, 2 mausoleos, 2 lotes y 2 individuales en Parque El Cristo.'],
             [$empCajero->id,    Carbon::create(2025,12,1),  'clientes',          '1', 'Cliente Roberto Flores registrado. CI: 4567890.'],
             [$empCajero->id,    Carbon::create(2025,12,15), 'clientes',          '2', 'Cliente Ana Gutierrez registrada. CI: 5678901.'],
             [$empAdmin->id,     Carbon::create(2026,1,5),   'clientes',          '3', 'Cliente Luis Vargas registrado. CI: 6789012.'],
@@ -853,19 +856,19 @@ class DatosPruebaSeeder extends Seeder
             [$empCajero->id,    Carbon::create(2026,2,10),  'clientes',          '7', 'Cliente Fernando Sandoval registrado. CI: 9123456.'],
             [$empCajero->id,    Carbon::create(2026,2,18),  'clientes',          '8', 'Cliente Graciela Torrico registrada. CI: 9234567.'],
             [$empCajero2->id,   Carbon::create(2026,3,2),   'clientes',          '9', 'Cliente Marcelo Herbas registrado. CI: 9345678.'],
-            [$empCajero->id,    Carbon::create(2026,3,12),  'clientes',          '10','Cliente Valentina Aguilera registrada. CI: 9456789.'],
-            [$empCajero2->id,   Carbon::create(2026,3,20),  'clientes',          '11','Cliente Raúl Zambrana registrado. CI: 9567890.'],
-            [$empCajero->id,    Carbon::create(2026,4,1),   'clientes',          '12','Cliente Silvia Camacho registrada. CI: 9678901.'],
-            [$empCajero2->id,   Carbon::create(2026,4,8),   'clientes',          '13','Cliente Héctor Villalobos registrado. CI: 9789012.'],
-            [$empCajero->id,    Carbon::create(2026,4,14),  'clientes',          '14','Cliente Lorena Orellana registrada. CI: 9890123.'],
-            [$empAdmin->id,     Carbon::create(2026,4,20),  'clientes',          '15','Cliente Diego Balcázar registrado. CI: 9901234.'],
+            [$empCajero->id,    Carbon::create(2026,3,12),  'clientes',         '10', 'Cliente Valentina Aguilera registrada. CI: 9456789.'],
+            [$empCajero2->id,   Carbon::create(2026,3,20),  'clientes',         '11', 'Cliente Raúl Zambrana registrado. CI: 9567890.'],
+            [$empCajero->id,    Carbon::create(2026,4,1),   'clientes',         '12', 'Cliente Silvia Camacho registrada. CI: 9678901.'],
+            [$empCajero2->id,   Carbon::create(2026,4,8),   'clientes',         '13', 'Cliente Héctor Villalobos registrado. CI: 9789012.'],
+            [$empCajero->id,    Carbon::create(2026,4,14),  'clientes',         '14', 'Cliente Lorena Orellana registrada. CI: 9890123.'],
+            [$empAdmin->id,     Carbon::create(2026,4,20),  'clientes',         '15', 'Cliente Diego Balcázar registrado. CI: 9901234.'],
             [$empOperario->id,  Carbon::create(2026,3,25),  'espacios',          '3', 'Espacio nicho A-3 Munic. marcado para renovación.'],
-            [$empOperario2->id, Carbon::create(2026,4,10),  'espacios',          '9', 'Inspección bóveda B-3 Munic. Requiere limpieza post-ocupación.'],
+            [$empOperario2->id, Carbon::create(2026,4,10),  'espacios',          '9', 'Inspección mausoleo B-3 Munic. Requiere limpieza post-ocupación.'],
             [$empAdmin->id,     Carbon::create(2026,4,30),  'usuarios',          '4', 'Usuario rodrigo dado de alta. Rol: Cajero.'],
             [$empAdmin->id,     Carbon::create(2026,5,1),   'usuarios',          '5', 'Usuario miguel dado de alta. Rol: Operario.'],
             [$empAdmin->id,     Carbon::create(2026,5,16),  'usuarios',          '3', 'Contraseña del usuario cajero restablecida por administrador.'],
-            [$empOperario->id,  Carbon::create(2026,5,19),  'espacios',          '22','Espacio nicho A-1 El Cristo preparado para inhumación próxima.'],
-            [$empOperario2->id, Carbon::create(2026,5,19),  'espacios',          '25','Espacio bóveda B-1 El Cristo registrado para contrato del día.'],
+            [$empOperario->id,  Carbon::create(2026,5,19),  'espacios',         '22', 'Espacio nicho A-1 El Cristo preparado para inhumación próxima.'],
+            [$empOperario2->id, Carbon::create(2026,5,19),  'espacios',         '25', 'Espacio mausoleo B-1 El Cristo registrado para contrato del día.'],
         ];
 
         foreach ($bitacoraExtra as $b) {
@@ -897,25 +900,34 @@ class DatosPruebaSeeder extends Seeder
         $this->command->info('   Jardines del Recuerdo (Privado)');
         $this->command->info('   Parque Memorial El Cristo (Privado)');
         $this->command->info('');
+        $this->command->info('🪦 Tipos de inhumación: 4');
+        $this->command->info('   Nicho      — Bs. 500 + 1400/m² — cap. 1  — 2.50 m²');
+        $this->command->info('   Mausoleo   — Bs. 2500 + 1200/m² — cap. 12 — 25.00 m²');
+        $this->command->info('   Lote       — Bs. 800 + 900/m²  — cap. 4  — 9.00 m²');
+        $this->command->info('   Individual — Bs. 600 + 833/m²  — cap. 1  — 6.00 m²');
+        $this->command->info('');
         $this->command->info('👥 Clientes: 25');
-        $this->command->info('🪦 Espacios: 30  (6 nichos + 4 bóvedas + 3 terrenos Munic. | 4+2+2 Jardines | 3+2+4 El Cristo)');
+        $this->command->info('🪦 Espacios: 30');
+        $this->command->info('   Munic.: 6 nichos (A) | 4 mausoleos (B) | 3 lotes (C)');
+        $this->command->info('   Jardines: 4 nichos (A) | 2 mausoleos (B) | 2 individuales (C)');
+        $this->command->info('   El Cristo: 3 nichos (A) | 2 mausoleos (B) | 2 lotes (C) | 2 individuales (D)');
         $this->command->info('');
         $this->command->info('📋 Contratos: 15');
-        $this->command->info('   C01 Roberto Flores    Nicho A-1 Munic.       Contado    03/12/2025 Pagado');
-        $this->command->info('   C02 Ana Gutierrez     Bóveda B-1 Munic.      Crédito    10/01/2026 Activo  3/6 cuotas');
-        $this->command->info('   C03 Luis Vargas       Terreno C-1 Munic.     Contado    20/01/2026 Pagado  (desc. 200)');
-        $this->command->info('   C04 Carmen Mendoza    Nicho A-1 Jardines     Crédito    01/02/2026 Pagado  4/4 cuotas');
-        $this->command->info('   C05 Jorge Chávez      Nicho A-2 Munic.       Contado QR 14/02/2026 Pagado');
-        $this->command->info('   C06 Patricia Mamani   Bóveda B-1 Jardines    Crédito    20/02/2026 Activo  2/12 cuotas');
-        $this->command->info('   C07 Fernando Sandoval Nicho A-3 Munic.       Contado    05/03/2026 Pagado');
-        $this->command->info('   C08 Graciela Torrico  Terreno C-2 Munic.     Crédito    15/03/2026 Activo  2/6 cuotas');
-        $this->command->info('   C09 Marcelo Herbas    Nicho A-2 Jardines     Contado    22/03/2026 Pagado  (desc. 100)');
-        $this->command->info('   C10 Valentina Aguilera Nicho A-4 Munic.      Crédito    01/04/2026 Activo  2/6 cuotas');
-        $this->command->info('   C11 Raúl Zambrana     Bóveda B-3 Munic.      Contado QR 08/04/2026 Pagado');
-        $this->command->info('   C12 Silvia Camacho    Nicho A-3 Jardines     Crédito    15/04/2026 Activo  1/6 cuotas');
-        $this->command->info('   C13 Héctor Villalobos Terreno C-1 Jardines   Contado    02/05/2026 Pagado');
-        $this->command->info('   C14 Lorena Orellana   Nicho A-1 El Cristo    Contado QR 12/05/2026 Pagado  (desc. 150)');
-        $this->command->info('   C15 Diego Balcázar    Bóveda B-1 El Cristo   Crédito    19/05/2026 Activo  0/4 cuotas');
+        $this->command->info('   C01 Roberto Flores     Nicho A-1 Munic.         Contado      03/12/2025 Pagado');
+        $this->command->info('   C02 Ana Gutierrez      Mausoleo B-1 Munic.      Crédito      10/01/2026 Activo  3/6 cuotas');
+        $this->command->info('   C03 Luis Vargas        Lote C-1 Munic.          Contado      20/01/2026 Pagado  (desc. 200)');
+        $this->command->info('   C04 Carmen Mendoza     Nicho A-1 Jardines       Crédito      01/02/2026 Pagado  4/4 cuotas');
+        $this->command->info('   C05 Jorge Chávez       Nicho A-2 Munic.         Contado QR   14/02/2026 Pagado');
+        $this->command->info('   C06 Patricia Mamani    Mausoleo B-1 Jardines    Crédito      20/02/2026 Activo  2/12 cuotas');
+        $this->command->info('   C07 Fernando Sandoval  Nicho A-3 Munic.         Contado      05/03/2026 Pagado');
+        $this->command->info('   C08 Graciela Torrico   Lote C-2 Munic.          Crédito      15/03/2026 Activo  2/6 cuotas');
+        $this->command->info('   C09 Marcelo Herbas     Nicho A-2 Jardines       Contado      22/03/2026 Pagado  (desc. 100)');
+        $this->command->info('   C10 Valentina Aguilera Nicho A-4 Munic.         Crédito      01/04/2026 Activo  2/6 cuotas');
+        $this->command->info('   C11 Raúl Zambrana      Mausoleo B-3 Munic.      Contado QR   08/04/2026 Pagado');
+        $this->command->info('   C12 Silvia Camacho     Nicho A-3 Jardines       Crédito      15/04/2026 Activo  1/6 cuotas');
+        $this->command->info('   C13 Héctor Villalobos  Individual C-1 Jardines  Contado      02/05/2026 Pagado');
+        $this->command->info('   C14 Lorena Orellana    Nicho A-1 El Cristo      Contado QR   12/05/2026 Pagado  (desc. 150)');
+        $this->command->info('   C15 Diego Balcázar     Mausoleo B-1 El Cristo   Crédito      19/05/2026 Activo  0/4 cuotas');
         $this->command->info('');
         $this->command->info('💰 Ventas: 8 contado | 7 crédito');
         $this->command->info('🪦 Inhumaciones: 15');

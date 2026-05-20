@@ -5,7 +5,7 @@ cmd 1:
 
 git remote -v
 git add .
-git commit -m "reportes papu"
+git commit -m "reportes papu 337773"
 git push
 
 Luego en una CMD  2:
@@ -20,3 +20,30 @@ bash /var/www/sepulturerojuan/deploy.sh
 
 
 contraseña: Admin1234!
+
+=========================
+script poblar
+
+mysql -u root -p
+
+123456
+
+SHOW DATABASES;
+
+drop database sepulturero_juan;
+
+create database sepulturero_juan;
+
+exit
+
+cd /var/www/sepulturerojuan
+
+sudo php8.2 artisan migrate --seed
+
+php artisan key:generate
+
+
+
+php artisan db:seed --class=DatosPruebaSeeder
+
+===============================
