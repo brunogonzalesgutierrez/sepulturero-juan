@@ -157,7 +157,7 @@ class ReporteController extends Controller
 
         $cementerioId = $request->get('cementerio_id', '');
 
-        $query = Espacio::with(['cementerio', 'tipoInhumacion', 'direccion', 'contratos.cliente']);
+        $query = Espacio::with(['cementerio', 'tipoInhumacion', 'dimension']);
         if ($cementerioId) $query->where('cementerio_id', $cementerioId);
 
         $espacios = $query->orderBy('cementerio_id')->get();

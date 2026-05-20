@@ -16,12 +16,13 @@
                 <select name="cementerio_id" class="form-select form-select-sm">
                     <option value="">Todos los cementerios</option>
                     @foreach($cementerios as $c)
-                    <option value="{{ $c->id }}" {{ $cementerioId==$c->id ? 'selected':'' }}>{{ $c->nombre }}</option>
+                        <option value="{{ $c->id }}" {{ $cementerioId == $c->id ? 'selected' : '' }}>
+                            {{ $c->nombre }}
+                        </option>
                     @endforeach
                 </select>
             </div>
             <div class="col-md-8">
-
                 <div class="d-flex gap-2 align-items-end flex-wrap">
 
                     {{-- Filtrar --}}
@@ -36,9 +37,8 @@
                         <i class="bi bi-file-pdf me-1"></i>Descargar PDF
                     </button>
 
-                    {{-- Enviar PDF --}}
+                    {{-- Enviar PDF por correo --}}
                     <div class="input-group input-group-sm" style="max-width:320px;">
-
                         <input
                             type="email"
                             name="correo_destino"
@@ -46,47 +46,63 @@
                             placeholder="correo@ejemplo.com, otro@ejemplo.com"
                             title="Separa múltiples correos con coma"
                         >
-
-                        <button
-                            name="exportar"
-                            value="pdf"
-                            class="btn btn-sm btn-outline-primary"
-                        >
+                        <button name="exportar" value="pdf" class="btn btn-sm btn-outline-primary">
                             <i class="bi bi-envelope me-1"></i>Enviar PDF
                         </button>
-
                     </div>
 
                     @endcan
 
                     {{-- Limpiar --}}
-                    <a href="{{ route('reportes.espacios') }}"
-                    class="btn btn-sm btn-outline-secondary">
+                    <a href="{{ route('reportes.espacios') }}" class="btn btn-sm btn-outline-secondary">
                         <i class="bi bi-x-lg"></i>
                     </a>
 
                 </div>
-
             </div>
         </form>
     </div>
 </div>
 
+{{-- Tarjetas resumen --}}
+<div class="row g-3 mb-3">
+    @foreach($porEstado as $estado => $cantidad)
+    <div class="col-6 col-md-3">
+        <div class="card text-center">
+            <div class="card-body py-3">
+                <div class="fs-3 fw-bold">{{ $cantidad }}</div>
+                <div class="text-muted small">{{ ucfirst($estado) }}</div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+
+{{-- Gráficas --}}
 <div class="row g-3 mb-3">
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header py-2"><i class="bi bi-pie-chart me-1"></i>Por Estado</div>
-            <div class="card-body"><canvas id="estadoChart" height="160"></canvas></div>
+            <div class="card-header py-2">
+                <i class="bi bi-pie-chart me-1"></i>Por Estado
+            </div>
+            <div class="card-body">
+                <canvas id="estadoChart" height="160"></canvas>
+            </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header py-2"><i class="bi bi-bar-chart me-1"></i>Por Tipo</div>
-            <div class="card-body"><canvas id="tipoChart" height="160"></canvas></div>
+            <div class="card-header py-2">
+                <i class="bi bi-bar-chart me-1"></i>Por Tipo
+            </div>
+            <div class="card-body">
+                <canvas id="tipoChart" height="160"></canvas>
+            </div>
         </div>
     </div>
 </div>
 
+{{-- Tabla de espacios --}}
 <div class="card">
     <div class="card-body p-0">
         <div class="table-responsive">
@@ -96,10 +112,12 @@
                         <th>#</th>
                         <th>Cementerio</th>
                         <th>Tipo</th>
-                        <th>Sección</th>
-                        <th>Fila/Nro</th>
+                        <th>Ancho (m)</th>
+                        <th>Largo (m)</th>
+                        <th>Área (m²)</th>
                         <th>Estado</th>
                         <th>Precio m²</th>
+                        <th>Cap. Máx.</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -108,14 +126,20 @@
                         <td class="text-muted">{{ $e->id }}</td>
                         <td>{{ $e->cementerio->nombre }}</td>
                         <td>{{ $e->tipoInhumacion->nombre }}</td>
-                        <td>{{ $e->direccion->seccion ?? '—' }}</td>
-                        <td>{{ $e->direccion->fila ?? '—' }} / {{ $e->direccion->numero ?? '—' }}</td>
-                        <td><span class="badge badge-{{ $e->estado }}">{{ ucfirst($e->estado) }}</span></td>
-                        <td>{{ number_format($e->precio_m2, 2) }}</td>
+                        <td>{{ number_format($e->dimension->ancho, 2) }}</td>
+                        <td>{{ number_format($e->dimension->largo, 2) }}</td>
+                        <td>{{ number_format($e->dimension->area, 2) }}</td>
+                        <td>
+                            <span class="badge badge-{{ $e->estado }}">
+                                {{ ucfirst($e->estado) }}
+                            </span>
+                        </td>
+                        <td>{{ number_format($e->tipoInhumacion->precio_m2, 2) }}</td>
+                        <td>{{ $e->tipoInhumacion->capacidad_max }}</td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="7" class="text-center text-muted py-4">No hay espacios.</td>
+                        <td colspan="9" class="text-center text-muted py-4">No hay espacios registrados.</td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -131,28 +155,25 @@
     new Chart(document.getElementById('estadoChart'), {
         type: 'pie',
         data: {
-            labels: @json($porEstado -> keys() -> map(fn($k) => ucfirst($k))),
+            labels: @json($porEstado->keys()->map(fn($k) => ucfirst($k))),
             datasets: [{
-                data: @json($porEstado -> values()),
+                data: @json($porEstado->values()),
                 backgroundColor: ['#198754', '#dc3545', '#ffc107', '#0dcaf0']
             }]
         },
         options: {
             responsive: true,
-            plugins: {
-                legend: {
-                    position: 'bottom'
-                }
-            }
+            plugins: { legend: { position: 'bottom' } }
         }
     });
+
     new Chart(document.getElementById('tipoChart'), {
         type: 'bar',
         data: {
-            labels: @json($porTipo -> keys()),
+            labels: @json($porTipo->keys()),
             datasets: [{
                 label: 'Espacios',
-                data: @json($porTipo -> values()),
+                data: @json($porTipo->values()),
                 backgroundColor: 'rgba(201,168,76,0.7)',
                 borderColor: '#c9a84c',
                 borderWidth: 2,
@@ -161,16 +182,8 @@
         },
         options: {
             responsive: true,
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
         }
     });
 </script>
