@@ -17,7 +17,7 @@
                     <th>#</th>
                     <th>Nombre</th>
                     <th>Precio</th>
-                    <th>Precio Base</th>
+                    <th>Precio m²</th>
                     <th>Cap. Máx</th>
                     <th>Área Base</th>
                     <th>Estado</th>
@@ -30,7 +30,7 @@
                     <td class="text-muted" style="font-size:0.8rem;">{{ $t->id }}</td>
                     <td><strong>{{ $t->nombre }}</strong></td>
                     <td>{{ number_format($t->precio, 2) }}</td>
-                    <td>{{ number_format($t->precio_base, 2) }}</td>
+                    <td>{{ number_format($t->precio_m2, 2) }}</td>
                     <td>{{ $t->capacidad_max }}</td>
                     <td>{{ $t->area_base }} m²</td>
                     <td><span class="badge badge-{{ $t->estado }}">{{ ucfirst($t->estado) }}</span></td>

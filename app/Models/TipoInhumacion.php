@@ -13,11 +13,11 @@ class TipoInhumacion extends Model
 
     protected $fillable = [
         'nombre',
-        'precio',      // precio fijo de inhumación según el tipo
-        'precio_m2',   // precio por m² según el tipo (antes precio_base)
+        'precio',
+        'precio_m2',    // ← debe decir precio_m2, no precio_base
         'capacidad_max',
         'estado',
-        'area_base'
+        'area_base',
     ];
 
     public function espacios()

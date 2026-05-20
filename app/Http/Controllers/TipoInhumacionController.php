@@ -32,12 +32,12 @@ class TipoInhumacionController extends Controller
 
 
         $data = $request->validate([
-            'nombre' => 'required|string|max:255|unique:tipo_inhumaciones,nombre',
-            'precio' => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
-            'precio_base' => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
-            'capacidad_max' => 'required|integer|min:1',
-            'estado' => 'required|in:activo,inactivo,mantenimiento',
-            'area_base' => 'required|numeric|min:0.01|regex:/^\d+(\.\d{1,2})?$/'
+            'nombre'       => 'required|string|max:255|unique:tipo_inhumaciones,nombre',
+            'precio'       => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
+            'precio_m2'    => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
+            'capacidad_max'=> 'required|integer|min:1',
+            'estado'       => 'required|in:activo,inactivo',
+            'area_base'    => 'required|numeric|min:0.01|regex:/^\d+(\.\d{1,2})?$/',
         ]);
 
         TipoInhumacion::create($data);
@@ -64,12 +64,12 @@ class TipoInhumacionController extends Controller
         $tipoInhumacion = TipoInhumacion::findorfail($id);
 
         $data = $request->validate([
-            'nombre' => 'required|string|max:255|unique:tipo_inhumaciones,nombre,' . $tipoInhumacion->id,
-            'precio' => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
-            'precio_base' => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
-            'capacidad_max' => 'required|integer|min:1',
-            'estado' => 'required|in:activo,inactivo,mantenimiento',
-            'area_base' => 'required|numeric|min:0.01|regex:/^\d+(\.\d{1,2})?$/'
+            'nombre'       => 'required|string|max:255|unique:tipo_inhumaciones,nombre,' . $tipoInhumacion->id,
+            'precio'       => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
+            'precio_m2'    => 'required|numeric|min:0|regex:/^\d+(\.\d{1,2})?$/',
+            'capacidad_max'=> 'required|integer|min:1',
+            'estado'       => 'required|in:activo,inactivo',
+            'area_base'    => 'required|numeric|min:0.01|regex:/^\d+(\.\d{1,2})?$/',
         ]);
 
         $tipoInhumacion->update($data);

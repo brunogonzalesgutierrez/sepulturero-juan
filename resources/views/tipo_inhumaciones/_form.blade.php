@@ -29,10 +29,11 @@
         @error('precio')<div class="invalid-feedback">{{ $message }}</div>@enderror
     </div>
     <div class="col-md-3">
-        <label class="form-label fw-semibold">Precio Base <span class="text-danger">*</span></label>
-        <input type="number" step="0.01" name="precio_base" class="form-control @error('precio_base') is-invalid @enderror"
-            value="{{ old('precio_base', $tipoInhumacion->precio_base ?? '') }}" required>
-        @error('precio_base')<div class="invalid-feedback">{{ $message }}</div>@enderror
+        {{-- Por esto: --}}
+        <label class="form-label fw-semibold">Precio por m² <span class="text-danger">*</span></label>
+        <input type="number" step="0.01" name="precio_m2" class="form-control @error('precio_m2') is-invalid @enderror"
+            value="{{ old('precio_m2', $tipoInhumacion->precio_m2 ?? '') }}" required>
+        @error('precio_m2')<div class="invalid-feedback">{{ $message }}</div>@enderror
     </div>
     <div class="col-md-3">
         <label class="form-label fw-semibold">Capacidad Máxima <span class="text-danger">*</span></label>
