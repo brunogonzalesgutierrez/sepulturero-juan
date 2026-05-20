@@ -25,7 +25,7 @@ class AdminSeeder extends Seeder
             ['username' => 'admin'],
             [
                 'empleado_id' => $empleado->id,
-                'email'       => 'admin@sepulturero.com',
+                'email'       => 'admin@sepulturerojuan.xyz',
                 'password'    => bcrypt('Admin1234!'),
                 'estado'      => 'activo',
             ]

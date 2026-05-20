@@ -1,13 +1,22 @@
+contraseña: Admin1234!
+
+
+cmd 1:
 
 git remote -v
 git add .
 git commit -m "reportes papu"
 git push
 
-Luego en una CMD:
+Luego en una CMD  2:
 
 ssh sistema@167.114.115.77
+
+contraseña: Admin1234!
 
 Y una vez conectado:
 
 bash /var/www/sepulturerojuan/deploy.sh
+
+
+contraseña: Admin1234!
