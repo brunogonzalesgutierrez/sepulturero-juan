@@ -41,18 +41,24 @@ class ReporteController extends Controller
 
         $ventas = $query->orderBy('fecha_venta', 'desc')->get();
 
-        // Datos para gráfica
         $ventasPorDia = $ventas->groupBy(fn($v) => $v->fecha_venta->format('d/m'))
             ->map(fn($g) => $g->sum('precio_total'));
 
         $totalContado = $ventas->where('tipo_venta', 'contado')->sum('precio_total');
         $totalCredito = $ventas->where('tipo_venta', 'credito')->sum('precio_total');
 
+        // ── Usuarios activos con empleado para el selector de destinatarios ──
+        $usuariosActivos = \App\Models\User::with('empleado')
+            ->where('estado', 'activo')
+            ->whereNotNull('empleado_id')
+            ->whereNotNull('email')
+            ->orderBy('email')
+            ->get();
+
         if ($request->get('exportar') === 'pdf') {
             $pdf = Pdf::loadView('reportes.pdf.ventas', compact('ventas', 'desde', 'hasta', 'totalContado', 'totalCredito'))
                 ->setPaper('a4', 'landscape');
 
-            // Si quiere enviar por correo
             if ($request->filled('correo_destino')) {
                 $correos = array_map('trim', explode(',', $request->correo_destino));
                 $nombreArchivo = "reporte_ventas_{$desde}_{$hasta}.pdf";
@@ -78,7 +84,8 @@ class ReporteController extends Controller
             'moneda',
             'ventasPorDia',
             'totalContado',
-            'totalCredito'
+            'totalCredito',
+            'usuariosActivos'
         ));
     }
 
@@ -94,12 +101,11 @@ class ReporteController extends Controller
         $query = Pago::with([
             'empleado',
             'cuota.planPago.pagoCredito.venta.cliente',
-        ])
-            ->whereBetween('fecha_pago', [$desde, $hasta]);
+        ])->whereBetween('fecha_pago', [$desde, $hasta]);
 
         if ($metodo) $query->where('metodo_pago', $metodo);
 
-        $pagos       = $query->orderBy('fecha_pago', 'desc')->get();
+        $pagos        = $query->orderBy('fecha_pago', 'desc')->get();
         $totalCobrado = $pagos->sum('monto_pagado');
 
         $pagosPorMetodo = $pagos->groupBy('metodo_pago')
@@ -110,17 +116,22 @@ class ReporteController extends Controller
             ->orderBy('fecha_vencimiento')
             ->get();
 
+        // ── Usuarios activos con empleado para el selector de destinatarios ──
+        $usuariosActivos = \App\Models\User::with('empleado')
+            ->where('estado', 'activo')
+            ->whereNotNull('empleado_id')
+            ->whereNotNull('email')
+            ->orderBy('email')
+            ->get();
+
         if ($request->get('exportar') === 'pdf') {
             $pdf = Pdf::loadView(
                 'reportes.pdf.pagos',
                 compact('pagos', 'desde', 'hasta', 'totalCobrado', 'cuotasVencidas')
             )->setPaper('a4', 'landscape');
 
-            // Enviar por correo
             if ($request->filled('correo_destino')) {
-
                 $correos = array_map('trim', explode(',', $request->correo_destino));
-
                 $nombreArchivo = "reporte_pagos_{$desde}_{$hasta}.pdf";
 
                 Mail::to($correos)->send(new ReporteMail(
@@ -130,13 +141,10 @@ class ReporteController extends Controller
                     mensaje: "Se adjunta el reporte de pagos solicitado."
                 ));
 
-                return back()->with(
-                    'success',
-                    'Reporte enviado a: ' . implode(', ', $correos)
-                );
+                return back()->with('success', 'Reporte enviado a: ' . implode(', ', $correos));
             }
 
-            return $pdf->download($nombreArchivo);
+            return $pdf->download("reporte_pagos_{$desde}_{$hasta}.pdf");
         }
 
         return view('reportes.pagos', compact(
@@ -146,7 +154,8 @@ class ReporteController extends Controller
             'metodo',
             'totalCobrado',
             'pagosPorMetodo',
-            'cuotasVencidas'
+            'cuotasVencidas',
+            'usuariosActivos'
         ));
     }
 
@@ -170,6 +179,14 @@ class ReporteController extends Controller
 
         $cementerios = \App\Models\Cementerio::where('estado', 'activo')->orderBy('nombre')->get();
 
+        // ── Usuarios activos con empleado para el selector de destinatarios ──
+        $usuariosActivos = \App\Models\User::with('empleado')
+            ->where('estado', 'activo')
+            ->whereNotNull('empleado_id')
+            ->whereNotNull('email')
+            ->orderBy('email')
+            ->get();
+
         if ($request->get('exportar') === 'pdf') {
 
             $pdf = Pdf::loadView(
@@ -177,11 +194,8 @@ class ReporteController extends Controller
                 compact('espacios', 'porEstado', 'porTipo')
             )->setPaper('a4', 'landscape');
 
-            // Enviar por correo
             if ($request->filled('correo_destino')) {
-
                 $correos = array_map('trim', explode(',', $request->correo_destino));
-
                 $nombreArchivo = "reporte_espacios.pdf";
 
                 Mail::to($correos)->send(new ReporteMail(
@@ -191,13 +205,10 @@ class ReporteController extends Controller
                     mensaje: "Se adjunta el reporte de espacios solicitado."
                 ));
 
-                return back()->with(
-                    'success',
-                    'Reporte enviado a: ' . implode(', ', $correos)
-                );
+                return back()->with('success', 'Reporte enviado a: ' . implode(', ', $correos));
             }
 
-            return $pdf->download($nombreArchivo);
+            return $pdf->download("reporte_espacios.pdf");
         }
 
         return view('reportes.espacios', compact(
@@ -205,7 +216,8 @@ class ReporteController extends Controller
             'porEstado',
             'porTipo',
             'cementerios',
-            'cementerioId'
+            'cementerioId',
+            'usuariosActivos'
         ));
     }
 
@@ -222,9 +234,17 @@ class ReporteController extends Controller
 
         if ($moneda) $query->where('moneda', $moneda);
 
-        $contratos     = $query->orderBy('created_at', 'desc')->get();
-        $totalSaldo    = $contratos->sum('saldo_pendiente');
-        $totalMonto    = $contratos->sum('monto_base');
+        $contratos  = $query->orderBy('created_at', 'desc')->get();
+        $totalSaldo = $contratos->sum('saldo_pendiente');
+        $totalMonto = $contratos->sum('monto_base');
+
+        // ── Usuarios activos con empleado para el selector de destinatarios ──
+        $usuariosActivos = \App\Models\User::with('empleado')
+            ->where('estado', 'activo')
+            ->whereNotNull('empleado_id')
+            ->whereNotNull('email')
+            ->orderBy('email')
+            ->get();
 
         if ($request->get('exportar') === 'pdf') {
 
@@ -233,11 +253,8 @@ class ReporteController extends Controller
                 compact('contratos', 'estado', 'totalSaldo', 'totalMonto')
             )->setPaper('a4', 'landscape');
 
-            // Enviar por correo
             if ($request->filled('correo_destino')) {
-
                 $correos = array_map('trim', explode(',', $request->correo_destino));
-
                 $nombreArchivo = "reporte_contratos_{$estado}.pdf";
 
                 Mail::to($correos)->send(new ReporteMail(
@@ -247,13 +264,10 @@ class ReporteController extends Controller
                     mensaje: "Se adjunta el reporte de contratos solicitado."
                 ));
 
-                return back()->with(
-                    'success',
-                    'Reporte enviado a: ' . implode(', ', $correos)
-                );
+                return back()->with('success', 'Reporte enviado a: ' . implode(', ', $correos));
             }
 
-            return $pdf->download($nombreArchivo);
+            return $pdf->download("reporte_contratos_{$estado}.pdf");
         }
 
         return view('reportes.contratos', compact(
@@ -261,7 +275,8 @@ class ReporteController extends Controller
             'estado',
             'moneda',
             'totalSaldo',
-            'totalMonto'
+            'totalMonto',
+            'usuariosActivos'
         ));
     }
 }
