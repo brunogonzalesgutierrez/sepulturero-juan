@@ -168,32 +168,58 @@
 {{-- Modal Enviar PDF --}}
 @can('reportes.exportar')
 <div class="modal fade" id="modalEnviar" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="bi bi-envelope me-2"></i>Enviar Reporte PDF</h5>
+                <h5 class="modal-title"><i class="bi bi-send me-2"></i>Enviar Reporte PDF</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
 
-                {{-- Usuarios del sistema --}}
+                {{-- Tabla de usuarios --}}
                 @if($usuariosActivos->count() > 0)
-                <p class="fw-bold small mb-1">Usuarios del sistema:</p>
-                <div class="border rounded p-2 mb-3" style="max-height:180px; overflow-y:auto;">
-                    @foreach($usuariosActivos as $u)
-                    <div class="form-check">
-                        <input
-                            class="form-check-input destinatario-check"
-                            type="checkbox"
-                            value="{{ $u->email }}"
-                            id="dest_{{ $u->id }}"
-                        >
-                        <label class="form-check-label small" for="dest_{{ $u->id }}">
-                            {{ $u->empleado->nombre }} {{ $u->empleado->paterno }}
-                            <span class="text-muted">&lt;{{ $u->email }}&gt;</span>
-                        </label>
-                    </div>
-                    @endforeach
+                <p class="fw-bold small mb-2">Usuarios del sistema:</p>
+                <div class="table-responsive mb-3">
+                    <table class="table table-hover table-sm mb-0 align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width:40px;"></th>
+                                <th>Empleado</th>
+                                <th>Correo</th>
+                                <th style="width:100px;" class="text-center">Seleccionar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($usuariosActivos as $u)
+                            @php
+                                $iniciales = strtoupper(substr($u->empleado->nombre, 0, 1) . substr($u->empleado->paterno, 0, 1));
+                            @endphp
+                            <tr id="fila_{{ $u->id }}">
+                                <td>
+                                    <div style="
+                                        width:34px; height:34px; border-radius:50%;
+                                        background:#1a1a2e; color:#c9a84c;
+                                        display:flex; align-items:center; justify-content:center;
+                                        font-size:12px; font-weight:600;
+                                    ">{{ $iniciales }}</div>
+                                </td>
+                                <td>{{ $u->empleado->nombre }} {{ $u->empleado->paterno }}</td>
+                                <td class="text-muted small">{{ $u->email }}</td>
+                                <td class="text-center">
+                                    <button
+                                        type="button"
+                                        class="btn btn-sm btn-outline-secondary btn-seleccionar"
+                                        data-email="{{ $u->email }}"
+                                        data-uid="{{ $u->id }}"
+                                        onclick="toggleDestinatario(this)"
+                                    >
+                                        <i class="bi bi-circle me-1"></i>Seleccionar
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
                 @endif
 
@@ -202,10 +228,15 @@
                 <input
                     type="text"
                     id="correos_externos"
-                    class="form-control form-control-sm"
+                    class="form-control form-control-sm mb-1"
                     placeholder="correo1@ejemplo.com, correo2@ejemplo.com"
                 >
                 <small class="text-muted">Separa múltiples correos con coma.</small>
+
+                {{-- Resumen seleccionados --}}
+                <div id="resumen_destinatarios" class="mt-3 p-2 rounded bg-light d-none">
+                    <small class="text-muted">Destinatarios: <span id="lista_seleccionados" class="fw-bold text-dark"></span></small>
+                </div>
 
             </div>
             <div class="modal-footer">
@@ -246,14 +277,53 @@
     });
     @endif
 
-    function enviarReporte() {
-        const checks = [...document.querySelectorAll('.destinatario-check:checked')]
-            .map(c => c.value);
+    const seleccionados = new Set();
 
+    function toggleDestinatario(btn) {
+        const email = btn.dataset.email;
+        const uid   = btn.dataset.uid;
+
+        if (seleccionados.has(email)) {
+            seleccionados.delete(email);
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-outline-secondary');
+            btn.innerHTML = '<i class="bi bi-circle me-1"></i>Seleccionar';
+            document.getElementById('fila_' + uid).classList.remove('table-success');
+        } else {
+            seleccionados.add(email);
+            btn.classList.remove('btn-outline-secondary');
+            btn.classList.add('btn-success');
+            btn.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i>Seleccionado';
+            document.getElementById('fila_' + uid).classList.add('table-success');
+        }
+
+        actualizarResumen();
+    }
+
+    function actualizarResumen() {
         const externos = document.getElementById('correos_externos').value
             .split(',').map(e => e.trim()).filter(e => e);
 
-        const todos = [...new Set([...checks, ...externos])];
+        const todos = [...new Set([...seleccionados, ...externos])];
+        const resumen = document.getElementById('resumen_destinatarios');
+        const lista   = document.getElementById('lista_seleccionados');
+
+        if (todos.length > 0) {
+            lista.textContent = todos.join(', ');
+            resumen.classList.remove('d-none');
+        } else {
+            resumen.classList.add('d-none');
+        }
+    }
+
+    document.getElementById('correos_externos')
+        ?.addEventListener('input', actualizarResumen);
+
+    function enviarReporte() {
+        const externos = document.getElementById('correos_externos').value
+            .split(',').map(e => e.trim()).filter(e => e);
+
+        const todos = [...new Set([...seleccionados, ...externos])];
 
         if (todos.length === 0) {
             alert('Selecciona al menos un destinatario.');
@@ -262,7 +332,7 @@
 
         document.getElementById('correo_destino_input').value = todos.join(',');
 
-        const form = document.getElementById('formVentas');
+        const form  = document.getElementById('formVentas');
         const input = document.createElement('input');
         input.type  = 'hidden';
         input.name  = 'exportar';

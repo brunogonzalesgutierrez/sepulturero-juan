@@ -1,0 +1,13 @@
+
+git remote -v
+git add .
+git commit -m "reportes papu"
+git push
+
+Luego en una CMD:
+
+ssh sistema@167.114.115.77
+
+Y una vez conectado:
+
+bash /var/www/sepulturerojuan/deploy.sh
